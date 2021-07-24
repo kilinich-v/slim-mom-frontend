@@ -1,11 +1,11 @@
-import RightSideBar from "./Components/RightSideBar"
+import RightSideBar from './components/RightSideBar'
 
 function App() {
-  return(<>
-  
-    <RightSideBar />
+  return (
+    <>
+      <RightSideBar />
     </>
-  ) 
+  )
 }
 
 export default App
