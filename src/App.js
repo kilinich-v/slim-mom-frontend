@@ -1,9 +1,9 @@
 import { Route, Switch } from 'react-router-dom'
+import routes from './routes'
 import MainPageView from './views/MainPageView'
 import AuthView from './views/AuthView'
 import CalculatorView from './views/CalculatorView'
 import DiaryView from './views/DiaryView'
-import routes from './routes'
 
 function App() {
   return (
