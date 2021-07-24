@@ -10,14 +10,14 @@
   transition: all 350ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) and (max-width: 1199px) {
-    background-image: url('../../images/DecoreLaptop.png');
+    background-image: url('../../res/images/DecoreLaptop.png');
     display: block;
     width: 552px;
     top: 461px;
   }
   @media screen and (min-width: 1200px) {
     display: block;
-    background-image: url('../../images/DecoreDesc.png');
+    background-image: url('../../res/images/DecoreDesc.png');
   }
 }
 .Banana {
@@ -32,14 +32,14 @@
   transition: all 950ms cubic-bezier(0.4, 0, 0.2, 1);
   @media screen and (min-width: 768px) and (max-width: 1199px) {
     display: block;
-    background-image: url('../../images/BananaLaptop.png');
+    background-image: url('../../res/images/BananaLaptop.png');
     width: 540px;
     height: 527px;
     top: 582px;
   }
   @media screen and (min-width: 1200px) {
     display: block;
-    background-image: url('../../images/BananaDesc.png');
+    background-image: url('../../res/images/BananaDesc.png');
   }
 }
 
@@ -60,14 +60,14 @@
 
   @media screen and (min-width: 768px) and (max-width: 1199px) {
     display: block;
-    background-image: url('../../images/StrawberryLaptop.png');
+    background-image: url('../../res/images/StrawberryLaptop.png');
     width: 340px;
     height: 327px;
     top: 548px;
   }
   @media screen and (min-width: 1200px) {
     display: block;
-    background-image: url('../../images/StrawberryDesc.png');
+    background-image: url('../../res/images/StrawberryDesc.png');
   }
 }
 .Green {
@@ -89,13 +89,13 @@
   @media screen and (min-width: 768px) and (max-width: 1199px) {
     left: 0;
     display: block;
-    background-image: url('../../images/GreenLaptop.png');
+    background-image: url('../../res/images/GreenLaptop.png');
     width: 740px;
     height: 627px;
     top: 440px;
   }
   @media screen and (min-width: 1200px) {
     display: block;
-    background-image: url('../../images/GreenDesc.png');
+    background-image: url('../../res/images/GreenDesc.png');
   }
 }
