@@ -1,6 +1,8 @@
 import Container from './components/Container'
 import CalcForm from './components/CalcForm'
 import ContentImagesHomePage from './components/ContentImagesHomePage'
+import RightSideBar from './components/RightSideBar'
+
 
 function App() {
   return (
@@ -8,6 +10,7 @@ function App() {
       <ContentImagesHomePage />
       <Container>
         <CalcForm />
+        <RightSideBar />
       </Container>
     </>
   )
