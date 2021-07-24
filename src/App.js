@@ -1,5 +1,11 @@
+import RightSideBar from "./Components/RightSideBar"
+
 function App() {
-  return <div className="App">привет</div>
+  return(<>
+  
+    <RightSideBar />
+    </>
+  ) 
 }
 
 export default App
