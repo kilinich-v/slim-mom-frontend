@@ -1,5 +1,16 @@
+import Container from './components/Container'
+import CalcForm from './components/CalcForm'
+import ContentImagesHomePage from './components/ContentImagesHomePage'
+
 function App() {
-  return <div className="App">привет</div>
+  return (
+    <>
+      <ContentImagesHomePage />
+      <Container>
+        <CalcForm />
+      </Container>
+    </>
+  )
 }
 
 export default App
