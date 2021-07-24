@@ -1,0 +1,101 @@
+.DecoreLaptop {
+  display: none;
+  position: absolute;
+  width: 602px;
+  height: 816px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 34px;
+  right: 0;
+  transition: all 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    background-image: url('../../res/images/DecoreLaptop.png');
+    display: block;
+    width: 552px;
+    top: 461px;
+  }
+  @media screen and (min-width: 1200px) {
+    display: block;
+    background-image: url('../../res/images/DecoreDesc.png');
+  }
+}
+.Banana {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: -60px;
+  width: 573px;
+  height: 500px;
+  background-size: cover;
+  z-index: 1;
+  transition: all 950ms cubic-bezier(0.4, 0, 0.2, 1);
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    display: block;
+    background-image: url('../../res/images/BananaLaptop.png');
+    width: 540px;
+    height: 527px;
+    top: 582px;
+  }
+  @media screen and (min-width: 1200px) {
+    display: block;
+    background-image: url('../../res/images/BananaDesc.png');
+  }
+}
+
+.Strawberry {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 490px;
+  justify-content: center;
+  align-items: center;
+  width: 380px;
+  height: 340px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1;
+  transition: all 750ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    display: block;
+    background-image: url('../../res/images/StrawberryLaptop.png');
+    width: 340px;
+    height: 327px;
+    top: 548px;
+  }
+  @media screen and (min-width: 1200px) {
+    display: block;
+    background-image: url('../../res/images/StrawberryDesc.png');
+  }
+}
+.Green {
+  pointer-events: none;
+  display: none;
+  position: absolute;
+  right: 190px;
+  top: -26px;
+  justify-content: center;
+  align-items: center;
+  width: 872px;
+  height: 840px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1;
+  transition: all 850ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    left: 0;
+    display: block;
+    background-image: url('../../res/images/GreenLaptop.png');
+    width: 740px;
+    height: 627px;
+    top: 440px;
+  }
+  @media screen and (min-width: 1200px) {
+    display: block;
+    background-image: url('../../res/images/GreenDesc.png');
+  }
+}
