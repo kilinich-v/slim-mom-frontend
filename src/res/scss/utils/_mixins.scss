@@ -1,13 +1,12 @@
 //example:
 
-// @include for-size(laptop) {
+// @include for-size(tablet) {
 //   margin-bottom: 53px;
 // }
 
 @mixin for-size($range) {
   $mobile: $mobile;
   $tablet: $tablet;
-  $laptop: $laptop;
   $desktop: $desktop;
 
   @if $range == mobile-only {
