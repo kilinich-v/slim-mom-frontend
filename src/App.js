@@ -1,17 +1,19 @@
-import Container from './components/Container'
-import CalcForm from './components/CalcForm'
-import ContentImagesHomePage from './components/ContentImagesHomePage'
-import RightSideBar from './components/RightSideBar'
-
+import { Route, Switch } from 'react-router-dom'
+import routes from './routes'
+import MainPageView from './views/MainPageView'
+import AuthView from './views/AuthView'
+import CalculatorView from './views/CalculatorView'
+import DiaryView from './views/DiaryView'
 
 function App() {
   return (
     <>
-      <ContentImagesHomePage />
-      <Container>
-        <CalcForm />
-        <RightSideBar />
-      </Container>
+      <Switch>
+        <Route exact path={routes.main} component={MainPageView} />
+        <Route path={routes.auth} component={AuthView} />
+        <Route path={routes.calculator} component={CalculatorView} />
+        <Route path={routes.diary} component={DiaryView} />
+      </Switch>
     </>
   )
 }

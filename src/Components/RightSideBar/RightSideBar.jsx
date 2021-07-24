@@ -114,7 +114,7 @@ const useStyles = createUseStyles({
 const RightSideBar = () => {
   const styless = useStyles()
   return (
-    <>
+    <div>
       <section className={styless.section}>
         <div className={styless.container}>
           <div className={styless.box}>
@@ -144,7 +144,7 @@ const RightSideBar = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   )
 }
 

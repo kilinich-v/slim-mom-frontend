@@ -7,8 +7,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import { orange } from '@material-ui/core/colors'
 import { withStyles } from '@material-ui/core/styles'
 import FormLabel from '@material-ui/core/FormLabel'
-import styles from './CalcForm.module.scss'
 import Button from '@material-ui/core/Button'
+import styles from './CalcForm.module.scss'
 
 const OrangeRadio = withStyles({
   root: {
