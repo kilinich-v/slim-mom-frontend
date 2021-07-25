@@ -22,15 +22,27 @@ const MainModal = () => {
 
   const modalBody = (
     <div className="modalContainer">
-    <button className="modalContainer_closeBtn" type="button" onClick={handleClose}> <CloseIcon/></button>
-    <h3 className="modalContainer_title"> Ваша рекомендуемая суточная норма калорий составляет </h3>
-    <div className="modalContainer_info">
-        <p className="modalContainer_amount">--- ккал </p>
-        <h4 className="modalList_title">Продукты, которые вам <br/> не рекомендуется употреблять</h4>
-        <ol className="modalList">
-            <li modalList_item> подгрузяться продукты</li>
-        </ol>
-    </div>
+      {/* <button className="modalContainer_closeBtn" type="button" onClick={handleClose}> 
+        {document.documentElement.clientWidth > 767 ? <CloseIcon/> : <KeyboardReturnIcon/>}
+      </button> */}
+
+      <button className="modalContainer_closeBtn" type="button" onClick={handleClose}> 
+        <CloseIcon/>
+      </button>
+
+      <button className="modalContainer_backBtn" type="button" onClick={handleClose}> 
+        <KeyboardReturnIcon />
+      </button>
+
+
+      <h3 className="modalContainer_title"> Ваша рекомендуемая суточная норма калорий составляет </h3>
+      <div className="modalContainer_info">
+          <p className="modalContainer_amount">--- ккал </p>
+          <h4 className="modalList_title">Продукты, которые вам <br/> не рекомендуется употреблять</h4>
+          <ol className="modalList">
+              <li modalList_item> подгрузяться продукты</li>
+          </ol>
+      </div>
     <ColorButton type="button" onClick={handleRedirect}>Начать худеть</ColorButton>
 </div>
   );
