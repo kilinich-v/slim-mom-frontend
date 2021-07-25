@@ -1,8 +1,9 @@
 import React from 'react';
 import Modal from '@material-ui/core/Modal';
-import ColorButton from '../ColorButton';
+import MainButton from '../common/MainButton';
 import CloseIcon from '@material-ui/icons/Close';
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
+import styles from './styles.module.scss';
 
 const MainModal = () => {
   const [open, setOpen] = React.useState(false);
@@ -21,35 +22,34 @@ const MainModal = () => {
 }
 
   const modalBody = (
-    <div className="modalContainer">
+    <div className={styles.modalContainer}>
       {/* <button className="modalContainer_closeBtn" type="button" onClick={handleClose}> 
         {document.documentElement.clientWidth > 767 ? <CloseIcon/> : <KeyboardReturnIcon/>}
       </button> */}
 
-      <button className="modalContainer_closeBtn" type="button" onClick={handleClose}> 
+      <button className={styles.modalContainer_closeBtn} type="button" onClick={handleClose}> 
         <CloseIcon/>
       </button>
 
-      <button className="modalContainer_backBtn" type="button" onClick={handleClose}> 
+      <button className={styles.modalContainer_backBtn} type="button" onClick={handleClose}> 
         <KeyboardReturnIcon />
       </button>
 
-
-      <h3 className="modalContainer_title"> Ваша рекомендуемая суточная норма калорий составляет </h3>
-      <div className="modalContainer_info">
-          <p className="modalContainer_amount">--- ккал </p>
-          <h4 className="modalList_title">Продукты, которые вам <br/> не рекомендуется употреблять</h4>
-          <ol className="modalList">
-              <li modalList_item> подгрузяться продукты</li>
+      <h3 className={styles.modalContainer_title}> Ваша рекомендуемая суточная норма калорий составляет </h3>
+      <div className={styles.modalContainer_info}>
+          <p className={styles.modalContainer_amount}>--- ккал </p>
+          <h4 className={styles.modalList_title}>Продукты, которые вам <br/> не рекомендуется употреблять</h4>
+          <ol className={styles.modalList}>
+              <li> подгрузяться продукты</li>
           </ol>
       </div>
-    <ColorButton type="button" onClick={handleRedirect}>Начать худеть</ColorButton>
+    <MainButton type="button" onClick={handleRedirect}>Начать худеть</MainButton>
 </div>
   );
 
   return (
     <div>
-      <ColorButton id="openModal_btn" type="submit" onClick={handleOpen}>Похудеть</ColorButton>
+      <MainButton id={styles.openModal_btn} type="submit" onClick={handleOpen}>Похудеть</MainButton>
       <Modal
         onClose={handleClose}
         aria-labelledby="modal-title"

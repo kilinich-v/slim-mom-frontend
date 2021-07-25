@@ -2,7 +2,7 @@ import Button from '@material-ui/core/Button';
 import { orange } from '@material-ui/core/colors';
 import { withStyles } from '@material-ui/core/styles'
 
-const ColorButton = withStyles(theme => ({
+const MainButton = withStyles(theme => ({
     root: {
       borderRadius: '30px',
       width: '176px',
@@ -21,4 +21,4 @@ const ColorButton = withStyles(theme => ({
     },
   }))(Button);
 
-  export default ColorButton;
+  export default MainButton;
