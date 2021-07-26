@@ -16,10 +16,6 @@ const MainModal = () => {
     setOpen(false);
   };
 
-  const handleRedirect =()=>{
-    // если залогинен - на дневник
-    // если нет - регистрация
-}
 
   const modalBody = (
     <div className={styles.modalContainer}>
@@ -32,7 +28,7 @@ const MainModal = () => {
       </button>
 
       <button className={styles.modalContainer_backBtn} type="button" onClick={handleClose}> 
-        <KeyboardReturnIcon />
+        <KeyboardReturnIcon style={{marginLeft:'auto', fontSize: 'inherit', paddingTop: 17, paddingBottom: 16, paddingLeft:15}}/>
       </button>
 
       <h3 className={styles.modalContainer_title}> Ваша рекомендуемая суточная норма калорий составляет </h3>
@@ -43,7 +39,7 @@ const MainModal = () => {
               <li> подгрузяться продукты</li>
           </ol>
       </div>
-    <MainButton type="button" onClick={handleRedirect}>Начать худеть</MainButton>
+    <MainButton type="button">Начать худеть</MainButton>
 </div>
   );
 

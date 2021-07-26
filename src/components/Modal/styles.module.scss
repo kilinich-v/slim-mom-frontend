@@ -51,14 +51,15 @@
     }
 
     &_backBtn{
-        @media screen and (max-width: 767) {
-            display: block;
-            height: 40px;
+            text-align: start;
+            padding: 0;
+            margin: 0;
             width: 320px;
-            border: none;
+            height: 40px;
+            border:none;
             margin-bottom: 40px;      
-            background-color: rgba(239, 241, 243, 1);
-     };
+            background-color: #EFF1F3;
+            font-size: 12px;
 
         @media screen and(min-width: 768px) {
             display:none;

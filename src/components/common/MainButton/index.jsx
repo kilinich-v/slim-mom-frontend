@@ -8,9 +8,10 @@ const MainButton = withStyles(theme => ({
       width: '176px',
       height: '44px',
       color: 'white',
-      backgroundColor: orange[500],
+      backgroundColor: '#FC842D',
+      boxShadow: '0px 4px 10px rgba(252, 132, 45, 0.5)',
       '&:hover': {
-        backgroundColor: orange[700],
+        backgroundColor: orange[900],
       },
       [theme.breakpoints.down('768')]: {
         bottom: '0',
