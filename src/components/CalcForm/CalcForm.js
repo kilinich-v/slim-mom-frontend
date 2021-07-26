@@ -1,47 +1,29 @@
 import { useEffect, useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import { useDispatch } from 'react-redux'
+// import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
-import Radio from '@material-ui/core/Radio'
-import RadioGroup from '@material-ui/core/RadioGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
 import { orange } from '@material-ui/core/colors'
 import { withStyles } from '@material-ui/core/styles'
-import FormLabel from '@material-ui/core/FormLabel'
 import Button from '@material-ui/core/Button'
 import styles from './CalcForm.module.scss'
+import { calcData } from '../../redux/calculator/calculator-operations'
+import RadioButtons from '../RadioButtonsGroup/RadioButtonsGroup'
 
-const OrangeRadio = withStyles({
-  root: {
-    '&$checked': {
-      color: orange[600],
-    },
-  },
-  checked: {},
-})(props => <Radio color="default" {...props} />)
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    alignItems: 'center',
-    width: '510px',
-    justifyContent: 'space-between',
-    [theme.breakpoints.down('768')]: {
-      width: '240px',
-      flexWrap: 'wrap',
-      height: '354px',
-      alignContent: 'flex-start',
-    },
-  },
-}))
 const ColorButton = withStyles(theme => ({
   root: {
-    borderRadius: '30px',
     width: '176px',
     height: '44px',
+
+    borderRadius: '30px',
+    fontFamily: 'verdana',
+    fontSize: '14px',
+    lineHeight: '1.21',
+    letterSpacing: '0.04em',
+
     color: 'white',
-    position: 'absolute',
-    bottom: '0',
-    right: '83px',
+    boxShadow: '0px 4px 10px rgba(252, 132, 45, 0.5)',
+
+    marginTop: '115px',
     backgroundColor: orange[500],
     '&:hover': {
       backgroundColor: orange[700],
@@ -54,10 +36,22 @@ const ColorButton = withStyles(theme => ({
     },
   },
 }))(Button)
-const CssTextField = withStyles({
+
+const CssTextField = withStyles(theme => ({
   root: {
+    '&:not(:last-child)': {
+      marginBottom: '30px',
+    },
+    [theme.breakpoints.down('768')]: {
+      marginBottom: '30px',
+    },
+    width: 240,
     '& label': {
-      fontSize: '14px',
+      fontSize: '17px',
+      lineHeight: '1.21',
+      letterSpacing: '0.04em',
+      fontFamily: 'Verdana',
+      color: '#9b9faa',
     },
     '& label.Mui-focused': {
       color: orange[500],
@@ -65,98 +59,116 @@ const CssTextField = withStyles({
     '& .MuiInput-underline:after': {
       borderBottomColor: orange[500],
     },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: orange[500],
-      },
-      '&:hover fieldset': {
-        borderColor: orange[500],
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: orange[500],
-      },
-    },
   },
-})(TextField)
+}))(TextField)
 
 export default function CalcForm() {
-  const classes = useStyles()
   const [value, setValue] = useState(false)
+  const [growth, setGrowth] = useState('')
+  const [age, setAge] = useState('')
+  const [weight, setWeight] = useState('')
+  const [desiredWeight, setDesiredWeight] = useState('')
+  const [groupBlood, setGroupBlood] = useState('')
+
+  const dispatch = useDispatch()
+
   useEffect(() => {
     setValue(true)
   }, [])
 
+  const handleChange = e => {
+    const { name, value, defaultValue } = e.target
+    switch (name) {
+      case 'growth':
+        setGrowth(value)
+        break
+      case 'age':
+        setAge(value)
+        break
+      case 'weight':
+        setWeight(value)
+        break
+      case 'desiredWeight':
+        setDesiredWeight(value)
+        break
+      case 'groupBlood':
+        setGroupBlood(defaultValue)
+        break
+
+      default:
+        break
+    }
+  }
+  const handleSubmit = e => {
+    e.preventDefault()
+    dispatch(calcData(growth, age, weight, desiredWeight, groupBlood))
+    reset()
+  }
+  const reset = () => {
+    setGrowth('')
+    setAge('')
+    setWeight('')
+    setDesiredWeight('')
+    setGroupBlood('')
+  }
+
   return (
-    <div
-      className={styles.container}
-      style={{
-        transform: value ? 'translateX(0)' : 'translateX(-101%)',
-        opacity: value ? '1' : '0',
-      }}
-    >
-      <h1 style={{ margin: '0' }}>
+    <>
+      <h1
+        className={styles.title}
+        style={{
+          transform: value ? 'translateY(0)' : 'translateY(-101%)',
+          opacity: value ? '1' : '0',
+        }}
+      >
         Просчитай свою суточную норму калорий прямо сейчас
       </h1>
-      <form className={classes.root} noValidate autoComplete="off">
+      <form
+        onSubmit={handleSubmit}
+        className={styles.form}
+        style={{
+          transform: value ? 'translateX(0)' : 'translateX(-101%)',
+          opacity: value ? '1' : '0',
+        }}
+        noValidate
+        autoComplete="off"
+      >
         <div>
           <CssTextField
             id="standard-basic"
             label="Рост"
-            style={{ width: 240 }}
+            name="growth"
+            value={growth}
+            onChange={handleChange}
           />
           <CssTextField
             id="standard-basic"
             label="Возраст"
-            style={{ width: 240 }}
+            name="age"
+            value={age}
+            onChange={handleChange}
           />
           <CssTextField
             id="standard-basic"
             label="Текущий вес"
-            style={{ width: 240 }}
+            name="weight"
+            value={weight}
+            onChange={handleChange}
           />
         </div>
         <div>
           <CssTextField
             id="standard-basic"
+            style={{ marginBottom: 50 }}
             label="Желаемый вес"
-            style={{ width: 240 }}
+            name="desiredWeight"
+            value={desiredWeight}
+            onChange={handleChange}
           />
-          <FormLabel component="legend" style={{ width: 240, marginTop: 40 }}>
-            Группа крови
-          </FormLabel>
-          <RadioGroup
-            row
-            aria-label="position"
-            name="position"
-            defaultValue="top"
-          >
-            <FormControlLabel
-              value="1"
-              control={<OrangeRadio color="blue" />}
-              label="1"
-              labelPlacement="End"
-            />
-            <FormControlLabel
-              value="2"
-              control={<OrangeRadio color="secondary" />}
-              label="2"
-              labelPlacement="End"
-            />
-            <FormControlLabel
-              value="3"
-              control={<OrangeRadio color="secondary" />}
-              label="3"
-              labelPlacement="End"
-            />
-            <FormControlLabel
-              value="4"
-              control={<OrangeRadio color="secondary" />}
-              label="4"
-            />
-          </RadioGroup>
+          <RadioButtons onChange={handleChange} />
+          <ColorButton type="submit">Похудеть</ColorButton>
         </div>
-        <ColorButton type="submit">Похудеть</ColorButton>
       </form>
-    </div>
+    </>
   )
 }
