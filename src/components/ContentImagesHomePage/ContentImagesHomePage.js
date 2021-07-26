@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import styles from './ContentImagesHomePage.module.scss'
+
 export default function ContentImagesHomePage(params) {
   const [value, setValue] = useState(false)
   useEffect(() => {
     setValue(true)
-  })
+  }, [])
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: 'relative', width: '100%' }}>
       <div
         className={styles.Green}
         style={{
