@@ -8,7 +8,7 @@ import Header from './components/Header'
 function App() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Switch>
         <Route exact path={routes.main} component={MainPageView} />
         <Route path={routes.auth} component={AuthView} />
