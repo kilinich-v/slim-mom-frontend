@@ -1,0 +1,53 @@
+//example:
+
+// @include for-size(tablet) {
+//   margin-bottom: 53px;
+// }
+
+@mixin for-size($range) {
+  $mobile: $mobile;
+  $tablet: $tablet;
+  $desktop: $desktop;
+
+  @if $range == mobile-only {
+    @media (max-width: #{$tablet - 1}) {
+      @content;
+    }
+  } @else if $range == mobile {
+    @media (min-width: $mobile) {
+      @content;
+    }
+  } @else if $range == tablet-only {
+    @media (max-width: #{$laptop - 1}) {
+      @content;
+    }
+  } @else if $range == tablet {
+    @media (min-width: $tablet) {
+      @content;
+    }
+  } @else if $range == desktop {
+    @media (min-width: $desktop) {
+      @content;
+    }
+  }
+}
+
+// example:
+
+// body {
+//   background-color: getColor('text-primary');
+// }
+
+@function getColor($key) {
+  @return map-get($colors, $key);
+}
+
+// example:
+
+// body {
+//   font-family: getFont('text-primary');
+// }
+
+@function getFont($key) {
+  @return map-get($fonts, $key);
+}
