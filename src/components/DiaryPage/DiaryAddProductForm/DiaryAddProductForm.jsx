@@ -33,6 +33,7 @@ export default function DiaryAddProductForm() {
           type="text"
           autoComplete="off"
           onChange={handlechangeName}
+          required
         ></input>
         <input
           className={styles.input}
@@ -42,6 +43,7 @@ export default function DiaryAddProductForm() {
           type="number"
           min="0"
           onChange={handleChangeWeight}
+          required
         />
         {onlyWidth >= 768 ? (
           <button type="submit" className={styles.btn}></button>
