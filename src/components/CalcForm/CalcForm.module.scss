@@ -1,10 +1,29 @@
-.container {
-  width: 605px;
-  height: 447px;
-  position: absolute;
-  top: 292px;
+.title {
+  width: 579px;
+  margin-bottom: 68px;
+  color: #212121;
+  font-family: verdana;
+  font-size: 34px;
+  line-height: 1.2;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   transition: all 850ms cubic-bezier(0.4, 0, 0.2, 1);
   @media screen and (min-width: 768px) and (max-width: 1199px) {
-    top: 180px;
+    font-size: 30px;
+  }
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    width: 290px;
+    font-size: 18px;
+    line-height: 1.44;
+    margin-bottom: 50px;
+  }
+}
+
+.form {
+  display: flex;
+  width: 510px;
+  transition: all 850ms cubic-bezier(0.4, 0, 0.2, 1);
+  @media screen and (min-width: 200px) and (max-width: 767px) {
+    width: 240px;
+    flex-wrap: wrap;
   }
 }

@@ -4,12 +4,12 @@ import ContentImagesHomePage from '../components/ContentImagesHomePage'
 
 const MainPageView = () => {
   return (
-    <div>
+    <>
       <ContentImagesHomePage />
       <Container>
         <CalcForm />
       </Container>
-    </div>
+    </>
   )
 }
 
