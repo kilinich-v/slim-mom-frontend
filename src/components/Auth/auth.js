@@ -6,7 +6,6 @@ import { orange } from '@material-ui/core/colors'
 import { withStyles } from '@material-ui/core/styles'
 import FormLabel from '@material-ui/core/FormLabel'
 import Button from '@material-ui/core/Button'
-import styles from '../CalcForm.module.scss'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -126,7 +125,6 @@ export default function AuthForm() {
 
   return (
     <div
-      className={styles.container}
       style={{
         transform: value ? 'translateX(0)' : 'translateX(-101%)',
         opacity: value ? '1' : '0',
