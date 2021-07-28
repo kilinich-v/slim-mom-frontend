@@ -13,13 +13,11 @@ const ColorButton = withStyles(theme => ({
   root: {
     width: '176px',
     height: '44px',
-
     borderRadius: '30px',
     fontFamily: 'verdana',
     fontSize: '14px',
     lineHeight: '1.21',
     letterSpacing: '0.04em',
-
     color: 'white',
     boxShadow: '0px 4px 10px rgba(252, 132, 45, 0.5)',
 
