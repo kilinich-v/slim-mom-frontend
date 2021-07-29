@@ -36,7 +36,9 @@ export const deleteProduct = id => dispatch => {
   axios
     .delete(`/products/${id}`)
     .then(() => dispatch(productActions.deleteProductIdSuccess(id)))
-    .catch(error => dispatch(productActions.deleteProductIdError(error)))
+    .catch(error =>
+      dispatch(productActions.deleteProductIdError(error.messages)),
+    )
 }
 export const dateEatenProduct = data => dispatch => {
   dispatch(productActions.dateEatenProductsRequest())

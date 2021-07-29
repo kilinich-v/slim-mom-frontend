@@ -24,7 +24,9 @@ const loading = createReducer(false, {
   [productActions.addProductError]: (state, action) => false,
 })
 
-const error = createReducer(null, {})
+const error = createReducer(null, {
+  [productActions.deleteProductIdError]: (_, { payload }) => payload,
+})
 
 export default combineReducers({
   products,
