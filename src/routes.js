@@ -2,6 +2,7 @@
 export default {
   main: '/',
   auth: '/auth',
+  reg: '/registration',
   calculator: '/calculator',
   diary: '/diary',
 }
