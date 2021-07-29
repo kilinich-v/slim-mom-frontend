@@ -49,3 +49,10 @@
     padding-right: 25px;
   }
 }
+.container_wrap {
+  display: block;
+
+  @include for-size(desktop) {
+    display: flex;
+  }
+}
