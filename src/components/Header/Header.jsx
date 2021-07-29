@@ -18,7 +18,6 @@ const Header = () => {
   return (
     <Container>
       <Navigation />
-
       {onlyWidth < 768 ? (
         <BurgerMenu>
           <div className={styles.listBurger}>

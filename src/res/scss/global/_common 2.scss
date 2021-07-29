@@ -40,21 +40,14 @@
   padding-right: 15px;
 
   @include for-size(tablet) {
-    width: 634px;
-    padding-left: 20px;
-    padding-right: 20px;
+    width: $tablet;
+    padding-left: 87px;
+    padding-right: 87px;
   }
 
   @include for-size(desktop) {
-    width: 1110px;
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-}
-.container_wrap {
-  display: block;
-
-  @include for-size(desktop) {
-    display: flex;
+    width: $desktop;
+    padding-left: 115px;
+    padding-right: 115px;
   }
 }

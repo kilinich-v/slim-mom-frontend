@@ -6,7 +6,9 @@ const AuthView = () => {
   return (
     <div>
       <ContentImagesHomePage />
-      <Container><RegistrationForm /></Container>
+      <Container>
+        <RegistrationForm />
+      </Container>
     </div>
   )
 }

@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
+
 import { orange } from '@material-ui/core/colors'
 import { withStyles } from '@material-ui/core/styles'
-import FormLabel from '@material-ui/core/FormLabel'
+
 import Button from '@material-ui/core/Button'
+import { login } from '../../redux/registration/Operations'
+import { getIsLoggedOn, getToken } from '../../redux/registration/Selectors'
+
+import CalculatorView from '../../views/CalculatorView'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -103,25 +109,27 @@ const CssTextField = withStyles({
 })(TextField)
 
 export default function AuthForm() {
+  const dispatch = useDispatch()
   const classes = useStyles()
-  const [login, setLogin] = useState('')
-  // const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [value, setValue] = useState(false)
   useEffect(() => {
     setValue(true)
   }, [])
 
-  const handleChangeLogin = ({ target }) => setLogin(target.value)
+  const handleChangeEmail = ({ target }) => setEmail(target.value)
   const handleChangePassword = ({ target }) => setPassword(target.value)
 
   const handleSubmit = e => {
     e.preventDefault()
-    // dispatch(signUp({ login, password }))
-    setLogin('')
-    // setEmail('');
+    dispatch(login({ email, password }))
+    setEmail('')
     setPassword('')
   }
+
+  const isLoggedOn = useSelector(getIsLoggedOn)
+  const isAuthorized = useSelector(getToken)
 
   return (
     <div
@@ -130,36 +138,44 @@ export default function AuthForm() {
         opacity: value ? '1' : '0',
       }}
     >
-      <h3 className={classes.title}>вход</h3>
-      <form
-        className={classes.root}
-        noValidate
-        autoComplete="off"
-        onSubmit={handleSubmit}
-      >
-        <CssTextField
-          required
-          id="standard-password-input"
-          label="Логин "
-          type="login"
-          autoComplete="current-login"
-          style={{ width: 240 }}
-          onChange={handleChangeLogin}
-        />
+      {isAuthorized ? (
+        <CalculatorView />
+      ) : (
+        <div>
+          <h3 className={classes.title}>вход</h3>
+          <form
+            className={classes.root}
+            noValidate
+            autoComplete="off"
+            onSubmit={handleSubmit}
+          >
+            <CssTextField
+              required
+              id="standard-email-input"
+              label="Логин "
+              type="email"
+              value={email}
+              autoComplete="current-login"
+              style={{ width: 240 }}
+              onChange={handleChangeEmail}
+            />
 
-        <CssTextField
-          required
-          id="standard-password-input"
-          label="Пароль "
-          type="password"
-          autoComplete="current-password"
-          style={{ width: 240 }}
-          onChange={handleChangePassword}
-        />
+            <CssTextField
+              required
+              id="standard-password-input"
+              label="Пароль "
+              type="password"
+              value={password}
+              autoComplete="current-password"
+              style={{ width: 240 }}
+              onChange={handleChangePassword}
+            />
 
-        <ColorButtonEnter type="submit">Вход</ColorButtonEnter>
-        <ColorButtonRegister type="submit">Регистрация</ColorButtonRegister>
-      </form>
+            <ColorButtonEnter type="submit">Вход</ColorButtonEnter>
+            <ColorButtonRegister type="submit">Регистрация</ColorButtonRegister>
+          </form>
+        </div>
+      )}
     </div>
   )
 }
