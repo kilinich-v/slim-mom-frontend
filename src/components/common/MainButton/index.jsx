@@ -1,5 +1,5 @@
-import Button from '@material-ui/core/Button';
-import { orange } from '@material-ui/core/colors';
+import Button from '@material-ui/core/Button'
+import { orange } from '@material-ui/core/colors'
 import { withStyles } from '@material-ui/core/styles'
 
 const MainButton = withStyles({
@@ -24,4 +24,4 @@ const MainButton = withStyles({
 
   }})(Button);
 
-  export default MainButton;
+export default MainButton
