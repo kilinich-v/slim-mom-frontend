@@ -51,10 +51,11 @@
     padding-right: 30px;
   }
 }
-.container_wrap {
-  display: block;
+//если эти стили нкаму не нужны, их можно убрать
+// .container_wrap {
+//   display: block;
 
-  @include for-size(desktop) {
-    display: flex;
-  }
-}
+//   @include for-size(desktop) {
+//     display: flex;
+//   }
+// }

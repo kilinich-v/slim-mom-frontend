@@ -18,6 +18,7 @@ import logger from 'redux-logger'
 
 import calcData from './calculator/calculator-reducer'
 import userReducer from './registration/UserSlice'
+import productReducer from './product/product-redusers'
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -36,6 +37,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   kcal: calcData,
   user: userReducer,
+  products: productReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
