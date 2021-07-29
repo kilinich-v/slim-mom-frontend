@@ -1,0 +1,53 @@
+.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.link {
+  text-decoration: none;
+  display: block;
+  color: inherit;
+  font-style: normal;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.accent {
+  color: getColor('accent');
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @include for-size(tablet) {
+    width: $tablet;
+    padding-left: 87px;
+    padding-right: 87px;
+  }
+
+  @include for-size(desktop) {
+    width: $desktop;
+    padding-left: 115px;
+    padding-right: 115px;
+  }
+}
