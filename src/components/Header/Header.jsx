@@ -18,10 +18,10 @@ const Header = () => {
       </div>
 
       <div>
-        <NavLink to="/register" exact className={styles.link} to="/diary">
+        <NavLink exact className={styles.link} to="/diary">
           ДНЕВНИК
         </NavLink>
-        <NavLink to="/login" exact className={styles.link} to="/calculator">
+        <NavLink exact className={styles.link} to="/calculator">
           КАЛЬКУЛЯТОР
         </NavLink>
       </div>

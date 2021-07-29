@@ -7,12 +7,12 @@ const DiaryView = () => {
   return (
     <div>
       <ContainerSideBar>
-      <Container>
-        <div className="container_wrap">
-          <DiaryPage />
-          <RightSideBar />
-        </div>
-      </Container>
+        <Container>
+          <div className="container_wrap">
+            <DiaryPage />
+            <RightSideBar />
+          </div>
+        </Container>
       </ContainerSideBar>
     </div>
   )
