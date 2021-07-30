@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button'
 import styles from './CalcForm.module.scss'
 import { calcData } from '../../redux/calculator/calculator-operations'
 import RadioButtons from '../RadioButtonsGroup/RadioButtonsGroup'
-
+import Modal from '../Modal'
 const ColorButton = withStyles(theme => ({
   root: {
     width: '176px',
@@ -62,7 +62,7 @@ const CssTextField = withStyles(theme => ({
 
 export default function CalcForm() {
   const [value, setValue] = useState(false)
-  const [growth, setGrowth] = useState('')
+  const [height, setHeight] = useState('')
   const [age, setAge] = useState('')
   const [weight, setWeight] = useState('')
   const [desiredWeight, setDesiredWeight] = useState('')
@@ -77,8 +77,8 @@ export default function CalcForm() {
   const handleChange = e => {
     const { name, value, defaultValue } = e.target
     switch (name) {
-      case 'growth':
-        setGrowth(value)
+      case 'height':
+        setHeight(value)
         break
       case 'age':
         setAge(value)
@@ -99,11 +99,11 @@ export default function CalcForm() {
   }
   const handleSubmit = e => {
     e.preventDefault()
-    dispatch(calcData(growth, age, weight, desiredWeight, groupBlood))
+    dispatch(calcData(height, age, weight, desiredWeight, groupBlood))
     reset()
   }
   const reset = () => {
-    setGrowth('')
+    setHeight('')
     setAge('')
     setWeight('')
     setDesiredWeight('')
@@ -121,51 +121,51 @@ export default function CalcForm() {
       >
         Просчитай свою суточную норму калорий прямо сейчас
       </h1>
-      <form
-        onSubmit={handleSubmit}
-        className={styles.form}
-        style={{
-          transform: value ? 'translateX(0)' : 'translateX(-101%)',
-          opacity: value ? '1' : '0',
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <div>
-          <CssTextField
-            id="standard-basic"
-            label="Рост"
-            name="growth"
-            value={growth}
-            onChange={handleChange}
-          />
-          <CssTextField
-            id="standard-basic"
-            label="Возраст"
-            name="age"
-            value={age}
-            onChange={handleChange}
-          />
-          <CssTextField
-            id="standard-basic"
-            label="Текущий вес"
-            name="weight"
-            value={weight}
-            onChange={handleChange}
-          />
+      <form onSubmit={handleSubmit} noValidate autoComplete="off">
+        <div
+          className={styles.form}
+          // style={{
+          //   transform: value ? 'translateX(0)' : 'translateX(-101%)',
+          //   opacity: value ? '1' : '0',
+          // }}
+        >
+          <div>
+            <CssTextField
+              id="standard-basic"
+              label="Рост"
+              name="height"
+              value={height}
+              onChange={handleChange}
+            />
+            <CssTextField
+              id="standard-basic"
+              label="Возраст"
+              name="age"
+              value={age}
+              onChange={handleChange}
+            />
+            <CssTextField
+              id="standard-basic"
+              label="Текущий вес"
+              name="weight"
+              value={weight}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <CssTextField
+              id="standard-basic"
+              style={{ marginBottom: 50 }}
+              label="Желаемый вес"
+              name="desiredWeight"
+              value={desiredWeight}
+              onChange={handleChange}
+            />
+            <RadioButtons onChange={handleChange} />
+            <ColorButton type="submit">Похудеть</ColorButton>
+          </div>
         </div>
-        <div>
-          <CssTextField
-            id="standard-basic"
-            style={{ marginBottom: 50 }}
-            label="Желаемый вес"
-            name="desiredWeight"
-            value={desiredWeight}
-            onChange={handleChange}
-          />
-          <RadioButtons onChange={handleChange} />
-          <ColorButton type="submit">Похудеть</ColorButton>
-        </div>
+        <Modal />
       </form>
     </>
   )

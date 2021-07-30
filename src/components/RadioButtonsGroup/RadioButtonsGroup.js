@@ -46,21 +46,21 @@ export default function RadioButtons({ onChange }) {
         value="1"
         control={<OrangeRadio />}
         label="1"
-        labelPlacement="End"
+        // labelPlacement="End"
       />
       <FormControlLabel
         className={classes.formControl}
         value="2"
         control={<OrangeRadio />}
         label="2"
-        labelPlacement="End"
+        // labelPlacement="End"
       />
       <FormControlLabel
         className={classes.formControl}
         value="3"
         control={<OrangeRadio />}
         label="3"
-        labelPlacement="End"
+        // labelPlacement="End"
       />
       <FormControlLabel
         className={classes.formControl}
