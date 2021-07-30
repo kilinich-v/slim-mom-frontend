@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 // import { useDispatch } from 'react-redux'
 import { useWindowWidth } from '@react-hook/window-size'
 import debounce from 'lodash.debounce'
+import AsyncSelect from 'react-select/async'
 import styles from './DiaryAddProductForm.module.css'
 import MainButton from '../../common/MainButton'
 import { getProducts } from '../../../redux/product/product-operations'
@@ -26,10 +27,16 @@ export default function DiaryAddProductForm() {
     [product],
   )
 
-  const handleChangeWeight = event => {
+  // const handleChangeWeight = event => {
+  //   const { value } = event.target
+  //   setWeight(value)
+  // }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleChangeWeight = useCallback(event => {
     const { value } = event.target
-    setWeight(value)
-  }
+    setWeight(Number(value))
+  })
 
   const handleSubmit = event => {
     event.preventDefault()
@@ -60,11 +67,11 @@ export default function DiaryAddProductForm() {
           required
         />
         {products.length > 0 && (
-          <select className={styles.products} id="products" required>
+          <select className={styles.products_list} required>
             {products.map(({ _id, title }) => (
               <option
                 key={_id}
-                className={styles.optionClass}
+                className={styles.options}
                 value={title}
                 onClick={e => {
                   setProduct(e.target.outerText)

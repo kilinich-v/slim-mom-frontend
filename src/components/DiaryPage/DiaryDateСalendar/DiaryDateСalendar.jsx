@@ -5,19 +5,29 @@ import TextField from '@material-ui/core/TextField'
 import { dateEatenProduct } from '../../../redux/product/product-operations'
 
 const useStyles = makeStyles(theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    marginBottom: theme.spacing(4),
-  },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 259,
+    width: '188px',
+    [theme.breakpoints.up('768')]: {
+      width: '259px',
+    },
+    '& input': {
+      fontSize: '18px',
+      fontWeight: '700',
+      fontFamily: 'Verdana',
+      [theme.breakpoints.up('768')]: {
+        fontSize: '26px',
+      },
+    },
   },
-  '& .MuiInputBase-input': {
-    fontSize: '34px',
-    padding: '16px, 0px,  7px',
+  underline: {
+    '&&&:before': {
+      borderBottom: 'none',
+    },
+    '&&:after': {
+      borderBottom: 'none',
+    },
   },
 }))
 
@@ -37,6 +47,7 @@ export default function DiaryDateСalendar() {
   return (
     <form className={classes.container} noValidate>
       <TextField
+        InputProps={{ classes }}
         id="date"
         type="date"
         defaultValue={date}

@@ -1,30 +1,36 @@
+import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { allInfoProducts } from '../../../redux/product/product-selectors'
+import {
+  allProducts,
+  dateEatenProducts,
+} from '../../../redux/product/product-selectors'
 import DiaryProductsListItem from '../DiaryProductsListItem/DiaryProductsListItem'
 import styles from './DiaryProductsList.module.css'
-import { dateEatenProduct } from '../../../redux/product/product-operations'
 
 export default function DiaryProductsList() {
-  const productsInfo = useSelector(allInfoProducts)
+  const productsInfo = useSelector(allProducts)
   console.log('DiaryProductsList -> productsInfo', productsInfo)
-  // const dispatch = useDispatch()
-  // useEffect(() => {
-  //   dispatch(dateEatenProduct(productsInfo.data.products))
-  // }, [dispatch])
 
+  const [prod, setProd] = useState([])
+  console.log('DiaryProductsList -> prod', prod)
+
+  useEffect(() => {
+    if (productsInfo) {
+      setProd(productsInfo)
+    }
+  }, [productsInfo])
+
+  console.log('DiaryProductsList -> prod', prod)
   return (
     <>
       <div className={styles.container}>
-        {productsInfo?.data?.products ? (
+        {productsInfo?.length > 0 ? (
           <ul className={styles.list}>
-            {productsInfo?.data?.products.map(({ id, ...props }) => (
+            {productsInfo.map(({ id, ...props }) => (
               <DiaryProductsListItem key={id} id={id} {...props} />
             ))}
           </ul>
-        ) : (
-          ''
-        )}
+        ) : null}
       </div>
     </>
   )

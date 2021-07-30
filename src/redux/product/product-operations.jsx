@@ -3,7 +3,7 @@ import productActions from './product-actions'
 
 // const token = localStorage.getItem('token')
 
-const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMDA3YTI0M2VkNDFkMjg4YzljYmZkOCIsImlhdCI6MTYyNzU4NzE4MCwiZXhwIjoxNjI3OTQ3MTgwfQ.NUxyrXW03RxUB_O9svEVUQoGSzqq1LHf53Xte_FSSrE`
+const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMDA3YTI0M2VkNDFkMjg4YzljYmZkOCIsImlhdCI6MTYyNzY0MzAxNSwiZXhwIjoxNjI4MDAzMDE1fQ.BN7rg4twxHkM-nTg8fGr7h8L9labbAz66X59kQFDBBM`
 axios.defaults.baseURL = 'http://localhost:3001'
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
@@ -40,11 +40,16 @@ export const deleteProduct = id => dispatch => {
       dispatch(productActions.deleteProductIdError(error.messages)),
     )
 }
-export const dateEatenProduct = data => dispatch => {
+export const dateEatenProduct = date => dispatch => {
   dispatch(productActions.dateEatenProductsRequest())
 
   axios
-    .get(`/products/${data}`)
-    .then(data => dispatch(productActions.dateEatenProductsSuccess(data)))
+    .get(`/products/${date}`)
+    .then(responce => {
+      console.log('dateEatenProduct => responce ', responce)
+
+      dispatch(productActions.dateEatenProductsSuccess(responce.data))
+      console.log('responce.data', responce.data)
+    })
     .catch(error => dispatch(productActions.dateEatenProductsError(error)))
 }
