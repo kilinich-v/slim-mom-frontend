@@ -12,6 +12,7 @@ import { getKcalAmount } from '../../redux/calculator/calculator-selectors'
 import { getProducts } from '../../redux/calculator/calculator-selectors'
 
 
+
 const MainModal = () => {
   const [open, setOpen] = useState(false);
   const isLoading = useSelector(getKcalLoading);
@@ -19,9 +20,7 @@ const MainModal = () => {
   const products = useSelector(getProducts)
 
   useEffect(() => {
-    if (amount) {
-       setOpen(true);
-    }
+    amount ? setOpen(true) : setOpen(false);
   },[amount]);
 
   const handleClose = () => {
