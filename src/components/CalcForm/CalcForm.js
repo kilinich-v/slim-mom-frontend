@@ -4,36 +4,38 @@ import { useDispatch } from 'react-redux'
 import TextField from '@material-ui/core/TextField'
 import { orange } from '@material-ui/core/colors'
 import { withStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
+// import Button from '@material-ui/core/Button'
 import styles from './CalcForm.module.scss'
 import { calcData } from '../../redux/calculator/calculator-operations'
 import RadioButtons from '../RadioButtonsGroup/RadioButtonsGroup'
-import Modal from '../Modal'
-const ColorButton = withStyles(theme => ({
-  root: {
-    width: '176px',
-    height: '44px',
-    borderRadius: '30px',
-    fontFamily: 'verdana',
-    fontSize: '14px',
-    lineHeight: '1.21',
-    letterSpacing: '0.04em',
-    color: 'white',
-    boxShadow: '0px 4px 10px rgba(252, 132, 45, 0.5)',
+import MainModal from '../Modal'
 
-    marginTop: '115px',
-    backgroundColor: orange[500],
-    '&:hover': {
-      backgroundColor: orange[700],
-    },
-    [theme.breakpoints.down('768')]: {
-      bottom: '0',
-    },
-    [theme.breakpoints.down('1200')]: {
-      left: '0',
-    },
-  },
-}))(Button)
+// import MainButton from '../common/MainButton'
+// const ColorButton = withStyles(theme => ({
+//   root: {
+//     width: '176px',
+//     height: '44px',
+//     borderRadius: '30px',
+//     fontFamily: 'verdana',
+//     fontSize: '14px',
+//     lineHeight: '1.21',
+//     letterSpacing: '0.04em',
+//     color: 'white',
+//     boxShadow: '0px 4px 10px rgba(252, 132, 45, 0.5)',
+
+//     marginTop: '115px',
+//     backgroundColor: orange[500],
+//     '&:hover': {
+//       backgroundColor: orange[700],
+//     },
+//     [theme.breakpoints.down('768')]: {
+//       bottom: '0',
+//     },
+//     [theme.breakpoints.down('1200')]: {
+//       left: '0',
+//     },
+//   },
+// }))(Button)
 
 const CssTextField = withStyles(theme => ({
   root: {
@@ -124,10 +126,10 @@ export default function CalcForm() {
       <form onSubmit={handleSubmit} noValidate autoComplete="off">
         <div
           className={styles.form}
-          // style={{
-          //   transform: value ? 'translateX(0)' : 'translateX(-101%)',
-          //   opacity: value ? '1' : '0',
-          // }}
+          style={{
+            transform: value ? 'translateX(0)' : 'translateX(-101%)',
+            opacity: value ? '1' : '0',
+          }}
         >
           <div>
             <CssTextField
@@ -162,10 +164,10 @@ export default function CalcForm() {
               onChange={handleChange}
             />
             <RadioButtons onChange={handleChange} />
-            <ColorButton type="submit">Похудеть</ColorButton>
+            {/* <MainButton type="submit">Похудеть</MainButton> */}
           </div>
         </div>
-        <Modal />
+        <MainModal />
       </form>
     </>
   )

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 
+
 const useStyles = makeStyles(theme => ({
      container: {
     display: 'flex',
@@ -16,15 +17,7 @@ const useStyles = makeStyles(theme => ({
   '& .MuiInputBase-input': {
     fontSize: '34px',
     padding: '16px, 0px,  7px',
-    },
-   underline: {
-    "&&&:before": {
-      borderBottom: "none"
-    },
-    "&&:after": {
-      borderBottom: "none"
-    }
-  }
+  },
 }))
 
 export default function DiaryDateСalendar() {
@@ -42,7 +35,6 @@ export default function DiaryDateСalendar() {
   return (
     <form className={classes.container} noValidate>
       <TextField
-        InputProps={{ classes }}
         id="date"
         type="date"
         defaultValue={date}
