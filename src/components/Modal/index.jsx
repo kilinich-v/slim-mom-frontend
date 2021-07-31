@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import Modal from '@material-ui/core/Modal';
 import Loader from '../Loader'
 import MainButton from '../common/MainButton';
