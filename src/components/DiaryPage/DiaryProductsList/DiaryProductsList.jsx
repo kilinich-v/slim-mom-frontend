@@ -3,16 +3,17 @@ import { useState, useEffect } from 'react'
 import {
   allProducts,
   dateEatenProducts,
+  getVisibleProdact,
 } from '../../../redux/product/product-selectors'
 import DiaryProductsListItem from '../DiaryProductsListItem/DiaryProductsListItem'
 import styles from './DiaryProductsList.module.css'
 
 export default function DiaryProductsList() {
   const productsInfo = useSelector(allProducts)
-  console.log('DiaryProductsList -> productsInfo', productsInfo)
+  // console.log('DiaryProductsList -> productsInfo', productsInfo)
 
   const [prod, setProd] = useState([])
-  console.log('DiaryProductsList -> prod', prod)
+  // console.log('DiaryProductsList -> prod', prod)
 
   useEffect(() => {
     if (productsInfo) {
@@ -20,7 +21,7 @@ export default function DiaryProductsList() {
     }
   }, [productsInfo])
 
-  console.log('DiaryProductsList -> prod', prod)
+  // console.log('DiaryProductsList -> prod', prod)
   return (
     <>
       <div className={styles.container}>
