@@ -6,10 +6,10 @@ import { getUserName, getIsLoggedOn } from '../../redux/registration/Selectors'
 import styles from './Header.module.scss'
 
 const UserInfo = () => {
-  //   const name = useSelector(getUserName)
-  //   const isAuth = useSelector(getIsLoggedOn)
-  const isAuth = 1
-  const name = 'Имя'
+  const name = useSelector(getUserName)
+  const isAuth = useSelector(getIsLoggedOn)
+  // const isAuth = 1
+  // const name = 'BlaBlaBla'
   const dispatch = useDispatch()
 
   const onLogOut = e => {
