@@ -29,6 +29,7 @@
 }
 .container_list {
   margin-bottom: 61px;
+  margin-top: 30px;
 }
 @media (max-width: 1280px) {
   .container_list {
