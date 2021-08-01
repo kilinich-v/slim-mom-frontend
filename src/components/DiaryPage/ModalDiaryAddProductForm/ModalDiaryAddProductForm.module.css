@@ -9,6 +9,11 @@
   margin: 60px auto;
   padding: 0;
 }
+.btn_dis {
+  composes: btn;
+  pointer-events: none;
+  background: #e79d69;
+}
 
 .btn::before {
   content: '\002B';
