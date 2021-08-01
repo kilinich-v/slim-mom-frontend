@@ -8,6 +8,7 @@ const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
+    marginBottom: theme.spacing(4),
     width: '188px',
     [theme.breakpoints.up('768')]: {
       width: '259px',

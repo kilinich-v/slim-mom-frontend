@@ -1,12 +1,6 @@
 import axios from 'axios'
 import productActions from './product-actions'
 
-// const token = localStorage.getItem('token')
-
-const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMDA3YTI0M2VkNDFkMjg4YzljYmZkOCIsImlhdCI6MTYyNzgxNTc3OSwiZXhwIjoxNjI4MTc1Nzc5fQ.dlDEpPmSujxGdklZDsROjsqZNRbMtBPW1S7z2edzpMQ`
-axios.defaults.baseURL = 'http://localhost:3001'
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-
 export const getProducts = query => {
   return axios
     .get(`/products/search?product=${query}`)
@@ -29,7 +23,7 @@ export const addProduct =
     axios
       .post('/products', newProduct)
       .then(({ data }) => {
-        dispatch(productActions.addProductSuccess(data.product))
+        dispatch(productActions.addProductSuccess(data))
       })
       .catch(error => dispatch(productActions.addProductError(error)))
   }

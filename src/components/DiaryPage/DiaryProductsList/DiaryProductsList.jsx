@@ -6,8 +6,6 @@ import styles from './DiaryProductsList.module.css'
 
 export default function DiaryProductsList() {
   const productsInfo = useSelector(allProducts)
-  // console.log('DiaryProductsList -> productsInfo', productsInfo)
-
   const [prod, setProd] = useState([])
 
   useEffect(() => {
@@ -15,8 +13,6 @@ export default function DiaryProductsList() {
       setProd(productsInfo)
     }
   }, [productsInfo])
- 
-  // console.log('DiaryProductsList -> prod', prod)
   return (
     <>
       <div className={styles.container}>

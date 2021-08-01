@@ -23,8 +23,8 @@ export default function DiaryAddProductForm() {
     debounce(() => {
       productName.length >= 3 &&
         getProducts(productName).then(products => {
-          setDebouncedProduct(products.foundProducts)
-        })
+          setDebouncedProduct(products)
+                })
     }, 500),
     [productName],
   )
@@ -32,12 +32,21 @@ export default function DiaryAddProductForm() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChangeWeight = useCallback(event => {
     const { value } = event.target
+    if (value > 5000) {
+      alert(`Введите корректный вес`)
+      setProductWeight('')
+      return
+    }
     setProductWeight(Number(value))
   })
 
   const handleSubmit = event => {
     event.preventDefault()
 
+    if (productName !== debouncedProduct[0].title) {
+      alert(`Выберете продукт из списка`)
+      return
+    }
     dispatch(
       addProduct({
         kcal: 100,
@@ -52,7 +61,7 @@ export default function DiaryAddProductForm() {
     setProductName('')
     setProductWeight('')
   }
-
+ 
   const onlyWidth = useWindowWidth()
   return (
     <>
@@ -70,19 +79,12 @@ export default function DiaryAddProductForm() {
           autoComplete="off"
           onChange={handleSearchProduct}
           required
-        />
+            />
 
         {debouncedProduct?.length > 0 && (
           <datalist className={styles.products_datalist} id="cookies">
             {debouncedProduct.map(({ id, title }) => (
-              <option
-                className={styles.options}
-                key={id}
-                value={title}
-                onClick={e => {
-                  setProductName(e.target.outerText)
-                }}
-              >
+              <option className={styles.options} key={id} value={title}>
                 {title}
               </option>
             ))}
