@@ -1,11 +1,11 @@
 import Container from '../components/Container'
-import ContentImagesHomePage from '../components/ContentImagesHomePage'
+import ContentImagesRegPage from '../components/ContentImagesRegPage'
 import RegistrationForm from '../components/Registration/registration'
 import Logo from '../components/Header/Logo'
 const AuthView = () => {
   return (
     <div>
-      <ContentImagesHomePage />
+      <ContentImagesRegPage />
       <Container>
         <Logo />
         <RegistrationForm />
