@@ -3,7 +3,7 @@ import productActions from './product-actions'
 
 // const token = localStorage.getItem('token')
 
-const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMDA3YTI0M2VkNDFkMjg4YzljYmZkOCIsImlhdCI6MTYyNzcwOTYwOSwiZXhwIjoxNjI4MDY5NjA5fQ.4vqCUqWym5P1ee2YAue95R0OxJsUjSKUYifUjKcAIcQ`
+const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMDA3YTI0M2VkNDFkMjg4YzljYmZkOCIsImlhdCI6MTYyNzgxNTc3OSwiZXhwIjoxNjI4MTc1Nzc5fQ.dlDEpPmSujxGdklZDsROjsqZNRbMtBPW1S7z2edzpMQ`
 axios.defaults.baseURL = 'http://localhost:3001'
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
@@ -16,20 +16,23 @@ export const getProducts = query => {
     .catch(error => error)
 }
 
-export const addProduct = (id, title, weight, kcal) => dispatch => {
-  const newProduct = {
-    // id,
-    title,
-    weight,
-    kcal,
-  }
-  dispatch(productActions.addProductRequest())
+export const addProduct =
+  ({ title, weight, kcal }) =>
+  dispatch => {
+    const newProduct = {
+      kcal,
+      title,
+      weight,
+    }
+    dispatch(productActions.addProductRequest())
 
-  axios
-    .post('/products', newProduct)
-    .then(({ data }) => dispatch(productActions.addProductSuccess(data)))
-    .catch(error => dispatch(productActions.addProductError(error)))
-}
+    axios
+      .post('/products', newProduct)
+      .then(({ data }) => {
+        dispatch(productActions.addProductSuccess(data.product))
+      })
+      .catch(error => dispatch(productActions.addProductError(error)))
+  }
 export const deleteProduct = id => dispatch => {
   dispatch(productActions.deleteProductIdRequest())
 

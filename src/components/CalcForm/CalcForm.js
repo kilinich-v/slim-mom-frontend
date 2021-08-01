@@ -99,7 +99,7 @@ export default function CalcForm() {
   }
   const handleSubmit = e => {
     e.preventDefault()
-    dispatch(calcData(growth, age, weight, desiredWeight, groupBlood))
+    dispatch(calcData({ growth, age, weight, desiredWeight, groupBlood }))
     reset()
   }
   const reset = () => {

@@ -2,7 +2,8 @@ import axios from 'axios'
 import { calcRequest, calcSuccess, calcError } from './calculator-action'
 
 export const calcData =
-  (growth, age, weight, desiredWeight, groupBlood) => async dispatch => {
+  ({ growth, age, weight, desiredWeight, groupBlood }) =>
+  async dispatch => {
     dispatch(calcRequest())
     try {
       const { data } = await axios.post(

@@ -40,23 +40,18 @@ export default function DiaryAddProductForm() {
 
     dispatch(
       addProduct({
-        title: productName,
+        kcal: 100,
         weight: Number(productWeight),
-        kcal: Number(100),
+        title: productName,
       }),
     )
 
     clear()
   }
-  console.log('kcal: ', Number(100))
-  console.log('weight: ', Number(productWeight))
-  console.log('title: ', productName)
   const clear = () => {
     setProductName('')
     setProductWeight('')
   }
-
-  // console.log('DiaryAddProductForm -> debouncedProduct', debouncedProduct)
 
   const onlyWidth = useWindowWidth()
   return (
@@ -76,6 +71,7 @@ export default function DiaryAddProductForm() {
           onChange={handleSearchProduct}
           required
         />
+
         {debouncedProduct?.length > 0 && (
           <datalist className={styles.products_datalist} id="cookies">
             {debouncedProduct.map(({ id, title }) => (

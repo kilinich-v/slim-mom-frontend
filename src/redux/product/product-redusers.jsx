@@ -2,22 +2,31 @@ import { combineReducers } from 'redux'
 import { createReducer } from '@reduxjs/toolkit'
 import productActions from './product-actions'
 
-const productsInfo = createReducer([], {
-  [productActions.getProductSuccess]: (_, { payload }) => payload,
-  [productActions.addProductSuccess]: (state, { payload }) => [
-    ...state,
-    payload,
-  ],
-  // {
-  //   console.log('payload', payload)
-  // },
+const diaryInfoState = {
+  email: '',
+  date: '',
+  products: [],
+  dayNorm: 0,
+  totalKcalPerDay: 0,
+  kcalRemain: 0,
+  percentage: null,
+}
 
+const diaryInfo = createReducer(diaryInfoState, {
+  [productActions.addProductSuccess]: (state, { payload }) => {
+    return {
+      ...state,
+      products: [payload, ...state.products],
+    }
+  },
   [productActions.dateEatenProductsSuccess]: (_, { payload }) => payload,
   [productActions.deleteProductIdSuccess]: (state, { payload }) => {
-    // console.log('payload', payload)
-
-    const newState = state.products.filter(product => product.id !== payload)
-    // console.log('newState', newState)
+    const oldArray = state.products
+    const newArray = oldArray.filter(product => product.id !== payload)
+    const newState = {
+      ...state,
+      products: newArray,
+    }
     return newState
   },
 })
@@ -36,7 +45,7 @@ const error = createReducer(null, {
 })
 
 export default combineReducers({
-  products: productsInfo,
+  diaryInfo,
   loading,
   error,
 })

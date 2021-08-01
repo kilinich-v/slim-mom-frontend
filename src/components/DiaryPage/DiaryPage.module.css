@@ -31,3 +31,8 @@
     width: 98%;
   }
 }
+@media (min-width: 1280px) {
+  .container_page {
+    padding-left: 85px;
+  }
+}

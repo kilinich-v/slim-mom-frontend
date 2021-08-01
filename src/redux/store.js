@@ -19,6 +19,11 @@ import logger from 'redux-logger'
 import calcData from './calculator/calculator-reducer'
 import userReducer from './registration/UserSlice'
 import productReducer from './product/product-redusers'
+// import axios from 'axios'
+
+// const token = localStorage.getItem('token')
+// axios.defaults.baseURL = 'https://slim-mom-backend.herokuapp.com'
+// axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
 const middleware = [
   ...getDefaultMiddleware({
