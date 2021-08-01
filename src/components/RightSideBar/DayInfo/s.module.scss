@@ -1,0 +1,21 @@
+.list {
+  display: flex;
+  justify-content: space-between;
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: 400px;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  list-style: none;
+  color: #9b9faa;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  @media (min-width: 1280px) {
+  }
+}
+.ul {
+  padding: 0;
+  margin: 0;
+}

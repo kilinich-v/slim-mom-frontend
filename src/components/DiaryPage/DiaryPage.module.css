@@ -22,6 +22,11 @@
     margin-bottom: 61px;
   }
 }
+@media (min-width: 1280px) {
+  .container_page {
+    padding-left: 115px;
+  }
+}
 .container_list {
   margin-bottom: 61px;
   margin-top: 30px;

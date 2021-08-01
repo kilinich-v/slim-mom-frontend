@@ -5,10 +5,13 @@ import AuthView from './views/AuthView'
 import RegistrationView from './views/RegistrationView'
 import CalculatorView from './views/CalculatorView'
 import DiaryView from './views/DiaryView'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   return (
     <>
+      <ToastContainer autoClose={2000} />
       <Switch>
         <Route exact path={routes.main} component={MainPageView} />
         <Route path={routes.auth} component={AuthView} />
