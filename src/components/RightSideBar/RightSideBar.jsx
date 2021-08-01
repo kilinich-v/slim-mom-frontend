@@ -1,34 +1,33 @@
+import { useState, useEffect } from 'react'
+import DayInfo from './DayInfo'
+import {fetchDayInfo} from './apiServer/apiServer'
 import styless from './RightSideBar.module.scss'
 
-const RightSideBar = () => {
+function RightSideBar() {
+
+const [info, setInfo] = useState('000')
+
+useEffect(() => {
+  const dayData = '2021-07-29'
+  fetchDayInfo(dayData).then((data)=>setInfo(data)).catch(error => console.log(error))
+},[])
+ console.log('info:', info)
+
   return (
     <div>
       <section className={styless.section}>
         <div className={styless.container}>
           <div className={styless.box}>
             <h3 className={styless.title}>Сводка за дату</h3>
-            <ul className={styless.ul}>
-              <li className={styless.list}>
-                <p className={styless.ul}>Осталось</p>{' '}
-                <p className={styless.ul}>000 ккал</p>
-              </li>
-              <li className={styless.list}>
-                <p className={styless.ul}>Употреблено</p>{' '}
-                <p className={styless.ul}> 000 ккал</p>
-              </li>
-              <li className={styless.list}>
-                <p className={styless.ul}>Дневная</p>{' '}
-                <p className={styless.ul}>000 ккал</p>
-              </li>
-              <li className={styless.list}>
-                <p className={styless.ul}>n% от нормы</p>{' '}
-                <p className={styless.ul}>000 ккал</p>
-              </li>
-            </ul>
+    
+            <DayInfo info={info} />
+            
           </div>
           <div className={styless.box}>
             <h3 className={styless.title}>Нерекомендуемые продукты</h3>
             <p className={styless.list}>Здесь будет отображаться Ваш рацион</p>
+            {/* {info.products.map(product => product.title).join(', ')}  */}
+          
           </div>
         </div>
       </section>
