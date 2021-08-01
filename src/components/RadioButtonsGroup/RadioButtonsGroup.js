@@ -26,11 +26,12 @@ export default function RadioButtons({ onChange }) {
       row
       aria-label="groupBlood"
       name="groupBlood"
-      defaultValue="top"
+      defaultValue="1"
       onChange={onChange}
       style={{ justifyContent: 'space-between' }}
     >
       <FormLabel
+        required
         component="legend"
         style={{
           width: 240,
@@ -46,21 +47,18 @@ export default function RadioButtons({ onChange }) {
         value="1"
         control={<OrangeRadio />}
         label="1"
-        labelPlacement="End"
       />
       <FormControlLabel
         className={classes.formControl}
         value="2"
         control={<OrangeRadio />}
         label="2"
-        labelPlacement="End"
       />
       <FormControlLabel
         className={classes.formControl}
         value="3"
         control={<OrangeRadio />}
         label="3"
-        labelPlacement="End"
       />
       <FormControlLabel
         className={classes.formControl}

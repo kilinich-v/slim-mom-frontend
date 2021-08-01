@@ -1,32 +1,35 @@
 .DecoreLaptop {
   display: none;
   position: absolute;
-  width: 602px;
-  height: 816px;
-  right: 0;
+  width: 716px;
+  height: 100vh;
   bottom: 0;
-  background-size: contain;
+  right: 0;
+
+  background-size: cover;
   background-repeat: no-repeat;
   transition: all 550ms cubic-bezier(0.4, 0, 0.2, 1);
+
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-    background-image: url('../../res/images/contentImg/DecoreLaptop.png');
+    background-image: url('../../res/images/contentImg/DecoreReglap.png');
     display: block;
-    top: 500px;
-    width: 552px;
-    height: 616px;
+    background-size: contain;
+    width: 553px;
+    height: 600px;
+    top: 461px;
   }
   @media screen and (min-width: 1280px) {
     display: block;
-    background-image: url('../../res/images/contentImg/DecoreDesc.png');
+    background-image: url('../../res/images/contentImg/DecoreRegDesc.png');
     transform: translateY(100vh);
   }
 }
 .Banana {
   display: none;
   position: absolute;
-  width: 513px;
-  height: 440px;
-  top: -20px;
+  width: 573px;
+  height: 495px;
+  top: 340px;
   right: 0;
 
   background-size: cover;
@@ -37,8 +40,8 @@
     display: block;
     background-image: url('../../res/images/contentImg/BananaLaptop.png');
     width: 500px;
-    height: 447px;
-    top: 650px;
+    height: 527px;
+    top: 530px;
   }
   @media screen and (min-width: 1280px) {
     display: block;
@@ -51,8 +54,8 @@
   position: absolute;
   width: 286px;
   height: 279px;
-  top: 540px;
-  right: 36px;
+  top: 213px;
+  right: 66px;
 
   justify-content: center;
   align-items: center;
@@ -65,9 +68,10 @@
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     display: block;
     background-image: url('../../res/images/contentImg/StrawberryLaptop.png');
-    top: 590px;
-    width: 340px;
-    height: 327px;
+    top: 548px;
+    right: 0;
+    width: 240px;
+    height: 260px;
   }
   @media screen and (min-width: 1280px) {
     display: block;
@@ -78,10 +82,10 @@
   position: absolute;
   pointer-events: none;
   display: none;
-  width: 746px;
+  width: 756px;
   height: 816px;
   top: 0px;
-  right: 190px;
+  right: 251px;
 
   justify-content: center;
   align-items: center;
@@ -93,14 +97,14 @@
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     display: block;
-    top: 510px;
-    left: 0;
-    width: 531px;
-    height: 602px;
-    background-image: url('../../res/images/contentImg/GreenLaptop.png');
+    top: 20px;
+    right: 20px;
+    width: 631px;
+    height: 632px;
+    background-image: url('../../res/images/contentImg/GreenRegLap.png');
   }
   @media screen and (min-width: 1280px) {
     display: block;
-    background-image: url('../../res/images/contentImg/GreenDesc.png');
+    background-image: url('../../res/images/contentImg/GreenRegDesc.png');
   }
 }

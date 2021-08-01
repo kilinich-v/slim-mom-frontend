@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import styles from './ContentImagesHomePage.module.scss'
+import styles from './ContentImagesRegPage.module.scss'
 
-export default function ContentImagesHomePage(params) {
+export default function ContentImagesRegPage() {
   const [value, setValue] = useState(false)
   useEffect(() => {
     setValue(true)
