@@ -11,7 +11,7 @@ import PublicRoute from './components/Routes/publicRoute'
 import PrivatRoute from './components/Routes/privatRoute'
 
 function App() {
-  пше
+  
   return (
     <Switch>
       {/* My routes*/}
