@@ -5,7 +5,7 @@ import { diaryInfo, deprecatedProducts } from '../../redux/product/product-selec
 import styless from './RightSideBar.module.scss'
 
 function RightSideBar() {
-//  TODO new file
+//  TODO new file !
 
   const dayInfo = useSelector(diaryInfo)
   const prohibitedProducts = useSelector(deprecatedProducts)
