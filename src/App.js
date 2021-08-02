@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom'
+import { Switch } from 'react-router-dom'
 import routes from './routes'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
@@ -17,6 +17,7 @@ import PrivatRoute from './components/Routes/privatRoute'
 
 function App() {
   const dispatch = useDispatch()
+
   useEffect(() => {
     dispatch(getUser())
   }, [dispatch])

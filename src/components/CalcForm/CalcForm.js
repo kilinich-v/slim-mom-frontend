@@ -10,6 +10,7 @@ import RadioButtons from '../RadioButtonsGroup/RadioButtonsGroup'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import MainButton from '../common/MainButton'
+import MainModal from '../Modal'
 
 const CssTextField = withStyles(theme => ({
   root: {
@@ -97,6 +98,7 @@ export default function CalcForm() {
         groupBlood,
       }
       dispatch(calcData(calcFormParams))
+
       reset()
     }
   }
@@ -175,9 +177,10 @@ export default function CalcForm() {
             <RadioButtons onChange={handleChange} />
           </div>
         </div>
-        <MainButton id={styles.btn} type="submit">
+        <MainModal />
+        {/* <MainButton id={styles.btn} type="submit">
           Похудеть
-        </MainButton>
+        </MainButton> */}
       </form>
     </>
   )

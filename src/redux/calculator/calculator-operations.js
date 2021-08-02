@@ -2,7 +2,6 @@ import axios from 'axios'
 import { calcRequest, calcSuccess, calcError } from './calculator-action'
 
 export const calcData = calcFormParams => async dispatch => {
-  console.log(calcFormParams)
   dispatch(calcRequest())
   try {
     const { data } = await axios.post(
