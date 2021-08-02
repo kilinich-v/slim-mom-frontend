@@ -1,9 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { withRouter } from 'react-router-dom'
+
 import styles from './Header.module.scss'
 import BurgerMenu from './BurgerMenu/BurgerMenu'
-import Container from '../Container'
+
 import Navigation from './Navigation'
 import { useState } from 'react'
 import { useWindowWidth } from '@react-hook/window-size'
@@ -15,11 +15,12 @@ const Header = () => {
     setState(prev => ({ isModalOpen: !prev.isModalOpen }))
 
   const { isModalOpen } = state
+
   return (
     <>
-      <Navigation />
+      <Navigation isModalOpen={isModalOpen} setModalState={setModalState} />
 
-      {/* {onlyWidth < 768 ? (
+      {isModalOpen && onlyWidth < 1280 ? (
         <BurgerMenu>
           <div className={styles.listBurger}>
             <div className={styles.listBurgerItem}>
@@ -46,7 +47,7 @@ const Header = () => {
         </BurgerMenu>
       ) : (
         ''
-      )} */}
+      )}
     </>
   )
 }

@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 
 import styles from './BurgerMenu.module.scss'
 
-const modalRoot = document.querySelector('#modal-root')
-
 class Modal extends Component {
   componentDidMount() {
     window.addEventListener('keydown', this.handleEsc)
