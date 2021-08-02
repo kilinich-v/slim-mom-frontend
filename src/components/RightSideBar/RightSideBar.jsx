@@ -38,7 +38,9 @@ function RightSideBar() {
           </div>
           <div className={styless.box}>
             <h3 className={styless.title}>Нерекомендуемые продукты</h3>
-            <p className={styless.list}>Здесь будет отображаться Ваш рацион</p>
+            {deprecated.length > 0 ? <p className={styless.list}> {deprecated.join(', ')} </p> :
+             <p className={styless.list}> Здесь будет отображаться Ваш рацион </p>} 
+
             {/* {info.products.map(product => product.title).join(', ')}  */}
           </div>
         </div>
