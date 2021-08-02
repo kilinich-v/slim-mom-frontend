@@ -9,6 +9,7 @@ import {
   addProduct,
 } from '../../../redux/product/product-operations'
 import { dateEatenProducts } from '../../../redux/product/product-selectors'
+import { toast } from 'react-toastify';
 
 export default function DiaryAddProductForm() {
   const [productName, setProductName] = useState('')
@@ -46,7 +47,7 @@ export default function DiaryAddProductForm() {
   const handleChangeWeight = useCallback(event => {
     const { value } = event.target
     if (value > 5000) {
-      alert(`Введите корректный вес`)
+      toast.warning(`Введите корректный вес`)
       setProductWeight('')
       return
     }
@@ -56,11 +57,11 @@ export default function DiaryAddProductForm() {
   const handleSubmit = event => {
     event.preventDefault()
     if (!debouncedProduct.length) {
-      alert(`Продукт не найден или выберете продукт из списка`)
+      toast.warning(`Продукт не найден или выберете продукт из списка`)
       return
     }
     if (productName !== debouncedProduct[0]?.title) {
-      alert(`Выберете продукт из списка`)
+      toast.warning(`Выберете продукт из списка`)
       return
     }
 
