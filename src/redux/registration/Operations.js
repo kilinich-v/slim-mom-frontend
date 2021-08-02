@@ -12,6 +12,24 @@ import {
   onLogoutFailure,
 } from './UserSlice'
 
+export const getUser = () => (dispatch, getState) => {
+  // const {
+  //   auth: { token: persistedToken },
+  // } = getState()
+  // if (!persistedToken) return
+  // token.set(persistedToken)
+  dispatch(onLoginRequest())
+  axiosInstance
+    .get('/users/current')
+    .then(({ data }) => {
+      localStorage.setItem('token', data.token)
+      dispatch(onLoginSuccess(data))
+    })
+    .catch(error => {
+      dispatch(onLoginFailure(error.message))
+    })
+}
+
 export const signUp = payload => (dispatch, getState) => {
   console.log("log from signUp, this is 'payload':", payload)
   dispatch(onSignUpRequest())
