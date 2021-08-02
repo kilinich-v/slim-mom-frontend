@@ -15,9 +15,12 @@ const CssTextField = withStyles(theme => ({
   root: {
     '&:not(:last-child)': {
       marginBottom: '30px',
+      [theme.breakpoints.down('768')]: {
+        marginBottom: '10px',
+      },
     },
     [theme.breakpoints.down('768')]: {
-      marginBottom: '30px',
+      marginBottom: '10px',
     },
     width: 240,
     '& label': {
@@ -75,30 +78,26 @@ export default function CalcForm() {
   }
   const handleSubmit = e => {
     e.preventDefault()
-    if (!height && !age && !weight && !desiredWeight) {
-      toast.error('Заполните поля')
-    } else if (+height < 130 || +height > 220) {
-      toast.error('Неверно заполненое поле Рост')
-    } else if (+age < 18 || +age > 99) {
-      toast.error('Неверно заполненое поле Возраст')
-    } else if (+weight < 50 || +weight > 200) {
-      toast.error('Неверно заполненое поле Вес')
-    } else if (+desiredWeight < 45 || +desiredWeight > 100) {
-      toast.error('Неверно заполненое поле Желаемый вес')
-    } else {
-      toast.success(
-        'Мы подобрали для Вас ряд нежелаемых к употреблению продуктов',
-      )
-      const calcFormParams = {
-        height,
-        age,
-        weight,
-        desiredWeight,
-        groupBlood,
-      }
-      dispatch(calcData(calcFormParams))
-      reset()
+    // if (!height && !age && !weight && !desiredWeight) {
+    //   toast.error('Заполните поля')
+    // } else if (+height < 130 || +height > 220) {
+    //   toast.error('Неверно заполненое поле Рост')
+    // } else if (+age < 18 || +age > 99) {
+    //   toast.error('Неверно заполненое поле Возраст')
+    // } else if (+weight < 50 || +weight > 200) {
+    //   toast.error('Неверно заполненое поле Вес')
+    // } else if (+desiredWeight < 45 || +desiredWeight > 100) {
+    //   toast.error('Неверно заполненое поле Желаемый вес')
+    // } else { }
+    const calcFormParams = {
+      height,
+      age,
+      weight,
+      desiredWeight,
+      groupBlood,
     }
+    dispatch(calcData(calcFormParams))
+    reset()
   }
   const reset = () => {
     setHeight('')
@@ -109,7 +108,12 @@ export default function CalcForm() {
   }
 
   return (
-    <>
+    <form
+      onSubmit={handleSubmit}
+      className={styles.form}
+      noValidate
+      autoComplete="off"
+    >
       <h1
         className={styles.title}
         style={{
@@ -119,66 +123,63 @@ export default function CalcForm() {
       >
         Просчитай свою суточную норму калорий прямо сейчас
       </h1>
-      <form
-        onSubmit={handleSubmit}
-        className={styles.form}
-        noValidate
-        autoComplete="off"
+      <div
+        className={styles.formContainer}
+        style={{
+          transform: value ? 'translateX(0)' : 'translateX(-101%)',
+          opacity: value ? '1' : '0',
+        }}
       >
-        <div
-          className={styles.formContainer}
-          style={{
-            transform: value ? 'translateX(0)' : 'translateX(-101%)',
-            opacity: value ? '1' : '0',
-          }}
-        >
-          <div>
-            <CssTextField
-              id="standard-basic"
-              label="Рост"
-              name="height"
-              required
-              placeholder="введите число от 130 до 220"
-              value={height}
-              onChange={handleChange}
-            />
-            <CssTextField
-              id="standard-basic"
-              label="Возраст"
-              required
-              name="age"
-              placeholder="введите число от 18 до 99"
-              value={age}
-              onChange={handleChange}
-            />
-            <CssTextField
-              id="standard-basic"
-              label="Текущий вес"
-              required
-              name="weight"
-              placeholder="введите число от 50 до 200"
-              value={weight}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <CssTextField
-              id="standard-basic"
-              style={{ marginBottom: 50 }}
-              label="Желаемый вес"
-              required
-              name="desiredWeight"
-              placeholder="введите число от 45 до 100"
-              value={desiredWeight}
-              onChange={handleChange}
-            />
-            <RadioButtons onChange={handleChange} />
-          </div>
+        <div>
+          <CssTextField
+            id="standard-basic"
+            label="Рост"
+            name="height"
+            required
+            placeholder="введите число от 130 до 220"
+            value={height}
+            type="number"
+            onChange={handleChange}
+          />
+          <CssTextField
+            id="standard-basic"
+            label="Возраст"
+            required
+            name="age"
+            placeholder="введите число от 18 до 99"
+            value={age}
+            type="number"
+            onChange={handleChange}
+          />
+          <CssTextField
+            id="standard-basic"
+            label="Текущий вес"
+            required
+            name="weight"
+            placeholder="введите число от 50 до 200"
+            value={weight}
+            type="number"
+            onChange={handleChange}
+          />
         </div>
-        <MainButton id={styles.btn} type="submit">
-          Похудеть
-        </MainButton>
-      </form>
-    </>
+        <div>
+          <CssTextField
+            id="standard-basic"
+            style={{ marginBottom: 40 }}
+            label="Желаемый вес"
+            required
+            name="desiredWeight"
+            placeholder="введите число от 45 до 100"
+            value={desiredWeight}
+            type="number"
+            onChange={handleChange}
+          />
+          <RadioButtons onChange={handleChange} />
+        </div>
+      </div>
+      <MainButton id={styles.btn} type="submit">
+        Похудеть
+      </MainButton>
+    </form>
   )
 }

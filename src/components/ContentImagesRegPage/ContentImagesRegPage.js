@@ -7,7 +7,7 @@ export default function ContentImagesRegPage() {
     setValue(true)
   }, [])
   return (
-    <div style={{ position: 'relative' }}>
+    <div className={styles.contentContainer}>
       <div
         className={styles.Green}
         style={{

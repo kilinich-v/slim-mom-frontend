@@ -7,7 +7,7 @@ export default function ContentImagesHomePage(params) {
     setValue(true)
   }, [])
   return (
-    <div style={{ position: 'relative' }}>
+    <div className={styles.contentContainer}>
       <div
         className={styles.Green}
         style={{
