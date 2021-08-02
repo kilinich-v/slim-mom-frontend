@@ -16,9 +16,10 @@ const Header = () => {
 
   const { isModalOpen } = state
   return (
-    <Container>
+    <>
       <Navigation />
-      {onlyWidth < 768 ? (
+
+      {/* {onlyWidth < 768 ? (
         <BurgerMenu>
           <div className={styles.listBurger}>
             <div className={styles.listBurgerItem}>
@@ -45,8 +46,8 @@ const Header = () => {
         </BurgerMenu>
       ) : (
         ''
-      )}
-    </Container>
+      )} */}
+    </>
   )
 }
 

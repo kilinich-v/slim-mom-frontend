@@ -4,36 +4,12 @@ import { useDispatch } from 'react-redux'
 import TextField from '@material-ui/core/TextField'
 import { orange } from '@material-ui/core/colors'
 import { withStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 import styles from './CalcForm.module.scss'
 import { calcData } from '../../redux/calculator/calculator-operations'
 import RadioButtons from '../RadioButtonsGroup/RadioButtonsGroup'
-
-const ColorButton = withStyles(theme => ({
-  root: {
-    width: '176px',
-    height: '44px',
-    borderRadius: '30px',
-    fontFamily: 'verdana',
-    fontSize: '14px',
-    lineHeight: '1.21',
-    letterSpacing: '0.04em',
-    color: 'white',
-    boxShadow: '0px 4px 10px rgba(252, 132, 45, 0.5)',
-
-    marginTop: '115px',
-    backgroundColor: orange[500],
-    '&:hover': {
-      backgroundColor: orange[700],
-    },
-    [theme.breakpoints.down('768')]: {
-      bottom: '0',
-    },
-    [theme.breakpoints.down('1200')]: {
-      left: '0',
-    },
-  },
-}))(Button)
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import MainButton from '../common/MainButton'
 
 const CssTextField = withStyles(theme => ({
   root: {
@@ -62,11 +38,11 @@ const CssTextField = withStyles(theme => ({
 
 export default function CalcForm() {
   const [value, setValue] = useState(false)
-  const [growth, setGrowth] = useState('')
+  const [height, setHeight] = useState('')
   const [age, setAge] = useState('')
   const [weight, setWeight] = useState('')
   const [desiredWeight, setDesiredWeight] = useState('')
-  const [groupBlood, setGroupBlood] = useState('')
+  const [groupBlood, setGroupBlood] = useState('1')
 
   const dispatch = useDispatch()
 
@@ -77,8 +53,8 @@ export default function CalcForm() {
   const handleChange = e => {
     const { name, value, defaultValue } = e.target
     switch (name) {
-      case 'growth':
-        setGrowth(value)
+      case 'height':
+        setHeight(value)
         break
       case 'age':
         setAge(value)
@@ -99,11 +75,33 @@ export default function CalcForm() {
   }
   const handleSubmit = e => {
     e.preventDefault()
-    dispatch(calcData(growth, age, weight, desiredWeight, groupBlood))
-    reset()
+    if (!height && !age && !weight && !desiredWeight) {
+      toast.error('Заполните поля')
+    } else if (+height < 130 || +height > 220) {
+      toast.error('Неверно заполненое поле Рост')
+    } else if (+age < 18 || +age > 99) {
+      toast.error('Неверно заполненое поле Возраст')
+    } else if (+weight < 50 || +weight > 200) {
+      toast.error('Неверно заполненое поле Вес')
+    } else if (+desiredWeight < 45 || +desiredWeight > 100) {
+      toast.error('Неверно заполненое поле Желаемый вес')
+    } else {
+      toast.success(
+        'Мы подобрали для Вас ряд нежелаемых к употреблению продуктов',
+      )
+      const calcFormParams = {
+        height,
+        age,
+        weight,
+        desiredWeight,
+        groupBlood,
+      }
+      dispatch(calcData(calcFormParams))
+      reset()
+    }
   }
   const reset = () => {
-    setGrowth('')
+    setHeight('')
     setAge('')
     setWeight('')
     setDesiredWeight('')
@@ -124,48 +122,62 @@ export default function CalcForm() {
       <form
         onSubmit={handleSubmit}
         className={styles.form}
-        style={{
-          transform: value ? 'translateX(0)' : 'translateX(-101%)',
-          opacity: value ? '1' : '0',
-        }}
         noValidate
         autoComplete="off"
       >
-        <div>
-          <CssTextField
-            id="standard-basic"
-            label="Рост"
-            name="growth"
-            value={growth}
-            onChange={handleChange}
-          />
-          <CssTextField
-            id="standard-basic"
-            label="Возраст"
-            name="age"
-            value={age}
-            onChange={handleChange}
-          />
-          <CssTextField
-            id="standard-basic"
-            label="Текущий вес"
-            name="weight"
-            value={weight}
-            onChange={handleChange}
-          />
+        <div
+          className={styles.formContainer}
+          style={{
+            transform: value ? 'translateX(0)' : 'translateX(-101%)',
+            opacity: value ? '1' : '0',
+          }}
+        >
+          <div>
+            <CssTextField
+              id="standard-basic"
+              label="Рост"
+              name="height"
+              required
+              placeholder="введите число от 130 до 220"
+              value={height}
+              onChange={handleChange}
+            />
+            <CssTextField
+              id="standard-basic"
+              label="Возраст"
+              required
+              name="age"
+              placeholder="введите число от 18 до 99"
+              value={age}
+              onChange={handleChange}
+            />
+            <CssTextField
+              id="standard-basic"
+              label="Текущий вес"
+              required
+              name="weight"
+              placeholder="введите число от 50 до 200"
+              value={weight}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <CssTextField
+              id="standard-basic"
+              style={{ marginBottom: 50 }}
+              label="Желаемый вес"
+              required
+              name="desiredWeight"
+              placeholder="введите число от 45 до 100"
+              value={desiredWeight}
+              onChange={handleChange}
+            />
+            <RadioButtons onChange={handleChange} />
+          </div>
         </div>
-        <div>
-          <CssTextField
-            id="standard-basic"
-            style={{ marginBottom: 50 }}
-            label="Желаемый вес"
-            name="desiredWeight"
-            value={desiredWeight}
-            onChange={handleChange}
-          />
-          <RadioButtons onChange={handleChange} />
-          <ColorButton type="submit">Похудеть</ColorButton>
-        </div>
+        <MainButton id={styles.btn} type="submit">
+          Похудеть
+        </MainButton>
       </form>
     </>
   )
