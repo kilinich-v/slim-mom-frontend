@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useWindowWidth } from '@react-hook/window-size'
+import { toast } from 'react-toastify'
 import debounce from 'lodash.debounce'
 import styles from './DiaryAddProductForm.module.css'
 import MainButton from '../../common/MainButton'
@@ -8,8 +9,8 @@ import {
   getProducts,
   addProduct,
 } from '../../../redux/product/product-operations'
-import { dateEatenProducts } from '../../../redux/product/product-selectors'
-import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
 
 export default function DiaryAddProductForm() {
   const [productName, setProductName] = useState('')
@@ -17,8 +18,7 @@ export default function DiaryAddProductForm() {
   const [productCkal, setProductCkal] = useState('')
   const [debouncedProduct, setDebouncedProduct] = useState([])
   const dispatch = useDispatch()
-  const dateEatenProductsInfo = useSelector(dateEatenProducts)
-  const currentDate = new Date().toLocaleDateString('fr-CA')
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(
     debounce(() => {
@@ -36,10 +36,7 @@ export default function DiaryAddProductForm() {
       return null
     }
     const foundArrayCkal = debouncedProduct?.find(el => el.title === value)
-    console.log('DiaryAddProductForm -> debouncedProduct', debouncedProduct)
     const foundCkal = foundArrayCkal?.kcal
-    console.log('DiaryAddProductForm -> foundCkal', foundCkal)
-
     setProductCkal(foundCkal)
   }
 
@@ -47,28 +44,32 @@ export default function DiaryAddProductForm() {
   const handleChangeWeight = useCallback(event => {
     const { value } = event.target
     if (value > 5000) {
-      toast.warning(`Введите корректный вес`)
+      const notify = () => toast.warn(`Введите корректный вес`)
       setProductWeight('')
-      return
+      return notify()
     }
     setProductWeight(Number(value))
   })
 
   const handleSubmit = event => {
     event.preventDefault()
-    if (!debouncedProduct.length) {
-      toast.warning(`Продукт не найден или выберете продукт из списка`)
-      return
+    if (debouncedProduct.length === 0) {
+      const notify = () =>
+        toast.warn(`Продукт не найден или выберете продукт из списка`)
+      setProductName('')
+      return notify()
     }
-    if (productName !== debouncedProduct[0]?.title) {
-      toast.warning(`Выберете продукт из списка`)
-      return
+    const searchProduct = debouncedProduct?.find(el => el.title === productName)
+
+    if (!searchProduct) {
+      const notify = () => toast.warn(`Выберете продукт из списка`)
+      setProductName('')
+      return notify()
     }
 
     dispatch(
       addProduct({
         kcal: Number(productCkal),
-        // kcal: 100,
         weight: Number(productWeight),
         title: productName,
       }),
@@ -101,9 +102,9 @@ export default function DiaryAddProductForm() {
         />
 
         {debouncedProduct?.length > 0 && (
-          <datalist className={styles.products_datalist} id="cookies">
-            {debouncedProduct.map(({ id, title, kcal }) => (
-              <option className={styles.options} key={id} value={title}>
+          <datalist id="cookies">
+            {debouncedProduct.map(({ id, title }) => (
+              <option key={id} value={title}>
                 {title}
               </option>
             ))}

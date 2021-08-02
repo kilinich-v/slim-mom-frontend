@@ -1,11 +1,5 @@
-// import axios from 'axios'
 import productActions from './product-actions'
 import axiosInstance from '../registration/AxiosInstance'
-
-// const token = localStorage.getItem('token')
-// const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMDZlZGI1OWE5ZmRjMDAxYzI3NGNjYyIsImlhdCI6MTYyNzkxOTQ3MCwiZXhwIjoxNjI3OTQ4MjcwfQ.o7UyDtN-CIQEfH_3sJElhhR17aWcd7Ik_XP30gNh5Eo`
-// axios.defaults.baseURL = 'https://slim-mom-backend.herokuapp.com'
-// axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
 export const getProducts = query => {
   return axiosInstance
