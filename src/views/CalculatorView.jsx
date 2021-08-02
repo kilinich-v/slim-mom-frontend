@@ -24,6 +24,10 @@ const useStyles = createUseStyles({
   },
   case:{
     paddingLeft: 115,
+  },
+  headerBox:{
+    display: 'flex',
+    justifyContent: 'flex-end'
   }
 })
 
@@ -32,15 +36,18 @@ const CalculatorView = () => {
   const onlyWidth = useWindowWidth()
   return (
     <>
-    {onlyWidth > 1280 ?       <div className={styless.wrapper}>
+    {onlyWidth > 1280 ? <div className={styless.wrapper}>
       <div className={styless.header}>
       <Header />
+      <div className={styless.headerBox}>
+      {onlyWidth > 1280 ? <UserInfo /> : ''}
+      </div>
       </div>
      <div className={styless.box}>
        <div className={styless.case}>
      <CalcForm />
      </div>
-      {onlyWidth > 1280 ? <UserInfo /> : ''}
+      {/* {onlyWidth > 1280 ? <UserInfo /> : ''} */}
      <RightSideBar />
        </div>
       </div>   :  <div className={styless.box}>

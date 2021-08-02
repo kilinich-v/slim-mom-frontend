@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Route, Redirect } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
@@ -9,20 +10,18 @@ import Button from '@material-ui/core/Button'
 
 import { getIsLoggedOn } from '../../redux/registration/Selectors'
 import { signUp } from '../../redux/registration/Operations'
-import AuthForm from '../Auth/auth'
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '510px',
+    width: '290px',
     marginBottom: '30px',
     justifyContent: 'space-between',
-    [theme.breakpoints.down('768')]: {
-      width: '240px',
-      height: '354px',
-      alignContent: 'flex-start',
+    [theme.breakpoints.up('768')]: {
+      width: '382px',
+      alignItems: 'start',
     },
   },
   title: {
@@ -31,8 +30,26 @@ const useStyles = makeStyles(theme => ({
     lineHeight: '13px',
     letterSpacing: '0.04em',
     textTransform: 'uppercase',
-    marginLeft: '134px',
+    textAlign: 'center',
+    // marginLeft: '134px',
+    marginTop: '40px',
     color: orange[600],
+    [theme.breakpoints.up('768')]: {
+      marginTop: '157px',
+      textAlign: 'left',
+    },
+    [theme.breakpoints.up('1200')]: {
+      marginTop: '95px',
+    },
+  },
+  button: {
+    textAlign: 'center',
+    [theme.breakpoints.up('768')]: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      width: '382px',
+    },
   },
 }))
 const ColorButtonEnter = withStyles(theme => ({
@@ -80,11 +97,17 @@ const ColorButtonRegister = withStyles(theme => ({
   },
 }))(Button)
 
-const CssTextField = withStyles({
+const CssTextField = withStyles(theme => ({
   root: {
     marginBottom: '20px',
     '& label': {
       fontSize: '14px',
+    },
+    '& .MuiInput-underline': {
+      width: '290px',
+      [theme.breakpoints.up('768')]: {
+        width: '239px',
+      },
     },
     '& label.Mui-focused': {
       color: orange[500],
@@ -104,7 +127,7 @@ const CssTextField = withStyles({
       },
     },
   },
-})(TextField)
+}))(TextField)
 
 export default function RegistrationForm() {
   const dispatch = useDispatch()
@@ -125,7 +148,7 @@ export default function RegistrationForm() {
     e.preventDefault()
     dispatch(signUp({ name, email, password }))
     console.log(
-      'log from signUp, name, email, password:',
+      'log from handleSubmit, name, email, password:',
       name,
       email,
       password,
@@ -135,6 +158,7 @@ export default function RegistrationForm() {
     setPassword('')
   }
   const isLoggedOn = useSelector(getIsLoggedOn)
+  console.log('isLoggedOn from registration', isLoggedOn)
 
   return (
     <div
@@ -144,7 +168,7 @@ export default function RegistrationForm() {
       }}
     >
       {isLoggedOn ? (
-        <AuthForm />
+        <Redirect to="/auth" />
       ) : (
         <div>
           <h3 className={classes.title}>регистрация</h3>
@@ -161,7 +185,7 @@ export default function RegistrationForm() {
               value={name}
               type="Name"
               autoComplete="current-name"
-              style={{ width: 240 }}
+              // style={{ width: 240 }}
               onChange={handleChangeName}
             />
             <CssTextField
@@ -171,7 +195,7 @@ export default function RegistrationForm() {
               value={email}
               type="email"
               autoComplete="current-login"
-              style={{ width: 240 }}
+              // style={{ width: 240 }}
               onChange={handleChangeEmail}
             />
 
@@ -182,12 +206,15 @@ export default function RegistrationForm() {
               value={password}
               type="password"
               autoComplete="current-password"
-              style={{ width: 240 }}
+              // style={{ width: 240 }}
               onChange={handleChangePassword}
             />
-
-            <ColorButtonEnter type="submit">Вход</ColorButtonEnter>
-            <ColorButtonRegister type="submit">Регистрация</ColorButtonRegister>
+            <div className={classes.button}>
+              <ColorButtonEnter type="submit">Вход</ColorButtonEnter>
+              <ColorButtonRegister type="submit">
+                Регистрация
+              </ColorButtonRegister>
+            </div>
           </form>
         </div>
       )}

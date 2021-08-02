@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useSelector} from 'react-redux'
 import DayInfo from './DayInfo'
 import { fetchDayInfo } from './apiServer/apiServer'
 import styless from './RightSideBar.module.scss'
@@ -12,7 +13,6 @@ function RightSideBar() {
       .then(data => setInfo(data))
       .catch(error => console.log(error))
   }, [])
-  console.log('info:', info)
 
   return (
     <div>
@@ -20,7 +20,6 @@ function RightSideBar() {
         <div className={styless.container}>
           <div className={styless.box}>
             <h3 className={styless.title}>Сводка за дату</h3>
-
             <DayInfo info={info} />
           </div>
           <div className={styless.box}>

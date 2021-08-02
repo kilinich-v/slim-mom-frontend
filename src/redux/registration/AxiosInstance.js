@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const axiosInstance = axios.create({
-  baseURL: 'https://slim-mom-backend.herokuapp.com/',
+  baseURL: 'https://slim-mom-backend.herokuapp.com',
+  // baseURL: 'http://localhost:3001',
 })
 axiosInstance.interceptors.request.use(config => {
   const token = localStorage.getItem('token')
