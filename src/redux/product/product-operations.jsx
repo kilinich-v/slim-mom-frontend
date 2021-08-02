@@ -1,13 +1,14 @@
-import axios from 'axios'
+// import axios from 'axios'
 import productActions from './product-actions'
+import axiosInstance from '../registration/AxiosInstance'
 
 // const token = localStorage.getItem('token')
-const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMDFhMzFmODkyNjQ5NDc2OTVjNmEzNiIsImlhdCI6MTYyNzg5NDk2MCwiZXhwIjoxNjI3OTIzNzYwfQ.X992_lgasIfnLe2oBYsCOyXiHpsQWj7-8Z07AURabTE`
-axios.defaults.baseURL = 'https://slim-mom-backend.herokuapp.com'
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+// const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMDZlZGI1OWE5ZmRjMDAxYzI3NGNjYyIsImlhdCI6MTYyNzkxOTQ3MCwiZXhwIjoxNjI3OTQ4MjcwfQ.o7UyDtN-CIQEfH_3sJElhhR17aWcd7Ik_XP30gNh5Eo`
+// axios.defaults.baseURL = 'https://slim-mom-backend.herokuapp.com'
+// axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
 export const getProducts = query => {
-  return axios
+  return axiosInstance
     .get(`/products/search?product=${query}`)
     .then(({ data }) => {
       return data
@@ -25,7 +26,7 @@ export const addProduct =
     }
     dispatch(productActions.addProductRequest())
 
-    axios
+    axiosInstance
       .post('/products', newProduct)
       .then(({ data }) => {
         dispatch(productActions.addProductSuccess(data))
@@ -35,7 +36,7 @@ export const addProduct =
 export const deleteProduct = id => dispatch => {
   dispatch(productActions.deleteProductIdRequest())
 
-  axios
+  axiosInstance
     .delete(`/products/${id}`)
     .then(() => dispatch(productActions.deleteProductIdSuccess(id)))
     .catch(error =>
@@ -45,7 +46,7 @@ export const deleteProduct = id => dispatch => {
 export const dateEatenProduct = date => dispatch => {
   dispatch(productActions.dateEatenProductsRequest())
 
-  axios
+  axiosInstance
     .get(`/products/${date}`)
     .then(responce => {
       dispatch(productActions.dateEatenProductsSuccess(responce.data))
