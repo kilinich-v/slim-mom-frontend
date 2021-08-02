@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react'
-import { useSelector} from 'react-redux'
+import { useSelector } from 'react-redux'
 import DayInfo from './DayInfo'
-import { fetchDayInfo } from './apiServer/apiServer'
+import {
+  diaryInfo,
+  deprecatedProducts,
+} from '../../redux/product/product-selectors'
 import styless from './RightSideBar.module.scss'
 
 function RightSideBar() {
-//  TODO new file 
+  //  TODO new file
 
   const dayInfo = useSelector(diaryInfo)
   const prohibitedProducts = useSelector(deprecatedProducts)
@@ -19,7 +22,7 @@ function RightSideBar() {
     }
   }, [dayInfo])
 
-useEffect(() => {
+  useEffect(() => {
     if (prohibitedProducts) {
       setDeprecated(prohibitedProducts)
     }
@@ -31,7 +34,7 @@ useEffect(() => {
         <div className={styless.container}>
           <div className={styless.box}>
             <h3 className={styless.title}>Сводка за дату</h3>
-                <DayInfo info={info}/>
+            <DayInfo info={info} />
           </div>
           <div className={styless.box}>
             <h3 className={styless.title}>Нерекомендуемые продукты</h3>
