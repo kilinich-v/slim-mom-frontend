@@ -10,6 +10,7 @@ import RadioButtons from '../RadioButtonsGroup/RadioButtonsGroup'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import MainButton from '../common/MainButton'
+import MainModal from '../MainModal'
 
 const CssTextField = withStyles(theme => ({
   root: {
@@ -43,6 +44,7 @@ export default function CalcForm() {
   const [weight, setWeight] = useState('')
   const [desiredWeight, setDesiredWeight] = useState('')
   const [groupBlood, setGroupBlood] = useState('1')
+  const [open, setOpen] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -97,6 +99,7 @@ export default function CalcForm() {
         groupBlood,
       }
       dispatch(calcData(calcFormParams))
+      setOpen(true)
       reset()
     }
   }
@@ -106,6 +109,10 @@ export default function CalcForm() {
     setWeight('')
     setDesiredWeight('')
     setGroupBlood('')
+  }
+
+  const handleClose = () => {
+    setOpen(false)
   }
 
   return (
@@ -179,6 +186,7 @@ export default function CalcForm() {
           Похудеть
         </MainButton>
       </form>
+      <MainModal open={open} onClose={handleClose} />
     </>
   )
 }
