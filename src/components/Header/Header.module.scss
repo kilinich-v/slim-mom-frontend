@@ -23,6 +23,22 @@
   text-decoration: none;
 }
 
+.authLink {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #9b9faa;
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+.authLink:hover,
+.authLink:focus {
+  color: #212121;
+}
+
 .link:hover,
 .link:focus {
   color: #212121;
@@ -32,7 +48,7 @@
   .nav {
     padding-top: 18px;
     padding-bottom: 18px;
-    justify-content: normal;
+    // justify-content: normal;
   }
   .link {
     font-weight: bold;
@@ -44,7 +60,7 @@
     text-decoration: none;
   }
   .logo {
-    background-image: url('../../res/images/svg/big_logo.svg');
+    background-image: url('../../res/images/svg/medium-logo.svg');
     width: 162px;
     height: 44px;
     background-size: contain;
@@ -93,6 +109,15 @@
   .authLink:focus {
     color: #212121;
   }
+
+  .logo {
+    background-image: url('../../res/images/svg/big_logo.svg');
+    width: 167px;
+    height: 66px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-left: 0px;
+  }
 }
 
 .userInfo {
@@ -108,8 +133,6 @@
 }
 
 .userLogin {
-  padding-right: 22px;
-  margin-right: 22px;
   color: #212121;
   border-right: 2px solid #e0e0e0;
   font-family: 'GothamPro-Bold';
@@ -133,20 +156,38 @@
   letter-spacing: 0.04em;
 }
 
+.userLogin {
+  padding-right: 15px;
+  margin-right: 15px;
+}
+
 @media screen and (min-width: 768px) {
   .userInfo {
     background-color: white;
+  }
+  .userLogin {
+    padding-right: 15px;
+    margin-right: 15px;
+  }
+  .userInfoNav {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 0 13px 0;
+
+    align-items: center;
   }
   @media screen and (min-width: 1280px) {
     .userInfo {
       display: flex;
 
       background-color: #f0f1f3;
-      padding: 0px 0px 5px 0px;
+      padding: 132px 0px 5px 0px;
     }
 
     .userLogin {
       margin-bottom: 30px;
+      padding-right: 22px;
+      margin-right: 22px;
     }
     .exitButton {
       margin-bottom: 30px;
@@ -181,4 +222,43 @@
 
 .linkActiveWhite {
   color: #fff;
+}
+
+.menuButton {
+  background-image: url('../../res/images/svg/menu.svg');
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  background-color: #fff;
+  // margin-right: 15px;
+}
+
+.closeButton {
+  background-image: url('../../res/images/svg/close.svg');
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  background-color: #fff;
+  // margin-right: 15px;
+}
+
+.userInfoNav {
+  // display: flex;
+  // justify-content: flex-end;
+  // padding: 15px 0 13px 0;
+
+  align-items: center;
+}
+
+.BigLogo {
+  background-image: url('../../res/images/svg/medium-logo.svg');
+  width: 162px;
+  height: 44px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding-left: 0px;
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useSelector} from 'react-redux'
 import DayInfo from './DayInfo'
-import { diaryInfo, deprecatedProducts } from '../../redux/product/product-selectors'
+import { fetchDayInfo } from './apiServer/apiServer'
 import styless from './RightSideBar.module.scss'
 
 function RightSideBar() {
@@ -35,7 +35,8 @@ useEffect(() => {
           </div>
           <div className={styless.box}>
             <h3 className={styless.title}>Нерекомендуемые продукты</h3>
-            {deprecated.length > 0 ? <p className={styless.list}> {deprecated.join(', ')} </p> : <p className={styless.list}> Здесь будет отображаться Ваш рацион </p>}   
+            <p className={styless.list}>Здесь будет отображаться Ваш рацион</p>
+            {/* {info.products.map(product => product.title).join(', ')}  */}
           </div>
         </div>
       </section>

@@ -34,9 +34,6 @@ const diaryInfo = createReducer(diaryInfoState, {
 })
 
 const loading = createReducer(false, {
-  [productActions.getProductRequest]: () => true,
-  [productActions.getProductSuccess]: () => false,
-  [productActions.getProductError]: () => false,
   [productActions.addProductRequest]: (state, action) => true,
   [productActions.addProductSuccess]: (state, action) => false,
   [productActions.addProductError]: (state, action) => false,
