@@ -1,21 +1,30 @@
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteProduct } from '../../../redux/product/product-operations'
+import { dateEatenProducts } from '../../../redux/product/product-selectors'
 import styles from './DiaryProductListItem.module.css'
-export default function ContactListItem({
-  name,
-  weight,
-  kCal,
-  onDeleteProduct,
-  day,
-}) {
-  const calories = Math.round(kCal)
+
+export default function DiaryProductsListItem({ title, weight, kcal, id }) {
+  const dispatch = useDispatch()
+  const calories = kcal
+  const onDeleteProduct = () => {
+    dispatch(deleteProduct(id))
+  }
+  const dateEatenProductsInfo = useSelector(dateEatenProducts)
+  const currentDate = new Date().toLocaleDateString('fr-CA')
+
   return (
     <li className={styles.product_Item}>
-      <span className={styles.product_name}>{name}</span>
+      <span className={styles.product_name}>{title}</span>
       <span className={styles.product_weight}>{weight} г</span>
       <span className={styles.product_kCal}>{calories} ккал</span>
       <button
-        className={styles.product_button}
+        className={
+          currentDate === dateEatenProductsInfo
+            ? styles.product_button
+            : styles.product_button_dis
+        }
         type="button"
-        onClick={() => onDeleteProduct(day)}
+        onClick={() => onDeleteProduct({ id })}
       ></button>
     </li>
   )

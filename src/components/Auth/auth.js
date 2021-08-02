@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Route, Redirect } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
@@ -11,20 +12,18 @@ import Button from '@material-ui/core/Button'
 import { login } from '../../redux/registration/Operations'
 import { getIsLoggedOn, getToken } from '../../redux/registration/Selectors'
 
-import CalculatorView from '../../views/CalculatorView'
-
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '510px',
+    width: '290px',
     marginBottom: '30px',
     justifyContent: 'space-between',
-    [theme.breakpoints.down('768')]: {
-      width: '240px',
-      height: '354px',
-      alignContent: 'flex-start',
+    [theme.breakpoints.up('768')]: {
+      width: '382px',
+      alignItems: 'start',
+      marginLeft: '71',
     },
   },
   title: {
@@ -33,8 +32,26 @@ const useStyles = makeStyles(theme => ({
     lineHeight: '13px',
     letterSpacing: '0.04em',
     textTransform: 'uppercase',
-    marginLeft: '134px',
+    textAlign: 'center',
+    // marginLeft: '134px',
+    marginTop: '40px',
     color: orange[600],
+    [theme.breakpoints.up('768')]: {
+      marginTop: '157px',
+      textAlign: 'left',
+    },
+    [theme.breakpoints.up('1200')]: {
+      marginTop: '95px',
+    },
+  },
+  button: {
+    textAlign: 'center',
+    [theme.breakpoints.up('768')]: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      width: '382px',
+    },
   },
 }))
 const ColorButtonEnter = withStyles(theme => ({
@@ -82,11 +99,17 @@ const ColorButtonRegister = withStyles(theme => ({
   },
 }))(Button)
 
-const CssTextField = withStyles({
+const CssTextField = withStyles(theme => ({
   root: {
     marginBottom: '20px',
     '& label': {
       fontSize: '14px',
+    },
+    '& .MuiInput-underline': {
+      width: '290px',
+      [theme.breakpoints.up('768')]: {
+        width: '239px',
+      },
     },
     '& label.Mui-focused': {
       color: orange[500],
@@ -106,7 +129,7 @@ const CssTextField = withStyles({
       },
     },
   },
-})(TextField)
+}))(TextField)
 
 export default function AuthForm() {
   const dispatch = useDispatch()
@@ -130,6 +153,7 @@ export default function AuthForm() {
 
   const isLoggedOn = useSelector(getIsLoggedOn)
   const isAuthorized = useSelector(getToken)
+  console.log(isLoggedOn)
 
   return (
     <div
@@ -139,7 +163,7 @@ export default function AuthForm() {
       }}
     >
       {isAuthorized ? (
-        <CalculatorView />
+        <Redirect to="/diary" />
       ) : (
         <div>
           <h3 className={classes.title}>вход</h3>
@@ -156,7 +180,6 @@ export default function AuthForm() {
               type="email"
               value={email}
               autoComplete="current-login"
-              style={{ width: 240 }}
               onChange={handleChangeEmail}
             />
 
@@ -167,12 +190,14 @@ export default function AuthForm() {
               type="password"
               value={password}
               autoComplete="current-password"
-              style={{ width: 240 }}
               onChange={handleChangePassword}
             />
-
-            <ColorButtonEnter type="submit">Вход</ColorButtonEnter>
-            <ColorButtonRegister type="submit">Регистрация</ColorButtonRegister>
+            <div className={classes.button}>
+              <ColorButtonEnter type="submit">Вход</ColorButtonEnter>
+              <ColorButtonRegister type="submit">
+                Регистрация
+              </ColorButtonRegister>
+            </div>
           </form>
         </div>
       )}

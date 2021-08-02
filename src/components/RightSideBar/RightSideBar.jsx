@@ -1,34 +1,46 @@
+import { useState, useEffect } from 'react'
+import { useSelector} from 'react-redux'
+import DayInfo from './DayInfo'
+import { diaryInfo, deprecatedProducts } from '../../redux/product/product-selectors'
 import styless from './RightSideBar.module.scss'
 
-const RightSideBar = () => {
+function RightSideBar() {
+ 
+  const dayInfo = useSelector(diaryInfo)
+  const prohibitedProducts = useSelector(deprecatedProducts)
+
+  
+  const [deprecated, setDeprecated] = useState([])
+  const [info, setInfo] = useState(0)
+
+
+  useEffect(() => {
+    if (dayInfo) {
+      setInfo(dayInfo)
+    }
+  }, [dayInfo])
+
+
+useEffect(() => {
+    if (prohibitedProducts) {
+      setDeprecated(prohibitedProducts)
+    }
+  }, [prohibitedProducts])
+
+
   return (
     <div>
       <section className={styless.section}>
         <div className={styless.container}>
           <div className={styless.box}>
             <h3 className={styless.title}>Сводка за дату</h3>
-            <ul className={styless.ul}>
-              <li className={styless.list}>
-                <p className={styless.ul}>Осталось</p>{' '}
-                <p className={styless.ul}>000 ккал</p>
-              </li>
-              <li className={styless.list}>
-                <p className={styless.ul}>Употреблено</p>{' '}
-                <p className={styless.ul}> 000 ккал</p>
-              </li>
-              <li className={styless.list}>
-                <p className={styless.ul}>Дневная</p>{' '}
-                <p className={styless.ul}>000 ккал</p>
-              </li>
-              <li className={styless.list}>
-                <p className={styless.ul}>n% от нормы</p>{' '}
-                <p className={styless.ul}>000 ккал</p>
-              </li>
-            </ul>
+    
+            <DayInfo info={info}/>
+            
           </div>
           <div className={styless.box}>
             <h3 className={styless.title}>Нерекомендуемые продукты</h3>
-            <p className={styless.list}>Здесь будет отображаться Ваш рацион</p>
+            {deprecated.length > 0 ? <p className={styless.list}> {deprecated.join(', ')} </p> : <p className={styless.list}> Здесь будет отображаться Ваш рацион </p>}   
           </div>
         </div>
       </section>

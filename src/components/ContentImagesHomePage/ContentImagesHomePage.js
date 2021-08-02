@@ -7,7 +7,7 @@ export default function ContentImagesHomePage(params) {
     setValue(true)
   }, [])
   return (
-    <div style={{ position: 'relative', width: '100%' }}>
+    <div style={{ position: 'relative' }}>
       <div
         className={styles.Green}
         style={{
@@ -32,7 +32,6 @@ export default function ContentImagesHomePage(params) {
       <div
         className={styles.DecoreLaptop}
         style={{
-          transform: value ? 'translateX(0)' : 'translateX(101%)',
           opacity: value ? '1' : '0',
         }}
       ></div>

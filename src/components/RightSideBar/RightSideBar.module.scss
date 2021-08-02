@@ -1,16 +1,16 @@
 .section {
-  // backgroundColor: '#F0F1F3',
-  // '@media screen and (max-width: 1199px) and (min-width: 768px)': {
-  //   backgroundImage: `url(${RightSideBarImgTablet})`,
-  //   backgroundRepeat: 'no-repeat',
-  //   backgroundPosition: 'bottom right',
-  // },
-  @media (min-width: 1024px) {
-    // backgroundImage: `url(${RightSideBarImgDesktop})`,
-    // backgroundPosition: 'right',
-    // backgroundRepeat: 'no-repeat',
-    // height: 850,
-    // width: 535,
+  background-color: #f0f1f3;
+  @media screen and (max-width: 1279px) and (min-width: 768px) {
+    background-image: url('../../res/images/RigthSideBarImg/RightSideBarImgTablet.png');
+    background-repeat: no-repeat;
+    background-position: bottom right;
+  }
+  @media (min-width: 1280px) {
+    background-image: url('../../res/images/RigthSideBarImg/RightSideBarImgDesktop.png');
+    background-position: right;
+    background-repeat: no-repeat;
+    height: 850px;
+    width: 535px;
   }
 }
 .container {
@@ -23,7 +23,7 @@
     height: 433px;
     width: 320px;
   }
-  @media screen and (max-width: 1199px) and (min-width: 768px) {
+  @media screen and (max-width: 1279px) and (min-width: 768px) {
     display: flex;
     height: 350px;
     width: 624px;
@@ -31,7 +31,7 @@
     // paddingLeft: 87,
     // paddingRight: 39,
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     display: flex;
     flex-direction: column;
   }
@@ -40,7 +40,7 @@
   // height: 152,
   // width: 290,
   padding-top: 40px;
-  @media screen and (max-width: 1199px) and (min-width: 768px) {
+  @media screen and (max-width: 1279px) and (min-width: 768px) {
     padding-top: 91px;
     padding-bottom: 91px;
     width: 250px;
@@ -49,13 +49,13 @@
       margin-right: 70px;
     }
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     padding-top: 0px;
     width: 330px;
     // paddingLeft: 90,
     // paddingRight: 115,
     &:first-child {
-      padding-top: 275px;
+      padding-top: 146px;
       padding-bottom: 60px;
     }
   }
@@ -68,7 +68,7 @@
   letter-spacing: 0.04em;
   color: #212121;
   margin-bottom: 20px;
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     &:last-child {
       margin-top: 40px;
     }
@@ -88,7 +88,7 @@
   &:not(:last-child) {
     margin-bottom: 10px;
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
   }
 }
 .ul {

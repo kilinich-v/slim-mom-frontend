@@ -1,0 +1,110 @@
+.DecoreLaptop {
+  display: none;
+  position: absolute;
+  width: 716px;
+  height: 100vh;
+  bottom: 0;
+  right: 0;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 550ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    background-image: url('../../res/images/contentImg/DecoreReglap.png');
+    display: block;
+    background-size: contain;
+    width: 553px;
+    height: 600px;
+    top: 461px;
+  }
+  @media screen and (min-width: 1280px) {
+    display: block;
+    background-image: url('../../res/images/contentImg/DecoreRegDesc.png');
+    transform: translateY(100vh);
+  }
+}
+.Banana {
+  display: none;
+  position: absolute;
+  width: 573px;
+  height: 495px;
+  top: 340px;
+  right: 0;
+
+  background-size: cover;
+  z-index: 3;
+  transition: all 950ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    display: block;
+    background-image: url('../../res/images/contentImg/BananaLaptop.png');
+    width: 500px;
+    height: 527px;
+    top: 530px;
+  }
+  @media screen and (min-width: 1280px) {
+    display: block;
+    background-image: url('../../res/images/contentImg/BananaDesc.png');
+  }
+}
+
+.Strawberry {
+  display: none;
+  position: absolute;
+  width: 286px;
+  height: 279px;
+  top: 213px;
+  right: 66px;
+
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1;
+  transition: all 750ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    display: block;
+    background-image: url('../../res/images/contentImg/StrawberryLaptop.png');
+    top: 548px;
+    right: 0;
+    width: 240px;
+    height: 260px;
+  }
+  @media screen and (min-width: 1280px) {
+    display: block;
+    background-image: url('../../res/images/contentImg/StrawberryDesc.png');
+  }
+}
+.Green {
+  position: absolute;
+  pointer-events: none;
+  display: none;
+  width: 756px;
+  height: 816px;
+  top: 0px;
+  right: 251px;
+
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 10;
+  transition: all 850ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    display: block;
+    top: 20px;
+    right: 20px;
+    width: 631px;
+    height: 632px;
+    background-image: url('../../res/images/contentImg/GreenRegLap.png');
+  }
+  @media screen and (min-width: 1280px) {
+    display: block;
+    background-image: url('../../res/images/contentImg/GreenRegDesc.png');
+  }
+}
