@@ -5,14 +5,25 @@ import { fetchDayInfo } from './apiServer/apiServer'
 import styless from './RightSideBar.module.scss'
 
 function RightSideBar() {
-  const [info, setInfo] = useState('000')
+//  TODO new file 
+
+  const dayInfo = useSelector(diaryInfo)
+  const prohibitedProducts = useSelector(deprecatedProducts)
+
+  const [deprecated, setDeprecated] = useState([])
+  const [info, setInfo] = useState(0)
 
   useEffect(() => {
-    const dayData = '2021-07-29'
-    fetchDayInfo(dayData)
-      .then(data => setInfo(data))
-      .catch(error => console.log(error))
-  }, [])
+    if (dayInfo) {
+      setInfo(dayInfo)
+    }
+  }, [dayInfo])
+
+useEffect(() => {
+    if (prohibitedProducts) {
+      setDeprecated(prohibitedProducts)
+    }
+  }, [prohibitedProducts])
 
   return (
     <div>
@@ -20,7 +31,7 @@ function RightSideBar() {
         <div className={styless.container}>
           <div className={styless.box}>
             <h3 className={styless.title}>Сводка за дату</h3>
-            <DayInfo info={info} />
+                <DayInfo info={info}/>
           </div>
           <div className={styless.box}>
             <h3 className={styless.title}>Нерекомендуемые продукты</h3>
