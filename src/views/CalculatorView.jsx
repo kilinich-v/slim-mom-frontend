@@ -7,11 +7,12 @@ import Header from '../components/Header'
 import UserInfo from '../components/Header/UserInfo'
 import { useWindowWidth } from '@react-hook/window-size'
 const useStyles = createUseStyles({
-  wrapper:{
-    '@media (min-width: 1280px)':{
-      background: 'linear-gradient(to right, hsla(0, 0%, 100%, 0) 60%, rgba(240, 241, 243, 1) 40%)',
-    }
- },
+  wrapper: {
+    '@media (min-width: 1280px)': {
+      background:
+        'linear-gradient(to right, hsla(0, 0%, 100%, 0) 60%, rgba(240, 241, 243, 1) 40%)',
+    },
+  },
   box: {
     '@media (min-width: 1280px)': {
       display: 'flex',
@@ -19,16 +20,16 @@ const useStyles = createUseStyles({
       justifyContent: 'space-between',
     },
   },
-  header:{
+  header: {
     paddingLeft: 90,
   },
-  case:{
+  case: {
     paddingLeft: 115,
   },
-  headerBox:{
+  headerBox: {
     display: 'flex',
-    justifyContent: 'flex-end'
-  }
+    justifyContent: 'flex-end',
+  },
 })
 
 const CalculatorView = () => {
@@ -36,31 +37,35 @@ const CalculatorView = () => {
   const onlyWidth = useWindowWidth()
   return (
     <>
-    {onlyWidth > 1280 ? <div className={styless.wrapper}>
-      <div className={styless.header}>
-      <Header />
-      <div className={styless.headerBox}>
-      {onlyWidth > 1280 ? <UserInfo /> : ''}
-      </div>
-      </div>
-     <div className={styless.box}>
-       <div className={styless.case}>
-     <CalcForm />
-     </div>
-      {/* {onlyWidth > 1280 ? <UserInfo /> : ''} */}
-     <RightSideBar />
-       </div>
-      </div>   :  <div className={styless.box}>
-    <Container>
-      <Header />
-      <CalcForm />
-    </Container>
-    <ContainerSideBar>
-      {onlyWidth > 1280 ? <UserInfo /> : ''}
-      <RightSideBar />
-    </ContainerSideBar>
-  </div>}
-   </>
+      {onlyWidth > 1280 ? (
+        <div className={styless.wrapper}>
+          <div className={styless.header}>
+            <Header />
+            {/* <div className={styless.headerBox}>
+              {onlyWidth > 1280 ? <UserInfo /> : ''}
+            </div> */}
+          </div>
+          <div className={styless.box}>
+            <div className={styless.case}>
+              <CalcForm />
+            </div>
+            {onlyWidth > 1280 ? <UserInfo /> : ''}
+            <RightSideBar />
+          </div>
+        </div>
+      ) : (
+        <div className={styless.box}>
+          <Container>
+            <Header />
+            <CalcForm />
+          </Container>
+          <ContainerSideBar>
+            {onlyWidth > 1280 ? <UserInfo /> : ''}
+            <RightSideBar />
+          </ContainerSideBar>
+        </div>
+      )}
+    </>
   )
 }
 
