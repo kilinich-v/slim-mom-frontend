@@ -2,8 +2,8 @@ import axios from 'axios'
 import productActions from './product-actions'
 
 // const token = localStorage.getItem('token')
-const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMDA3YTI0M2VkNDFkMjg4YzljYmZkOCIsImlhdCI6MTYyNzgyNzUxMCwiZXhwIjoxNjI4MTg3NTEwfQ.DXLF17Nku5_flCwPQmbRGOnS-zMQe53u02GZdpKOyi8`
-axios.defaults.baseURL = 'http://localhost:3001'
+const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMDFhMzFmODkyNjQ5NDc2OTVjNmEzNiIsImlhdCI6MTYyNzg5NDk2MCwiZXhwIjoxNjI3OTIzNzYwfQ.X992_lgasIfnLe2oBYsCOyXiHpsQWj7-8Z07AURabTE`
+axios.defaults.baseURL = 'https://slim-mom-backend.herokuapp.com'
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
 export const getProducts = query => {
