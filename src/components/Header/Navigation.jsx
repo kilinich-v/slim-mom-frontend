@@ -51,33 +51,27 @@ const Navigation = ({ isModalOpen, setModalState }) => {
                 className={isModalOpen ? styles.closeButton : styles.menuButton}
                 onClick={() => setModalState()}
               ></button>
-            ) : (
-              ''
-            )}
+            ) : null}
             {onlyWidth > 1280 ? (
-              <NavLink
-                to="/diary"
-                exact
-                className={styles.link}
-                activeClassName={styles.linkActive}
-              >
-                ДНЕВНИК
-              </NavLink>
-            ) : (
-              ''
-            )}
-            {onlyWidth > 1280 ? (
-              <NavLink
-                to="/calculator"
-                exact
-                className={styles.link}
-                activeClassName={styles.linkActive}
-              >
-                КАЛЬКУЛЯТОР
-              </NavLink>
-            ) : (
-              ''
-            )}
+              <>
+                <NavLink
+                  to="/diary"
+                  exact
+                  className={styles.link}
+                  activeClassName={styles.active}
+                >
+                  ДНЕВНИК
+                </NavLink>
+                <NavLink
+                  to="/calculator"
+                  exact
+                  className={styles.link}
+                  activeClassName={styles.active}
+                >
+                  КАЛЬКУЛЯТОР
+                </NavLink>
+              </>
+            ) : null}
             {onlyWidth >= 768 && onlyWidth < 1280 ? (
               <div className={styles.userInfoNav}>
                 <UserInfo />
@@ -88,18 +82,14 @@ const Navigation = ({ isModalOpen, setModalState }) => {
                   onClick={() => setModalState()}
                 ></button>
               </div>
-            ) : (
-              ''
-            )}
+            ) : null}
           </div>
 
           {onlyWidth < 768 ? (
             <div className={styles.userInfoNav}>
               <UserInfo />
             </div>
-          ) : (
-            ''
-          )}
+          ) : null}
         </>
       )}
     </>

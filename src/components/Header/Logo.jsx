@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 import styles from './Header.module.scss'
-import { getToken } from '../../redux/registration/Selectors'
+import { getIsLoggedOn } from '../../redux/registration/Selectors'
 import { useWindowWidth } from '@react-hook/window-size'
 const Logo = () => {
-  const authToken = useSelector(getToken)
+  const authToken = useSelector(getIsLoggedOn)
   // const authToken = 1
   const onlyWidth = useWindowWidth()
   return (

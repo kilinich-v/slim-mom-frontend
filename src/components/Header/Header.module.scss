@@ -21,6 +21,10 @@
   text-transform: uppercase;
   color: #9b9faa;
   text-decoration: none;
+
+  &.active {
+    color: #212121;
+  }
 }
 
 .authLink {
@@ -219,10 +223,6 @@
 .linkBurger:hover,
 .linkBurger:focus {
   color: white;
-}
-
-.linkActiveWhite {
-  color: #fff;
 }
 
 .menuButton {
