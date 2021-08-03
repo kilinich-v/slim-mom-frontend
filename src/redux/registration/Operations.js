@@ -1,4 +1,5 @@
 import axiosInstance from './AxiosInstance'
+// import axios from 'axios'
 
 import {
   onSignUpRequest,
@@ -10,24 +11,20 @@ import {
   onLogoutRequest,
   onLogoutSuccess,
   onLogoutFailure,
+  onGetUser,
 } from './UserSlice'
 
-export const getUser = () => (dispatch, getState) => {
-  // const {
-  //   auth: { token: persistedToken },
-  // } = getState()
-  // if (!persistedToken) return
-  // token.set(persistedToken)
-  dispatch(onLoginRequest())
-  axiosInstance
-    .get('/users/current')
-    .then(({ data }) => {
-      localStorage.setItem('token', data.token)
-      dispatch(onLoginSuccess(data))
-    })
-    .catch(error => {
-      dispatch(onLoginFailure(error.message))
-    })
+export const getUser = () => async (dispatch, getState) => {
+  dispatch(onSignUpRequest())
+
+  try {
+    const response = await axiosInstance.get('/users/current')
+    console.log('response.data from getUser', response.data)
+
+    dispatch(onGetUser(response.data))
+  } catch (error) {
+    dispatch(onLoginFailure(error.message))
+  }
 }
 
 export const signUp = payload => (dispatch, getState) => {
