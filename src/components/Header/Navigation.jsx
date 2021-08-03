@@ -2,14 +2,14 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import { getToken } from '../../redux/registration/Selectors'
+import { getIsLoggedOn } from '../../redux/registration/Selectors'
 import styles from './Header.module.scss'
 
 import UserInfo from './UserInfo'
 
 import { useWindowWidth } from '@react-hook/window-size'
 const Navigation = ({ isModalOpen, setModalState }) => {
-  const authToken = useSelector(getToken)
+  const authToken = useSelector(getIsLoggedOn)
   // const authToken = 1
   const onlyWidth = useWindowWidth()
 

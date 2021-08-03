@@ -10,15 +10,18 @@ import RadioButtons from '../RadioButtonsGroup/RadioButtonsGroup'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import MainButton from '../common/MainButton'
-import MainModal from '../Modal'
+import MainModal from '../MainModal'
 
 const CssTextField = withStyles(theme => ({
   root: {
     '&:not(:last-child)': {
       marginBottom: '30px',
+      [theme.breakpoints.down('768')]: {
+        marginBottom: '10px',
+      },
     },
     [theme.breakpoints.down('768')]: {
-      marginBottom: '30px',
+      marginBottom: '10px',
     },
     width: 240,
     '& label': {
@@ -44,6 +47,7 @@ export default function CalcForm() {
   const [weight, setWeight] = useState('')
   const [desiredWeight, setDesiredWeight] = useState('')
   const [groupBlood, setGroupBlood] = useState('1')
+  const [open, setOpen] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -87,9 +91,6 @@ export default function CalcForm() {
     } else if (+desiredWeight < 45 || +desiredWeight > 100) {
       toast.error('Неверно заполненое поле Желаемый вес')
     } else {
-      toast.success(
-        'Мы подобрали для Вас ряд нежелаемых к употреблению продуктов',
-      )
       const calcFormParams = {
         height,
         age,
@@ -98,7 +99,7 @@ export default function CalcForm() {
         groupBlood,
       }
       dispatch(calcData(calcFormParams))
-
+      setOpen(true)
       reset()
     }
   }
@@ -110,23 +111,27 @@ export default function CalcForm() {
     setGroupBlood('')
   }
 
+  const handleClose = () => {
+    setOpen(false)
+  }
+
   return (
     <>
-      <h1
-        className={styles.title}
-        style={{
-          transform: value ? 'translateY(0)' : 'translateY(-101%)',
-          opacity: value ? '1' : '0',
-        }}
-      >
-        Просчитай свою суточную норму калорий прямо сейчас
-      </h1>
       <form
         onSubmit={handleSubmit}
         className={styles.form}
         noValidate
         autoComplete="off"
       >
+        <h1
+          className={styles.title}
+          style={{
+            transform: value ? 'translateY(0)' : 'translateY(-101%)',
+            opacity: value ? '1' : '0',
+          }}
+        >
+          Просчитай свою суточную норму калорий прямо сейчас
+        </h1>
         <div
           className={styles.formContainer}
           style={{
@@ -142,6 +147,7 @@ export default function CalcForm() {
               required
               placeholder="введите число от 130 до 220"
               value={height}
+              type="number"
               onChange={handleChange}
             />
             <CssTextField
@@ -151,6 +157,7 @@ export default function CalcForm() {
               name="age"
               placeholder="введите число от 18 до 99"
               value={age}
+              type="number"
               onChange={handleChange}
             />
             <CssTextField
@@ -160,28 +167,30 @@ export default function CalcForm() {
               name="weight"
               placeholder="введите число от 50 до 200"
               value={weight}
+              type="number"
               onChange={handleChange}
             />
           </div>
           <div>
             <CssTextField
               id="standard-basic"
-              style={{ marginBottom: 50 }}
+              style={{ marginBottom: 40 }}
               label="Желаемый вес"
               required
               name="desiredWeight"
               placeholder="введите число от 45 до 100"
               value={desiredWeight}
+              type="number"
               onChange={handleChange}
             />
             <RadioButtons onChange={handleChange} />
           </div>
         </div>
-        <MainModal />
-        {/* <MainButton id={styles.btn} type="submit">
+        <MainButton id={styles.btn} type="submit">
           Похудеть
-        </MainButton> */}
+        </MainButton>
       </form>
+      <MainModal open={open} onClose={handleClose} />
     </>
   )
 }

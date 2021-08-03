@@ -16,7 +16,7 @@
     margin-top: 30px;
     font-size: 18px;
     line-height: 1.44;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
 }
 
@@ -41,11 +41,18 @@
 #btn {
   display: block;
   margin-top: 115px;
+  @media screen and (min-width: 200px) and (max-width: 767px) {
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 60px;
+  }
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     margin-right: auto;
     margin-top: 60px;
+    margin-bottom: 74px;
   }
   @media screen and (min-width: 1280px) {
     margin-left: auto;
+    margin-bottom: 111px;
   }
 }

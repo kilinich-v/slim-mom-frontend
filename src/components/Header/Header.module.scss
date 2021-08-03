@@ -83,6 +83,7 @@
     align-items: flex-end;
     min-width: 745px;
     width: 100%;
+    margin-left: -25px;
   }
 
   .link:nth-last-child(2) {
@@ -179,18 +180,18 @@
   @media screen and (min-width: 1280px) {
     .userInfo {
       display: flex;
-
+      align-items: flex-end;
       background-color: #f0f1f3;
       // padding: 132px 0px 5px 0px;
     }
 
     .userLogin {
-      margin-bottom: 30px;
+      margin-bottom: 0px;
       padding-right: 22px;
       margin-right: 22px;
     }
     .exitButton {
-      margin-bottom: 30px;
+      margin-bottom: 0px;
       margin-right: 0;
     }
   }
