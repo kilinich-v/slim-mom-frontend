@@ -53,7 +53,7 @@ const { actions, reducer } = createSlice({
 
     onLogoutSuccess: (state, { payload }) => {
       state.name = ''
-      state.login = ''
+      state.email = ''
       state.token = ''
       state.isLoading = false
       state.isLoggedOn = false

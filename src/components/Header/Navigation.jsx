@@ -52,7 +52,7 @@ const Navigation = ({ isModalOpen, setModalState }) => {
                 onClick={() => setModalState()}
               ></button>
             ) : null}
-            {onlyWidth > 1280 ? (
+            {onlyWidth >= 1280 ? (
               <>
                 <NavLink
                   to="/diary"

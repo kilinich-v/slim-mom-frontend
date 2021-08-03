@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { createReducer } from '@reduxjs/toolkit'
 import productActions from './product-actions'
+import { onLogoutSuccess, onLogoutRequest } from '../registration/UserSlice'
 
 const diaryInfoState = {
   email: '',
@@ -10,7 +11,7 @@ const diaryInfoState = {
   totalKcalPerDay: 0,
   kcalRemain: 0,
   percentage: null,
-  productsNotRecommended: []
+  productsNotRecommended: [],
 }
 
 const diaryInfo = createReducer(diaryInfoState, {
@@ -30,6 +31,7 @@ const diaryInfo = createReducer(diaryInfoState, {
     }
     return newState
   },
+  [onLogoutSuccess]: () => diaryInfoState,
 })
 
 const loading = createReducer(false, {
@@ -40,6 +42,9 @@ const loading = createReducer(false, {
 
 const error = createReducer(null, {
   [productActions.deleteProductIdError]: (_, { payload }) => payload,
+  [productActions.addProductRequest]: () => null,
+  [onLogoutRequest]: () => null,
+  [productActions.dateEatenProductsRequest]: () => null,
 })
 
 export default combineReducers({

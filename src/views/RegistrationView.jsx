@@ -4,7 +4,7 @@ import RegistrationForm from '../components/Registration/registration'
 import Logo from '../components/Header/Logo'
 const AuthView = () => {
   return (
-    <div>
+    <>
       <ContentImagesRegPage />
       <Container>
         <Logo />
@@ -12,7 +12,7 @@ const AuthView = () => {
       <Container>
         <RegistrationForm />
       </Container>
-    </div>
+    </>
   )
 }
 
