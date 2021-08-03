@@ -10,6 +10,7 @@ import {getKcalAmount, getProducts} from '../../redux/calculator/calculator-sele
 import {getIsLoggedOn} from '../../redux/registration/Selectors';
 import routes from '../../routes'
 import styles from './styles.module.scss';
+import {generate} from 'shortid'
 
 const MainModal = ({open, onClose}) => {
   const isLoading = useSelector(getKcalLoading);
@@ -32,7 +33,7 @@ const MainModal = ({open, onClose}) => {
           <h4 className={styles.modalList_title}>Продукты, которые вам <br/> не рекомендуется употреблять</h4>
           <ol className={styles.modalList}>
               {products&&products.map(product => (
-                <li>{product}</li>
+                <li key={generate()}>{product}</li>
               ))}
           </ol>
       </div>
