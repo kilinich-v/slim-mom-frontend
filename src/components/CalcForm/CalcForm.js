@@ -5,7 +5,10 @@ import TextField from '@material-ui/core/TextField'
 import { orange } from '@material-ui/core/colors'
 import { withStyles } from '@material-ui/core/styles'
 import styles from './CalcForm.module.scss'
-import { calcData } from '../../redux/calculator/calculator-operations'
+import {
+  calcData,
+  calcDataPrivate,
+} from '../../redux/calculator/calculator-operations'
 import RadioButtons from '../RadioButtonsGroup/RadioButtonsGroup'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -98,8 +101,13 @@ export default function CalcForm() {
         desiredWeight,
         groupBlood,
       }
-      dispatch(calcData(calcFormParams))
-      setOpen(true)
+      const token = localStorage.getItem('token')
+      if (token) {
+        dispatch(calcDataPrivate(calcFormParams, token))
+      } else {
+        dispatch(calcData(calcFormParams))
+        setOpen(true)
+      }
       reset()
     }
   }
