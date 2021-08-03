@@ -21,6 +21,7 @@ const useStyles = createUseStyles({
     },
   },
   header: {
+    display: 'flex',
     paddingLeft: 90,
   },
   case: {
@@ -41,15 +42,14 @@ const CalculatorView = () => {
         <div className={styless.wrapper}>
           <div className={styless.header}>
             <Header />
-            {/* <div className={styless.headerBox}>
+            <div className={styless.headerBox}>
               {onlyWidth > 1280 ? <UserInfo /> : ''}
-            </div> */}
+            </div>
           </div>
           <div className={styless.box}>
             <div className={styless.case}>
               <CalcForm />
             </div>
-            {onlyWidth > 1280 ? <UserInfo /> : ''}
             <RightSideBar />
           </div>
         </div>
