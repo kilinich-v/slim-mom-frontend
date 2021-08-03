@@ -21,7 +21,7 @@ const { actions, reducer } = createSlice({
       state.name = payload.name
       state.email = payload.email
       state.token = payload.token
-      state.isLoggedOn = true
+      state.isLoggedOn = !!payload.token
     },
     onSignUpFailure: (state, { payload }) => {
       state.error = payload.message
@@ -65,8 +65,8 @@ const { actions, reducer } = createSlice({
     },
 
     onGetUser: (state, { payload }) => {
-      state.name = payload.user.name
-      state.login = payload.user.login
+      state.name = payload.name
+      state.email = payload.email
       state.isLoggedOn = true
       state.isLoading = false
     },
