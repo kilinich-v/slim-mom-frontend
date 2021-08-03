@@ -6,8 +6,11 @@ const MainPageView = () => {
   return (
     <>
       <ContentImagesHomePage />
+
       <Container>
         <Header />
+      </Container>
+      <Container>
         <CalcForm />
       </Container>
     </>

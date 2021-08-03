@@ -8,6 +8,8 @@ const AuthView = () => {
       <ContentImagesRegPage />
       <Container>
         <Logo />
+      </Container>
+      <Container>
         <RegistrationForm />
       </Container>
     </div>
