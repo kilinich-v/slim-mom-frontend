@@ -34,6 +34,7 @@ const useStyles = createUseStyles({
 })
 const DiaryView = () => {
   const styless = useStyles()
+  
   const onlyWidth = useWindowWidth()
   return (
     <>
