@@ -18,7 +18,6 @@ const diaryInfo = createReducer(diaryInfoState, {
     return {
       ...state,
       products: [payload, ...state.products],
-      
     }
   },
   [productActions.dateEatenProductsSuccess]: (_, { payload }) => payload,
