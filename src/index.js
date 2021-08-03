@@ -8,14 +8,14 @@ import './index.scss'
 import App from './App'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
+  <BrowserRouter>
+    <React.StrictMode>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
           <App />
-        </BrowserRouter>
-      </PersistGate>
-    </Provider>
-  </React.StrictMode>,
+        </PersistGate>
+      </Provider>
+    </React.StrictMode>
+  </BrowserRouter>,
   document.getElementById('root'),
 )

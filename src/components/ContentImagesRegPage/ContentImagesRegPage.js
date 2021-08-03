@@ -3,9 +3,11 @@ import styles from './ContentImagesRegPage.module.scss'
 
 export default function ContentImagesRegPage() {
   const [value, setValue] = useState(false)
+
   useEffect(() => {
     setValue(true)
   }, [])
+
   return (
     <div className={styles.contentContainer}>
       <div

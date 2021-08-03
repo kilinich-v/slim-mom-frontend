@@ -1,13 +1,8 @@
-import axios from 'axios'
 import productActions from './product-actions'
-
-// const token = localStorage.getItem('token')
-const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMDA3YTI0M2VkNDFkMjg4YzljYmZkOCIsImlhdCI6MTYyNzgyNzUxMCwiZXhwIjoxNjI4MTg3NTEwfQ.DXLF17Nku5_flCwPQmbRGOnS-zMQe53u02GZdpKOyi8`
-axios.defaults.baseURL = 'http://localhost:3001'
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+import axiosInstance from '../registration/AxiosInstance'
 
 export const getProducts = query => {
-  return axios
+  return axiosInstance
     .get(`/products/search?product=${query}`)
     .then(({ data }) => {
       return data
@@ -25,7 +20,7 @@ export const addProduct =
     }
     dispatch(productActions.addProductRequest())
 
-    axios
+    axiosInstance
       .post('/products', newProduct)
       .then(({ data }) => {
         dispatch(productActions.addProductSuccess(data))
@@ -35,7 +30,7 @@ export const addProduct =
 export const deleteProduct = id => dispatch => {
   dispatch(productActions.deleteProductIdRequest())
 
-  axios
+  axiosInstance
     .delete(`/products/${id}`)
     .then(() => dispatch(productActions.deleteProductIdSuccess(id)))
     .catch(error =>
@@ -45,7 +40,7 @@ export const deleteProduct = id => dispatch => {
 export const dateEatenProduct = date => dispatch => {
   dispatch(productActions.dateEatenProductsRequest())
 
-  axios
+  axiosInstance
     .get(`/products/${date}`)
     .then(responce => {
       dispatch(productActions.dateEatenProductsSuccess(responce.data))

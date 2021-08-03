@@ -10,6 +10,7 @@ const diaryInfoState = {
   totalKcalPerDay: 0,
   kcalRemain: 0,
   percentage: null,
+  productsNotRecommended: []
 }
 
 const diaryInfo = createReducer(diaryInfoState, {
@@ -17,6 +18,7 @@ const diaryInfo = createReducer(diaryInfoState, {
     return {
       ...state,
       products: [payload, ...state.products],
+      
     }
   },
   [productActions.dateEatenProductsSuccess]: (_, { payload }) => payload,
@@ -32,9 +34,6 @@ const diaryInfo = createReducer(diaryInfoState, {
 })
 
 const loading = createReducer(false, {
-  [productActions.getProductRequest]: () => true,
-  [productActions.getProductSuccess]: () => false,
-  [productActions.getProductError]: () => false,
   [productActions.addProductRequest]: (state, action) => true,
   [productActions.addProductSuccess]: (state, action) => false,
   [productActions.addProductError]: (state, action) => false,
@@ -48,4 +47,5 @@ export default combineReducers({
   diaryInfo,
   loading,
   error,
+  // dayInfo
 })

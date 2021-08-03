@@ -10,6 +10,7 @@ import RadioButtons from '../RadioButtonsGroup/RadioButtonsGroup'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import MainButton from '../common/MainButton'
+import MainModal from '../Modal'
 
 const CssTextField = withStyles(theme => ({
   root: {

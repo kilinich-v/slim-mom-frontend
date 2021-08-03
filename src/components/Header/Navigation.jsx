@@ -8,40 +8,53 @@ import styles from './Header.module.scss'
 import UserInfo from './UserInfo'
 
 import { useWindowWidth } from '@react-hook/window-size'
-const Navigation = () => {
+const Navigation = ({ isModalOpen, setModalState }) => {
   const authToken = useSelector(getToken)
   // const authToken = 1
   const onlyWidth = useWindowWidth()
-  // const page = props.location.pathname.indexOf('/auth')
+
   return (
     <>
       {!authToken && (
         <div className={styles.nav}>
           <NavLink to="/" exact className={styles.logo}></NavLink>
-          <NavLink
-            to="/auth"
-            exact
-            className={onlyWidth >= 1280 ? styles.authLink : styles.link}
-            activeClassName={styles.linkActive}
-          >
-            ВХОД
-          </NavLink>
-          <NavLink
-            to="/registration"
-            exact
-            className={styles.link}
-            activeClassName={styles.linkActive}
-          >
-            РЕГИСТРАЦИЯ
-          </NavLink>
+          <div>
+            <NavLink
+              to="/auth"
+              exact
+              className={styles.authLink}
+              activeClassName={styles.linkActive}
+            >
+              ВХОД
+            </NavLink>
+            <NavLink
+              to="/registration"
+              exact
+              className={styles.link}
+              activeClassName={styles.linkActive}
+            >
+              РЕГИСТРАЦИЯ
+            </NavLink>
+          </div>
         </div>
       )}
       {authToken && (
         <>
           <div className={styles.nav}>
-            <NavLink to="/" exact className={styles.logo}></NavLink>
-
-            {onlyWidth > 1280 || onlyWidth < 768 ? (
+            <NavLink
+              to="/"
+              exact
+              className={onlyWidth < 780 ? styles.BigLogo : styles.logo}
+            ></NavLink>
+            {onlyWidth < 768 ? (
+              <button
+                className={isModalOpen ? styles.closeButton : styles.menuButton}
+                onClick={() => setModalState()}
+              ></button>
+            ) : (
+              ''
+            )}
+            {onlyWidth > 1280 ? (
               <NavLink
                 to="/diary"
                 exact
@@ -53,7 +66,7 @@ const Navigation = () => {
             ) : (
               ''
             )}
-            {onlyWidth > 1280 || onlyWidth < 768 ? (
+            {onlyWidth > 1280 ? (
               <NavLink
                 to="/calculator"
                 exact
@@ -68,11 +81,18 @@ const Navigation = () => {
             {onlyWidth >= 768 && onlyWidth < 1280 ? (
               <div className={styles.userInfoNav}>
                 <UserInfo />
+                <button
+                  className={
+                    isModalOpen ? styles.closeButton : styles.menuButton
+                  }
+                  onClick={() => setModalState()}
+                ></button>
               </div>
             ) : (
               ''
             )}
           </div>
+
           {onlyWidth < 768 ? (
             <div className={styles.userInfoNav}>
               <UserInfo />
