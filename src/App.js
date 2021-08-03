@@ -1,4 +1,4 @@
-import { Switch } from 'react-router-dom'
+import { Switch, Redirect } from 'react-router-dom'
 import routes from './routes'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
@@ -27,7 +27,6 @@ function App() {
       <ToastContainer autoClose={2000} />
       <Switch>
         {/* My routes*/}
-
         <PublicRoute exact path={routes.main}>
           <MainPageView />
         </PublicRoute>
@@ -42,6 +41,9 @@ function App() {
         </PrivatRoute>
         <PrivatRoute path={routes.diary}>
           <DiaryView />
+        </PrivatRoute>
+        <PrivatRoute>
+          <Redirect to={routes.diary} />
         </PrivatRoute>
 
         {/* The first routes */}
