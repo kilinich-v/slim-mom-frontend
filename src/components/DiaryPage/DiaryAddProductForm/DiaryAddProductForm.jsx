@@ -10,7 +10,9 @@ import {
   addProduct,
 } from '../../../redux/product/product-operations'
 import 'react-toastify/dist/ReactToastify.css'
-
+import { dateEatenProduct } from '../../../redux/product/product-operations'
+import { useSelector } from 'react-redux'
+import { dateEatenProducts } from '../../../redux/product/product-selectors'
 
 export default function DiaryAddProductForm() {
   const [productName, setProductName] = useState('')
@@ -19,6 +21,8 @@ export default function DiaryAddProductForm() {
   const [debouncedProduct, setDebouncedProduct] = useState([])
   const dispatch = useDispatch()
 
+  const date = useSelector(dateEatenProducts)
+ 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(
     debounce(() => {
@@ -74,6 +78,7 @@ export default function DiaryAddProductForm() {
         title: productName,
       }),
     )
+    dispatch(dateEatenProduct(date))
 
     clear()
   }
