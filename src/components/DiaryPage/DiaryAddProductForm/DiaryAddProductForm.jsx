@@ -70,7 +70,7 @@ export default function DiaryAddProductForm() {
       setProductName('')
       return notify()
     }
-
+    dispatch(dateEatenProduct(date))
     dispatch(
       addProduct({
         kcal: Number(productCkal),

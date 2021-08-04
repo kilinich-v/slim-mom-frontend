@@ -13,6 +13,7 @@ export default function DiaryProductsListItem({ title, weight, kcal, id }) {
   const onDeleteProduct = () => {
     dispatch(dateEatenProduct(currentDate))
     dispatch(deleteProduct(id))
+    dispatch(dateEatenProduct(currentDate))
   }
 
   return (

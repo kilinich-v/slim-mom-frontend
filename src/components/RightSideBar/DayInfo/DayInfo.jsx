@@ -5,7 +5,7 @@ const DayInfo = ({info}) => {
         <ul className={styless.ul}>
         <li className={styless.list}>
         <p className={styless.ul}>Осталось</p>{' '}
-        <p className={styless.ul}>{info.dayNorm} ккал</p>
+        <p className={styless.ul}>{info.kcalRemain } ккал</p>
       </li>
       <li className={styless.list}>
         <p className={styless.ul}>Употреблено</p>{' '}
@@ -13,11 +13,11 @@ const DayInfo = ({info}) => {
       </li>
       <li className={styless.list}>
         <p className={styless.ul}>Дневная</p>{' '}
-        <p className={styless.ul}>{info.kcalRemain} ккал</p>
+        <p className={styless.ul}>{info.dayNorm} ккал</p>
       </li>
       <li className={styless.list}>
         <p className={styless.ul}>n% от нормы</p>{' '}
-        <p className={styless.ul}>{info.percentage} ккал</p>
+        <p className={styless.ul}>{info.percentage} % ккал</p>
       </li>
       </ul>
     )
