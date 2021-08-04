@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-// import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import { orange } from '@material-ui/core/colors'
 import { withStyles } from '@material-ui/core/styles'
@@ -18,7 +17,7 @@ import MainModal from '../MainModal'
 const CssTextField = withStyles(theme => ({
   root: {
     '&:not(:last-child)': {
-      marginBottom: '30px',
+      marginBottom: '4vh',
       [theme.breakpoints.down('768')]: {
         marginBottom: '10px',
       },
@@ -104,10 +103,9 @@ export default function CalcForm() {
       const token = localStorage.getItem('token')
       if (token) {
         dispatch(calcDataPrivate(calcFormParams, token))
-      } else {
-        dispatch(calcData(calcFormParams))
-        setOpen(true)
       }
+      dispatch(calcData(calcFormParams))
+      setOpen(true)
       reset()
     }
   }
@@ -118,11 +116,9 @@ export default function CalcForm() {
     setDesiredWeight('')
     setGroupBlood('')
   }
-
   const handleClose = () => {
     setOpen(false)
   }
-
   return (
     <>
       <form
@@ -152,49 +148,60 @@ export default function CalcForm() {
               id="standard-basic"
               label="Рост"
               name="height"
+              size="small"
               required
               placeholder="введите число от 130 до 220"
               value={height}
-              type="number"
+              type="text"
               onChange={handleChange}
             />
             <CssTextField
               id="standard-basic"
               label="Возраст"
+              size="small"
               required
               name="age"
               placeholder="введите число от 18 до 99"
               value={age}
-              type="number"
+              type="text"
               onChange={handleChange}
             />
             <CssTextField
               id="standard-basic"
               label="Текущий вес"
+              size="small"
               required
               name="weight"
               placeholder="введите число от 50 до 200"
               value={weight}
-              type="number"
+              type="text"
               onChange={handleChange}
             />
           </div>
           <div>
             <CssTextField
               id="standard-basic"
-              style={{ marginBottom: 40 }}
+              style={{ marginBottom: '5vh' }}
               label="Желаемый вес"
+              size="small"
               required
               name="desiredWeight"
               placeholder="введите число от 45 до 100"
               value={desiredWeight}
-              type="number"
+              type="text"
               onChange={handleChange}
             />
             <RadioButtons onChange={handleChange} />
           </div>
         </div>
-        <MainButton id={styles.btn} type="submit">
+        <MainButton
+          id={styles.btn}
+          style={{
+            transform: value ? 'translateX(0)' : 'translateX(-101%)',
+            opacity: value ? '1' : '0',
+          }}
+          type="submit"
+        >
           Похудеть
         </MainButton>
       </form>
