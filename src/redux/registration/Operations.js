@@ -27,20 +27,6 @@ export const getUser = () => async (dispatch, getState) => {
   }
 }
 
-export const signUp = payload => (dispatch, getState) => {
-  console.log("log from signUp, this is 'payload':", payload)
-  dispatch(onSignUpRequest())
-  axiosInstance
-    .post('/users/signup', payload)
-    .then(({ data }) => {
-      localStorage.setItem('token', data.token)
-      dispatch(onSignUpSuccess(data))
-    })
-    .catch(error => {
-      dispatch(onSignUpFailure(error.message))
-    })
-}
-
 export const login = payload => (dispatch, getState) => {
   dispatch(onLoginRequest())
   axiosInstance
@@ -54,8 +40,24 @@ export const login = payload => (dispatch, getState) => {
     })
 }
 
+export const signUp = payload => (dispatch, getState) => {
+  console.log("log from signUp, this is 'payload':", payload)
+  const { name, email, password } = payload
+  dispatch(onSignUpRequest())
+  axiosInstance
+    .post('/users/signup', { name, email, password })
+    .then(({ data }) => {
+      localStorage.setItem('token', data.token)
+      dispatch(onSignUpSuccess(data))
+    })
+    .catch(error => {
+      dispatch(onSignUpFailure(error.message))
+    })
+}
+
 export const logout = payload => (dispatch, getState) => {
   dispatch(onLogoutRequest())
+
   axiosInstance
     .post('/users/logout', payload)
     .then(() => {

@@ -1,4 +1,4 @@
-import {calcDataPrivate} from '../../redux/calculator/calculator-operations'
+import { calcDataPrivate } from '../../redux/calculator/calculator-operations'
 import { useEffect } from 'react'
 
 import { useWindowWidth } from '@react-hook/window-size'
@@ -11,16 +11,14 @@ import { dateEatenProducts } from '../../redux/product/product-selectors'
 
 import styles from './DiaryPage.module.css'
 export default function DiaryPage() {
-
   // TODO new code
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
   const dataUser = localStorage.getItem('calcFormParams')
-      useEffect(() => {
-         dispatch(calcDataPrivate(JSON.parse(dataUser),token))
-    },[])
-
-// 
+  useEffect(() => {
+    dispatch(calcDataPrivate(JSON.parse(dataUser), token))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const onlyWidth = useWindowWidth()
   const dateEatenProductsInfo = useSelector(dateEatenProducts)

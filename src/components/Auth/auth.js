@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Route, Redirect } from 'react-router-dom'
-
+import { useDispatch } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
-
 import { orange } from '@material-ui/core/colors'
 import { withStyles } from '@material-ui/core/styles'
-
 import Button from '@material-ui/core/Button'
 import { login } from '../../redux/registration/Operations'
-import { getIsLoggedOn, getToken } from '../../redux/registration/Selectors'
+import routes from '../../routes'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -151,10 +148,6 @@ export default function AuthForm() {
     setPassword('')
   }
 
-  const isLoggedOn = useSelector(getIsLoggedOn)
-  const isAuthorized = useSelector(getToken)
-  console.log(isLoggedOn)
-
   return (
     <div
       style={{
@@ -162,45 +155,43 @@ export default function AuthForm() {
         opacity: value ? '1' : '0',
       }}
     >
-      {isAuthorized ? (
-        <Redirect to="/diary" />
-      ) : (
-        <div>
-          <h3 className={classes.title}>вход</h3>
-          <form
-            className={classes.root}
-            noValidate
-            autoComplete="off"
-            onSubmit={handleSubmit}
-          >
-            <CssTextField
-              required
-              id="standard-email-input"
-              label="Логин "
-              type="email"
-              value={email}
-              autoComplete="current-login"
-              onChange={handleChangeEmail}
-            />
+      <div>
+        <h3 className={classes.title}>вход</h3>
+        <form
+          className={classes.root}
+          noValidate
+          autoComplete="off"
+          onSubmit={handleSubmit}
+        >
+          <CssTextField
+            required
+            id="standard-email-input"
+            label="Логин "
+            type="email"
+            value={email}
+            autoComplete="current-login"
+            onChange={handleChangeEmail}
+          />
 
-            <CssTextField
-              required
-              id="standard-password-input"
-              label="Пароль "
-              type="password"
-              value={password}
-              autoComplete="current-password"
-              onChange={handleChangePassword}
-            />
-            <div className={classes.button}>
-              <ColorButtonEnter type="submit">Вход</ColorButtonEnter>
+          <CssTextField
+            required
+            id="standard-password-input"
+            label="Пароль "
+            type="password"
+            value={password}
+            autoComplete="current-password"
+            onChange={handleChangePassword}
+          />
+          <div className={classes.button}>
+            <ColorButtonEnter type="submit">Вход</ColorButtonEnter>
+            <NavLink to={routes.reg}>
               <ColorButtonRegister type="submit">
                 Регистрация
               </ColorButtonRegister>
-            </div>
-          </form>
-        </div>
-      )}
+            </NavLink>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }
