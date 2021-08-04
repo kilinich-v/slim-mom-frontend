@@ -12,7 +12,7 @@ const DayInfo = ({info}) => {
         <p className={styless.ul}>{info.totalKcalPerDay} ккал</p>
       </li>
       <li className={styless.list}>
-        <p className={styless.ul}>Дневная</p>{' '}
+        <p className={styless.ul}>Дневная норма</p>{' '}
         <p className={styless.ul}>{info.dayNorm} ккал</p>
       </li>
       <li className={styless.list}>

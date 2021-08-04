@@ -25,7 +25,10 @@ function RightSideBar() {
       setDeprecated(prohibitedProducts)
     }
   }, [prohibitedProducts])
-  
+
+  // const str = info.date
+  // const date =  str.join(".");
+  // console.log(date)
   //  console.log(new Date().toLocaleDateString('nb-NO'))
   return (
     <div>
