@@ -48,6 +48,10 @@
   color: #212121;
 }
 
+.linkActive {
+  color: #212121;
+}
+
 @media screen and (min-width: 768px) {
   .nav {
     padding-top: 18px;
@@ -144,7 +148,7 @@
 .userLogin {
   color: #212121;
   border-right: 2px solid #e0e0e0;
-  font-family: 'GothamPro-Bold';
+  font-family: Verdana;
   font-weight: 700;
   font-size: 14px;
   line-height: 13px;
@@ -158,11 +162,12 @@
   border: none;
   background-color: inherit;
   color: #9b9faa;
-  font-family: 'GothamPro-Bold';
+  font-family: Verdana;
   font-weight: 700;
   font-size: 14px;
   line-height: 13px;
   letter-spacing: 0.04em;
+  padding-left: 0px;
 }
 
 .userLogin {
@@ -173,6 +178,7 @@
 @media screen and (min-width: 768px) {
   .userInfo {
     background-color: white;
+    padding: 15px 0 13px 0;
   }
   .userLogin {
     padding-right: 15px;
@@ -191,6 +197,7 @@
       align-items: flex-end;
       background-color: #f0f1f3;
       // padding: 132px 0px 5px 0px;
+      padding: 15px 0 0px 0;
     }
 
     .userLogin {
