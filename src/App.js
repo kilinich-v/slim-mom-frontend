@@ -1,19 +1,34 @@
-import { Switch, Redirect } from 'react-router-dom'
-import routes from './routes'
-import { useEffect } from 'react'
+import { lazy } from 'react'
+import { Suspense, useEffect } from 'react'
+import { Switch } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-
+import routes from './routes'
 import { getUser } from './redux/registration/Operations'
-import MainPageView from './views/MainPageView'
-import AuthView from './views/AuthView'
-import RegistrationView from './views/RegistrationView'
-import CalculatorView from './views/CalculatorView'
-import DiaryView from './views/DiaryView'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-
 import PublicRoute from './components/Routes/publicRoute'
-import PrivatRoute from './components/Routes/privatRoute'
+import PrivateRoute from './components/Routes/privateRoute'
+import Loader from './components/common/Loader'
+
+const AuthView = lazy(
+  () => import('./views/AuthView') /* webpackChunkName: "AuthView" */,
+)
+const CalculatorView = lazy(
+  () =>
+    import('./views/CalculatorView') /* webpackChunkName: "CalculatorView" */,
+)
+const DiaryView = lazy(
+  () => import('./views/DiaryView') /* webpackChunkName: "DiaryView" */,
+)
+const MainPageView = lazy(
+  () => import('./views/MainPageView') /* webpackChunkName: "MainPageView" */,
+)
+const RegistrationView = lazy(
+  () =>
+    import(
+      './views/RegistrationView'
+    ) /* webpackChunkName: "RegiastrationView" */,
+)
 
 function App() {
   const dispatch = useDispatch()
@@ -25,36 +40,31 @@ function App() {
   return (
     <>
       <ToastContainer autoClose={2000} />
-      <Switch>
-        {/* My routes*/}
-        <PublicRoute exact path={routes.main}>
-          <MainPageView />
-        </PublicRoute>
-        <PublicRoute path={routes.auth} restricted>
-          <AuthView />
-        </PublicRoute>
-        <PublicRoute path={routes.reg} restricted>
-          <RegistrationView />
-        </PublicRoute>
-        <PrivatRoute path={routes.calculator}>
-          <CalculatorView />
-        </PrivatRoute>
-        <PrivatRoute path={routes.diary}>
-          <DiaryView />
-        </PrivatRoute>
-        <PrivatRoute>
-          <Redirect to={routes.diary} />
-        </PrivatRoute>
-
-        {/* The first routes */}
-        {/* <Route exact path={routes.main} component={MainPageView} />
-      
-//         <Route exact path={routes.main} component={MainPageView} />
-//         <Route path={routes.auth} component={AuthView} />
-//         <Route path={routes.reg} component={RegistrationView} />
-//         <Route path={routes.calculator} component={CalculatorView} />
-//         <Route path={routes.diary} component={DiaryView} /> */}
-      </Switch>
+      <Suspense fallback={<Loader />}>
+        <Switch>
+          <PublicRoute
+            path={routes.main}
+            exact
+            restricted
+            component={MainPageView}
+            redirectTo={routes.calculator}
+          />
+          <PublicRoute
+            path={routes.auth}
+            restricted
+            component={AuthView}
+            redirectTo={routes.diary}
+          />
+          <PublicRoute
+            path={routes.reg}
+            restricted
+            component={RegistrationView}
+            redirectTo={routes.diary}
+          />
+          <PrivateRoute path={routes.calculator} component={CalculatorView} />
+          <PrivateRoute path={routes.diary} component={DiaryView} />
+        </Switch>
+      </Suspense>
     </>
   )
 }
