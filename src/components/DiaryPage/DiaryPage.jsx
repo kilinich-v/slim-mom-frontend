@@ -1,5 +1,8 @@
+import {calcDataPrivate} from '../../redux/calculator/calculator-operations'
+import { useEffect } from 'react'
+
 import { useWindowWidth } from '@react-hook/window-size'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import DiaryProductsList from './DiaryProductsList/DiaryProductsList'
 import DiaryDateСalendar from './DiaryDateСalendar/DiaryDateСalendar'
 import DiaryAddProductForm from './DiaryAddProductForm/DiaryAddProductForm'
@@ -8,6 +11,17 @@ import { dateEatenProducts } from '../../redux/product/product-selectors'
 
 import styles from './DiaryPage.module.css'
 export default function DiaryPage() {
+
+  // TODO new code
+  const dispatch = useDispatch()
+  const token = localStorage.getItem('token')
+  const dataUser = localStorage.getItem('calcFormParams')
+      useEffect(() => {
+         dispatch(calcDataPrivate(JSON.parse(dataUser),token))
+    },[])
+
+// 
+
   const onlyWidth = useWindowWidth()
   const dateEatenProductsInfo = useSelector(dateEatenProducts)
   const currentDate = new Date().toLocaleDateString('fr-CA')

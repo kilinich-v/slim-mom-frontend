@@ -8,8 +8,6 @@ import {
 import styless from './RightSideBar.module.scss'
 
 function RightSideBar() {
-  //  TODO new file
-
   const dayInfo = useSelector(diaryInfo)
   const prohibitedProducts = useSelector(deprecatedProducts)
 
@@ -27,21 +25,20 @@ function RightSideBar() {
       setDeprecated(prohibitedProducts)
     }
   }, [prohibitedProducts])
-
+  
+  //  console.log(new Date().toLocaleDateString('nb-NO'))
   return (
     <div>
       <section className={styless.section}>
         <div className={styless.container}>
           <div className={styless.box}>
-            <h3 className={styless.title}>Сводка за дату</h3>
+            <h3 className={styless.title}>Сводка за дату {info.date} </h3>
             <DayInfo info={info} />
           </div>
           <div className={styless.box}>
             <h3 className={styless.title}>Нерекомендуемые продукты</h3>
             {deprecated.length > 0 ? <p className={styless.list}> {deprecated.join(', ')} </p> :
              <p className={styless.list}> Здесь будет отображаться Ваш рацион </p>} 
-
-            {/* {info.products.map(product => product.title).join(', ')}  */}
           </div>
         </div>
       </section>

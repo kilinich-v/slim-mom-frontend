@@ -15,6 +15,11 @@ import 'react-toastify/dist/ReactToastify.css'
 import MainButton from '../common/MainButton'
 import MainModal from '../MainModal'
 
+// TODO Vlad imports
+import { dateEatenProduct } from '../../redux/product/product-operations'
+import { dateEatenProducts } from '../../redux/product/product-selectors'
+import { useSelector } from 'react-redux'
+
 const CssTextField = withStyles(theme => ({
   root: {
     '&:not(:last-child)': {
@@ -57,6 +62,10 @@ export default function CalcForm() {
   useEffect(() => {
     setValue(true)
   }, [])
+
+  // TODO Vlad code
+  const date = useSelector(dateEatenProducts)
+  //*
 
   const handleChange = e => {
     const { name, value, defaultValue } = e.target
@@ -101,9 +110,14 @@ export default function CalcForm() {
         desiredWeight,
         groupBlood,
       }
+
       const token = localStorage.getItem('token')
       if (token) {
         dispatch(calcDataPrivate(calcFormParams, token))
+
+        // TODO Vlad code
+        dispatch(dateEatenProduct(date))
+        // *
       } else {
         dispatch(calcData(calcFormParams))
         setOpen(true)
