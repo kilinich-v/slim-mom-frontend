@@ -48,7 +48,7 @@ export default function DiaryDateСalendar() {
   return (
     <form className={classes.container} noValidate>
       <TextField
-        // InputProps={{ classes }}
+        InputProps={{ classes }}
         id="date"
         type="date"
         defaultValue={date}

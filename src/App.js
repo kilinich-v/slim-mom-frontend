@@ -34,7 +34,8 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getUser())
+    if (localStorage.getItem('token')) dispatch(getUser())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch])
 
   return (
