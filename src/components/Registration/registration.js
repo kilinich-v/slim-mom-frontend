@@ -155,17 +155,9 @@ export default function RegistrationForm() {
   const handleSubmit = e => {
     e.preventDefault()
     dispatch(signUp({ name, email, password }))
-
-    console.log(
-      'log from handleSubmit, name, email, password:',
-      name,
-      email,
-      password,
-    )
   }
-
   useEffect(() => {
-    if (userName.length) {
+    if (userName.length && email) {
       dispatch(login({ email, password }))
       reset()
     }

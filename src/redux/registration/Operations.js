@@ -19,7 +19,6 @@ export const getUser = () => async (dispatch, getState) => {
 
   try {
     const response = await axiosInstance.get('/users/current')
-    console.log('response.data from getUser', response.data)
 
     dispatch(onGetUser(response.data))
   } catch (error) {
@@ -33,7 +32,7 @@ export const login = payload => (dispatch, getState) => {
     .post('/users/login', payload)
     .then(({ data }) => {
       localStorage.setItem('token', data.token)
-      dispatch(onLoginSuccess(data))
+      return dispatch(onLoginSuccess(data))
     })
     .catch(error => {
       dispatch(onLoginFailure(error.message))
@@ -41,7 +40,6 @@ export const login = payload => (dispatch, getState) => {
 }
 
 export const signUp = payload => (dispatch, getState) => {
-  console.log("log from signUp, this is 'payload':", payload)
   const { name, email, password } = payload
   dispatch(onSignUpRequest())
   axiosInstance

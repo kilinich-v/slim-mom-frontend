@@ -86,5 +86,5 @@ export const {
   onLogoutSuccess,
   onLogoutFailure,
 } = actions
-console.log(actions)
+
 export default reducer
