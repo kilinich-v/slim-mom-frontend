@@ -10,10 +10,16 @@ import { withStyles } from '@material-ui/core/styles'
 import { signUp } from '../../redux/registration/Operations'
 import routes from '../../routes'
 import MainButton from '../common/MainButton'
-import stylesCss from '../Auth/styles.module.scss'
+import stylesCss from './styles.module.scss'
 
 const useStyles = makeStyles(theme => ({
   root: {
+    [theme.breakpoints.down('767')]: {
+      width: 289,
+      margin: 0,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
