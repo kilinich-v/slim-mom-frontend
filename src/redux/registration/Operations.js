@@ -19,7 +19,6 @@ export const getUser = () => async (dispatch, getState) => {
 
   try {
     const response = await axiosInstance.get('/users/current')
-    console.log('response.data from getUser', response.data)
 
     dispatch(onGetUser(response.data))
   } catch (error) {
