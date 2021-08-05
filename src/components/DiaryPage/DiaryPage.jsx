@@ -16,6 +16,9 @@ export default function DiaryPage() {
   const token = localStorage.getItem('token')
   const dataUser = localStorage.getItem('calcFormParams')
   useEffect(() => {
+    if (!dataUser) {
+      return
+    }
     dispatch(calcDataPrivate(JSON.parse(dataUser), token))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

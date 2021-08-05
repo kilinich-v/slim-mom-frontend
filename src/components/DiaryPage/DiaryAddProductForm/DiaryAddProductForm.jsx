@@ -22,7 +22,7 @@ export default function DiaryAddProductForm() {
   const dispatch = useDispatch()
 
   const date = useSelector(dateEatenProducts)
- 
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(
     debounce(() => {

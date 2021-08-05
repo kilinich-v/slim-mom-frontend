@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import { dateEatenProduct } from '../../../redux/product/product-operations'
-
+import { productLoading } from '../../../redux/product/product-selectors'
+import Loader from '../../common/Loader'
 const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: theme.spacing(1),
@@ -34,6 +35,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function DiaryDateСalendar() {
   const [date, setDate] = useState(new Date().toLocaleDateString('fr-CA'))
+  const isLoading = useSelector(productLoading)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(dateEatenProduct(date))
@@ -46,18 +48,24 @@ export default function DiaryDateСalendar() {
   const classes = useStyles()
 
   return (
-    <form className={classes.container} noValidate>
-      <TextField
-        InputProps={{ classes }}
-        id="date"
-        type="date"
-        defaultValue={date}
-        onChange={event => handleDateChange(event)}
-        className={classes.textField}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-    </form>
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <form className={classes.container} noValidate>
+          <TextField
+            InputProps={{ classes }}
+            id="date"
+            type="date"
+            defaultValue={date}
+            onChange={event => handleDateChange(event)}
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+        </form>
+      )}
+    </>
   )
 }
