@@ -1,0 +1,15 @@
+#linkBtn {
+  background: #ffffff;
+  border: 2px solid #fc842d;
+  color: #fc842d;
+
+  @media screen  and (max-width: 767px){
+    margin-top: 60px;
+    margin-bottom: 20px;
+  }
+
+  &:hover{
+    color: #ffffff;
+    background: #fc842d;
+  }
+}

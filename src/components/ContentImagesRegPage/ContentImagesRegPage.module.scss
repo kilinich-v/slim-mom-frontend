@@ -1,0 +1,117 @@
+.contentContainer {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.DecoreLaptop {
+  display: none;
+  position: absolute;
+  width: 55.94vw;
+  height: 100vh;
+  right: 0;
+  background-size: contain;
+  background-position: right bottom 0;
+  background-repeat: no-repeat;
+  transition: all 550ms cubic-bezier(0.4, 0, 0.2, 1);
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    background-image: url('../../res/images/contentImg/DecoreReglap.png');
+    display: block;
+    background-size: cover;
+    width: 648px;
+    height: 700px;
+    top: 350px;
+  }
+  @media screen and (min-width: 1280px) {
+    display: block;
+    background-image: url('../../res/images/contentImg/DecoreRegDesc.png');
+  }
+}
+.Banana {
+  display: none;
+  position: absolute;
+  width: 39vw;
+  height: 68vh;
+  top: 32vh;
+  right: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+  z-index: 3;
+  transition: all 950ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    display: block;
+    background-image: url('../../res/images/contentImg/BananaRegLap.png');
+    width: 600px;
+    height: 540px;
+    top: 510px;
+  }
+  @media screen and (min-width: 1280px) {
+    display: block;
+    background-image: url('../../res/images/contentImg/BananaRegDesc.png');
+  }
+}
+
+.Strawberry {
+  display: none;
+  position: absolute;
+  width: 23vw;
+  height: 43vh;
+  top: 20vh;
+  right: 66px;
+
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1;
+  transition: all 750ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    display: block;
+    background-image: url('../../res/images/contentImg/StrawberryRegPageLap.png');
+    top: 420px;
+    right: 0;
+    width: 300px;
+    height: 320px;
+  }
+  @media screen and (min-width: 1280px) {
+    display: block;
+    background-image: url('../../res/images/contentImg/StrawberryDesc.png');
+  }
+}
+.Green {
+  position: absolute;
+  pointer-events: none;
+  display: none;
+  width: 45vw;
+  height: 100vh;
+  top: 0px;
+  right: 281px;
+
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 10;
+  transition: all 850ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    display: block;
+    top: 20px;
+    right: 20px;
+    width: 631px;
+    height: 652px;
+    background-image: url('../../res/images/contentImg/GreenRegLap.png');
+  }
+  @media screen and (min-width: 1280px) {
+    display: block;
+    background-image: url('../../res/images/contentImg/GreenRegDesc.png');
+  }
+}

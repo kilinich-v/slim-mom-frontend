@@ -1,0 +1,37 @@
+.wrapper {
+  @media (min-width: 1280px) {
+    min-height: 100vh;
+    background: linear-gradient(
+      to right,
+      hsla(0, 0%, 100%, 0) 60%,
+      rgba(240, 241, 243, 1) 40%
+    );
+  }
+}
+
+.section {
+  @media (min-width: 1280px) {
+    background-image: url('../../res/images/RigthSideBarImg/RightSideBarImgDesktop.png');
+    background-position: right;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.box {
+  @media (min-width: 1280px) {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+  }
+}
+.header {
+  padding-left: 90px;
+  display: flex;
+}
+
+.headerBox {
+  display: flex;
+  justify-content: flex-end;
+}

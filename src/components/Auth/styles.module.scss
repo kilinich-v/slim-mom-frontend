@@ -1,0 +1,16 @@
+#regBtn {
+  background: #ffffff;
+  border: 2px solid #fc842d;
+  color: #fc842d;
+  &:hover{
+    color: #ffffff;
+    background: #fc842d;
+  }
+}
+
+#loginBtn{
+  @media screen  and (max-width: 767px){
+      margin-top: 60px;
+      margin-bottom: 20px;
+    }
+}

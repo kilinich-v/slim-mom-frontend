@@ -1,0 +1,53 @@
+.container {
+  width: 281px;
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
+
+.list {
+  width: 100%;
+  max-height: 210px;
+  padding: 0;
+  overflow-y: scroll;
+  margin: 0;
+  position: relative;
+}
+
+.mobilButton {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 589px;
+  }
+
+  .list {
+    width: 100%;
+    height: 240px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    width: 600px;
+    margin: 0;
+  }
+  .list {
+    width: 98%;
+  }
+}
+
+.list::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f0f1f3;
+}
+
+.list::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  height: 40px;
+  background: linear-gradient(180deg, #bec0c0, #264061);
+}

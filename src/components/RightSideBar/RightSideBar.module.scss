@@ -1,0 +1,103 @@
+.section {
+  // background-color: #f0f1f3;
+  @media screen and (max-width: 1279px) and (min-width: 768px) {
+    background-image: url('../../res/images/RigthSideBarImg/RightSideBarImgTablet.png');
+    background-repeat: no-repeat;
+    background-position: bottom right;
+  }
+  @media (min-width: 1280px) {
+    // background-image: url('../../res/images/RigthSideBarImg/RightSideBarImgDesktop.png');
+    background-position: right;
+    background-repeat: no-repeat;
+    min-height: 100%;
+    width: 100%;
+  }
+}
+.container {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  @media screen and (max-width: 767px) and (min-width: 320px) {
+    height: 433px;
+    width: 320px;
+  }
+  @media screen and (max-width: 1279px) and (min-width: 768px) {
+    display: flex;
+    height: 350px;
+    width: 624px;
+  }
+  @media (min-width: 1280px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.box {
+  padding-top: 40px;
+  @media screen and (max-width: 1279px) and (min-width: 768px) {
+    padding-top: 91px;
+    padding-bottom: 91px;
+    width: 250px;
+    &:not(:last-child) {
+      margin-right: 70px;
+    }
+  }
+  @media (min-width: 1280px) {
+    padding-top: 0px;
+    width: 330px;
+    &:first-child {
+      padding-top: 146px;
+      padding-bottom: 60px;
+    }
+    &:last-child {
+      margin-bottom: 180px;
+    }
+  }
+}
+.title {
+  font-family: Verdana;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700px;
+  letter-spacing: 0.04em;
+  color: #212121;
+  margin-bottom: 20px;
+  @media (min-width: 1280px) {
+    &:last-child {
+      margin-top: 40px;
+    }
+  }
+}
+.list {
+  display: flex;
+  justify-content: space-between;
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: 400px;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  list-style: none;
+  color: #9b9faa;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  @media (min-width: 1280px) {
+  }
+}
+.ul {
+  padding: 0;
+  margin: 0;
+}
+.text {
+  padding: 0;
+  margin: 0;
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: 400px;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #9b9faa;
+}
