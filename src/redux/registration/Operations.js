@@ -48,7 +48,10 @@ export const signUp = payload => (dispatch, getState) => {
     .post('/users/signup', { name, email, password })
     .then(({ data }) => {
       localStorage.setItem('token', data.token)
-      dispatch(onSignUpSuccess(data))
+      const newData = dispatch(onSignUpSuccess(data))
+      if (newData) {
+        dispatch(login({ email, password }))
+      }
     })
     .catch(error => {
       dispatch(onSignUpFailure(error.message))
@@ -62,6 +65,7 @@ export const logout = payload => (dispatch, getState) => {
     .post('/users/logout', payload)
     .then(() => {
       localStorage.removeItem('token')
+      localStorage.removeItem('calcFormParams')
       dispatch(onLogoutSuccess())
     })
     .catch(error => dispatch(onLogoutFailure(error.message)))
