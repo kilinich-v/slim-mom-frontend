@@ -86,13 +86,14 @@
             n = t.weight,
             a = t.kcal
           return function (t) {
-            var o = { kcal: a, title: e, weight: n }
+            var o = { kcal: a, title: e, weight: n },
+              i = new Date().toLocaleDateString('fr-CA')
             t(c.a.addProductRequest()),
               r.a
                 .post('/products', o)
                 .then(function (e) {
                   var n = e.data
-                  t(c.a.addProductSuccess(n))
+                  t(c.a.addProductSuccess(n)), t(s(i))
                 })
                 .catch(function (e) {
                   return t(c.a.addProductError(e))
@@ -101,15 +102,16 @@
         },
         i = function (t) {
           return function (e) {
-            e(c.a.deleteProductIdRequest()),
-              r.a
-                .delete('/products/'.concat(t))
-                .then(function () {
-                  return e(c.a.deleteProductIdSuccess(t))
-                })
-                .catch(function (t) {
-                  return e(c.a.deleteProductIdError(t.messages))
-                })
+            e(c.a.deleteProductIdRequest())
+            var n = new Date().toLocaleDateString('fr-CA')
+            r.a
+              .delete('/products/'.concat(t))
+              .then(function () {
+                e(c.a.deleteProductIdSuccess(t)), e(s(n))
+              })
+              .catch(function (t) {
+                return e(c.a.deleteProductIdError(t.messages))
+              })
           }
         },
         s = function (t) {
@@ -442,8 +444,8 @@
         })
       var c = n(43),
         r = n.n(c),
-        a = n(51),
-        o = n(52),
+        a = n(52),
+        o = n(53),
         i = n.n(o),
         s = n(29),
         u = n(141),
@@ -1087,7 +1089,9 @@
               className: s === i ? p.a.product_button : p.a.product_button_dis,
               type: 'button',
               onClick: function () {
-                return a(Object(f.c)(r)), void a(Object(f.b)(s))
+                return (
+                  a(Object(f.b)(i)), a(Object(f.c)(r)), void a(Object(f.b)(i))
+                )
               },
             }),
           ],
@@ -1101,13 +1105,14 @@
           e = Object(i.useState)([]),
           n = Object(b.a)(e, 2),
           c = n[0],
-          r = n[1]
+          r = n[1],
+          a = Object(u.b)()
         return (
           Object(i.useEffect)(
             function () {
               t && r(t)
             },
-            [t],
+            [a, t],
           ),
           Object(_.jsx)(_.Fragment, {
             children: Object(_.jsx)('div', {
@@ -1130,7 +1135,7 @@
       var y = n(4),
         N = n(117),
         k = n(248),
-        w = n(53),
+        w = n(51),
         S = Object(N.a)(function (t) {
           var e
           return {
@@ -1223,18 +1228,27 @@
           v = Object(b.a)(h, 2),
           x = v[0],
           g = v[1],
-          y = Object(u.b)(),
-          N = Object(u.c)(j.b)
+          y = Object(i.useState)(!1),
+          N = Object(b.a)(y, 2),
+          k = N[0],
+          S = N[1],
+          B = Object(u.b)(),
+          D = Object(u.c)(j.b)
         Object(i.useEffect)(
           C()(function () {
             n.length >= 3 &&
-              Object(f.d)(n).then(function (t) {
-                g(t)
-              })
-          }, 500),
+              Object(f.d)(n)
+                .then(S(!0))
+                .then(function (t) {
+                  g(t)
+                })
+                .finally(function () {
+                  return S(!1)
+                })
+          }, 300),
           [n],
         )
-        var k = Object(i.useCallback)(function (t) {
+        var L = Object(i.useCallback)(function (t) {
             var e = t.target.value
             if (e > 5e3) {
               return (
@@ -1246,106 +1260,117 @@
             }
             l(Number(e))
           }),
-          w = function () {
+          E = function () {
             c(''), l('')
           },
-          S = Object(s.a)()
-        return Object(_.jsx)(_.Fragment, {
-          children: Object(_.jsxs)('form', {
-            className: S >= 768 ? I.a.form : I.a.form_Mobile,
-            onSubmit: function (t) {
-              if ((t.preventDefault(), 0 === x.length)) {
-                return (
-                  c(''),
-                  P.b.warn(
-                    '\u041f\u0440\u043e\u0434\u0443\u043a\u0442 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d \u0438\u043b\u0438 \u0432\u044b\u0431\u0435\u0440\u0435\u0442\u0435 \u043f\u0440\u043e\u0434\u0443\u043a\u0442 \u0438\u0437 \u0441\u043f\u0438\u0441\u043a\u0430',
+          A = Object(s.a)()
+        return Object(_.jsxs)(_.Fragment, {
+          children: [
+            k ? Object(_.jsx)(w.a, {}) : null,
+            Object(_.jsxs)('form', {
+              className: A >= 768 ? I.a.form : I.a.form_Mobile,
+              onSubmit: function (t) {
+                if ((t.preventDefault(), 0 === x.length)) {
+                  return (
+                    c(''),
+                    P.b.warn(
+                      '\u041f\u0440\u043e\u0434\u0443\u043a\u0442 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d \u0438\u043b\u0438 \u0432\u044b\u0431\u0435\u0440\u0435\u0442\u0435 \u043f\u0440\u043e\u0434\u0443\u043a\u0442 \u0438\u0437 \u0441\u043f\u0438\u0441\u043a\u0430',
+                    )
                   )
-                )
-              }
-              if (
-                !(null === x || void 0 === x
-                  ? void 0
-                  : x.find(function (t) {
-                      return t.title === n
-                    }))
-              ) {
-                return (
-                  c(''),
-                  P.b.warn(
-                    '\u0412\u044b\u0431\u0435\u0440\u0435\u0442\u0435 \u043f\u0440\u043e\u0434\u0443\u043a\u0442 \u0438\u0437 \u0441\u043f\u0438\u0441\u043a\u0430',
+                }
+                if (
+                  !(null === x || void 0 === x
+                    ? void 0
+                    : x.find(function (t) {
+                        return t.title === n
+                      }))
+                ) {
+                  return (
+                    c(''),
+                    P.b.warn(
+                      '\u0412\u044b\u0431\u0435\u0440\u0435\u0442\u0435 \u043f\u0440\u043e\u0434\u0443\u043a\u0442 \u0438\u0437 \u0441\u043f\u0438\u0441\u043a\u0430',
+                    )
                   )
-                )
-              }
-              y(Object(f.b)(N)),
-                y(
-                  Object(f.a)({ kcal: Number(p), weight: Number(o), title: n }),
-                ),
-                y(Object(f.b)(N)),
-                w()
-            },
-            children: [
-              Object(_.jsx)('input', {
-                className: I.a.input,
-                list: 'cookies',
-                name: 'product',
-                value: n,
-                placeholder:
-                  '\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043f\u0440\u043e\u0434\u0443\u043a\u0442\u0430',
-                type: 'text',
-                autoComplete: 'off',
-                onChange: function (t) {
-                  var e = t.target.value
-                  if ((c(e), !x)) return null
-                  var n =
-                      null === x || void 0 === x
-                        ? void 0
-                        : x.find(function (t) {
-                            return t.title === e
-                          }),
-                    r = null === n || void 0 === n ? void 0 : n.kcal
-                  O(r)
-                },
-                required: !0,
-              }),
-              (null === x || void 0 === x ? void 0 : x.length) > 0 &&
-                Object(_.jsx)('datalist', {
-                  id: 'cookies',
-                  children: x.map(function (t) {
-                    var e = t.id,
-                      n = t.title
-                    return Object(_.jsx)('option', { value: n, children: n }, e)
-                  }),
+                }
+                B(Object(f.b)(D)),
+                  B(
+                    Object(f.a)({
+                      kcal: Number(p),
+                      weight: Number(o),
+                      title: n,
+                    }),
+                  ),
+                  B(Object(f.b)(D)),
+                  E()
+              },
+              children: [
+                Object(_.jsx)('input', {
+                  className: I.a.input,
+                  list: 'cookies',
+                  name: 'product',
+                  value: n,
+                  placeholder:
+                    '\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043f\u0440\u043e\u0434\u0443\u043a\u0442\u0430',
+                  type: 'text',
+                  autoComplete: 'off',
+                  onChange: function (t) {
+                    var e = t.target.value
+                    if ((c(e), !x)) return null
+                    var n =
+                        null === x || void 0 === x
+                          ? void 0
+                          : x.find(function (t) {
+                              return t.title === e
+                            }),
+                      r = null === n || void 0 === n ? void 0 : n.kcal
+                    O(r)
+                  },
+                  required: !0,
                 }),
-              Object(_.jsx)('input', {
-                className: I.a.input,
-                name: 'weight',
-                value: o,
-                placeholder: '\u0413\u0440\u0430\u043c\u043c\u044b',
-                type: 'number',
-                min: '0',
-                onChange: k,
-                required: !0,
-              }),
-              S >= 768
-                ? Object(_.jsx)('button', {
-                    type: 'submit',
-                    className: I.a.btn,
-                  })
-                : '',
-              S < 768
-                ? Object(_.jsx)(M.a, {
-                    type: 'submit',
-                    className: I.a.btn_Add,
-                    children:
-                      '\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c',
-                  })
-                : '',
-            ],
-          }),
+                (null === x || void 0 === x ? void 0 : x.length) > 0 &&
+                  Object(_.jsx)('datalist', {
+                    id: 'cookies',
+                    children: x.map(function (t) {
+                      var e = t.id,
+                        n = t.title
+                      return Object(_.jsx)(
+                        'option',
+                        { value: n, children: n },
+                        e,
+                      )
+                    }),
+                  }),
+                Object(_.jsx)('input', {
+                  className: I.a.input,
+                  name: 'weight',
+                  value: o,
+                  placeholder: '\u0413\u0440\u0430\u043c\u043c\u044b',
+                  type: 'number',
+                  min: '0',
+                  onChange: L,
+                  required: !0,
+                }),
+                A >= 768
+                  ? Object(_.jsx)('button', {
+                      type: 'submit',
+                      className: I.a.btn,
+                    })
+                  : '',
+                A < 768
+                  ? Object(_.jsx)(M.a, {
+                      type: 'submit',
+                      className: I.a.btn_Add,
+                      children:
+                        '\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c',
+                    })
+                  : null,
+              ],
+            }),
+          ],
         })
       }
-      var F = n(220),
-        A = n.n(F),
+      var A = n(220),
+        F = n.n(A),
         R = n(221),
         H = n.n(R),
         T = function (t) {
@@ -1410,7 +1435,7 @@
               o === a
                 ? Object(_.jsx)('button', {
                     type: 'button',
-                    className: A.a.btn,
+                    className: F.a.btn,
                     onClick: r,
                   })
                 : null,
@@ -1521,4 +1546,4 @@
     },
   },
 ])
-//# sourceMappingURL=7.95f3f092.chunk.js.map
+//# sourceMappingURL=7.8256e96f.chunk.js.map

@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { allProducts } from '../../../redux/product/product-selectors'
 import DiaryProductsListItem from '../DiaryProductsListItem/DiaryProductsListItem'
@@ -7,12 +7,13 @@ import styles from './DiaryProductsList.module.css'
 export default function DiaryProductsList() {
   const productsInfo = useSelector(allProducts)
   const [prod, setProd] = useState([])
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (productsInfo) {
       setProd(productsInfo)
     }
-  }, [productsInfo])
+  }, [dispatch, productsInfo])
   return (
     <>
       <div className={styles.container}>

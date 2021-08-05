@@ -180,7 +180,7 @@
             ? Object(X.jsx)(K.b, Object(I.a)({}, t))
             : Object(X.jsx)(K.a, { to: M.a.main })
         },
-        _ = n(53),
+        _ = n(51),
         tt = Object(s.lazy)(function () {
           return Promise.all([n.e(0), n.e(8)]).then(n.bind(null, 255))
         }),
@@ -330,7 +330,7 @@
     },
     32: function (t, e, n) {
       'use strict'
-      var c = n(52),
+      var c = n(53),
         r = n
           .n(c)
           .a.create({ baseURL: 'https://slim-mom-backend.herokuapp.com' })
@@ -356,7 +356,7 @@
         })
       var c = n(43),
         r = n.n(c),
-        o = n(51),
+        o = n(52),
         a = n(32),
         u = n(6),
         i = function () {
@@ -448,7 +448,7 @@
           }
         }
     },
-    53: function (t, e, n) {
+    51: function (t, e, n) {
       'use strict'
       n.d(e, 'a', function () {
         return u
@@ -591,4 +591,4 @@
   },
   [[116, 5, 6]],
 ])
-//# sourceMappingURL=main.f5b8a18c.chunk.js.map
+//# sourceMappingURL=main.13e5759d.chunk.js.map

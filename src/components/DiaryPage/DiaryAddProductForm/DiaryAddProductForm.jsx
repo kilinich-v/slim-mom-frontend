@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import debounce from 'lodash.debounce'
 import styles from './DiaryAddProductForm.module.css'
 import MainButton from '../../common/MainButton'
+import Loader from '../../common/Loader'
 import {
   getProducts,
   addProduct,
@@ -19,6 +20,7 @@ export default function DiaryAddProductForm() {
   const [productWeight, setProductWeight] = useState('')
   const [productCkal, setProductCkal] = useState('')
   const [debouncedProduct, setDebouncedProduct] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
   const dispatch = useDispatch()
 
   const date = useSelector(dateEatenProducts)
@@ -27,10 +29,13 @@ export default function DiaryAddProductForm() {
   useEffect(
     debounce(() => {
       productName.length >= 3 &&
-        getProducts(productName).then(products => {
-          setDebouncedProduct(products)
-        })
-    }, 500),
+        getProducts(productName)
+          .then(setIsLoading(true))
+          .then(products => {
+            setDebouncedProduct(products)
+          })
+          .finally(() => setIsLoading(false))
+    }, 300),
     [productName],
   )
   const handleSearchProduct = event => {
@@ -90,6 +95,7 @@ export default function DiaryAddProductForm() {
   const onlyWidth = useWindowWidth()
   return (
     <>
+      {isLoading ? <Loader /> : null}
       <form
         className={onlyWidth >= 768 ? styles.form : styles.form_Mobile}
         onSubmit={handleSubmit}
@@ -115,6 +121,7 @@ export default function DiaryAddProductForm() {
             ))}
           </datalist>
         )}
+
         <input
           className={styles.input}
           name="weight"
@@ -134,9 +141,7 @@ export default function DiaryAddProductForm() {
           <MainButton type="submit" className={styles.btn_Add}>
             Добавить
           </MainButton>
-        ) : (
-          ''
-        )}
+        ) : null}
       </form>
     </>
   )

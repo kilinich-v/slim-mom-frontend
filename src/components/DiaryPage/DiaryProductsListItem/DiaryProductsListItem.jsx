@@ -11,8 +11,9 @@ export default function DiaryProductsListItem({ title, weight, kcal, id }) {
   const currentDate = new Date().toLocaleDateString('fr-CA')
 
   const onDeleteProduct = () => {
+    dispatch(dateEatenProduct(dateEatenProductsInfo))
     dispatch(deleteProduct(id))
-    dispatch(dateEatenProduct(currentDate))
+    dispatch(dateEatenProduct(dateEatenProductsInfo))
   }
 
   return (
