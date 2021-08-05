@@ -12,6 +12,12 @@ import stylesCss from './styles.module.scss'
 
 const useStyles = makeStyles(theme => ({
   root: {
+    [theme.breakpoints.down('767')]: {
+      width: 289,
+      margin: 0,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -140,9 +146,11 @@ export default function AuthForm() {
             onChange={handleChangePassword}
           />
           <div className={classes.button}>
-            <MainButton type="submit">Вход</MainButton>
+            <MainButton type="submit" id={stylesCss.loginBtn}>
+              Вход
+            </MainButton>
             <NavLink to={routes.reg} style={{ textDecoration: 'none' }}>
-              <MainButton id={stylesCss.linkBtn} type="button">
+              <MainButton id={stylesCss.regBtn} type="button">
                 Регистрация{' '}
               </MainButton>
             </NavLink>
