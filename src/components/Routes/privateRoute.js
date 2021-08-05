@@ -6,7 +6,11 @@ import routes from '../../routes'
 const PrivateRoute = props => {
   const isLogin = useSelector(getIsLoggedOn)
 
-  return isLogin ? <Route {...props} /> : <Redirect to={routes.main} />
+  return isLogin || localStorage.getItem('token') ? (
+    <Route {...props} />
+  ) : (
+    <Redirect to={routes.main} />
+  )
 }
 
 export default PrivateRoute

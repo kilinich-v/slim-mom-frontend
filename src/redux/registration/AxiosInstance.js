@@ -5,6 +5,7 @@ const axiosInstance = axios.create({
 })
 axiosInstance.interceptors.request.use(config => {
   const token = localStorage.getItem('token')
+
   config.headers.Authorization = token ? `Bearer ${token}` : ''
   return config
 })

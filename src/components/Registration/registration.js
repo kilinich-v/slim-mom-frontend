@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import { orange } from '@material-ui/core/colors'
 import { withStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 
-import { getUserName } from '../../redux/registration/Selectors'
-import { signUp, login } from '../../redux/registration/Operations'
+import { signUp } from '../../redux/registration/Operations'
 import routes from '../../routes'
+import MainButton from '../common/MainButton'
+import stylesCss from '../Auth/styles.module.scss'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -53,50 +53,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
 }))
-const ColorButtonEnter = withStyles(theme => ({
-  root: {
-    borderRadius: '30px',
-    width: '176px',
-    height: '44px',
-    color: 'white',
-    marginBottom: '20px',
-
-    backgroundColor: orange[500],
-    '&:hover': {
-      backgroundColor: orange[700],
-    },
-    [theme.breakpoints.down('768')]: {
-      bottom: '0',
-    },
-    [theme.breakpoints.down('1200')]: {
-      left: '0',
-    },
-  },
-}))(Button)
-
-const ColorButtonRegister = withStyles(theme => ({
-  root: {
-    borderRadius: '30px',
-    width: '176px',
-    height: '44px',
-    color: '#FC842D',
-    marginBottom: '20px',
-
-    border: '2px solid #FC842D',
-    boxSizing: 'border-box',
-    backgroundColor: '#FFFFFF',
-    '&:hover': {
-      backgroundColor: orange[700],
-      color: 'white',
-    },
-    [theme.breakpoints.down('768')]: {
-      bottom: '0',
-    },
-    [theme.breakpoints.down('1200')]: {
-      left: '0',
-    },
-  },
-}))(Button)
 
 const CssTextField = withStyles(theme => ({
   root: {
@@ -132,7 +88,6 @@ const CssTextField = withStyles(theme => ({
 
 export default function RegistrationForm() {
   const dispatch = useDispatch()
-  const userName = useSelector(getUserName)
   const classes = useStyles()
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
@@ -155,7 +110,9 @@ export default function RegistrationForm() {
   const handleSubmit = e => {
     e.preventDefault()
     dispatch(signUp({ name, email, password }))
+    reset()
   }
+  
   useEffect(() => {
     if (userName.length && email) {
       dispatch(login({ email, password }))
@@ -191,7 +148,7 @@ export default function RegistrationForm() {
           <CssTextField
             required
             id="standard-email-input"
-            label="Логин"
+            label="Email"
             value={email}
             type="email"
             autoComplete="current-login"
@@ -210,10 +167,12 @@ export default function RegistrationForm() {
             onChange={handleChangePassword}
           />
           <div className={classes.button}>
-            <NavLink to={routes.auth}>
-              <ColorButtonEnter type="submit">Вход</ColorButtonEnter>
+            <NavLink to={routes.auth} style={{ textDecoration: 'none' }}>
+              <MainButton id={stylesCss.linkBtn} type="button">
+                Вход
+              </MainButton>
             </NavLink>
-            <ColorButtonRegister type="submit">Регистрация</ColorButtonRegister>
+            <MainButton type="submit">Регистрация</MainButton>
           </div>
         </form>
       </div>
