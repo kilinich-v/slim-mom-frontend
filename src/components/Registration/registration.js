@@ -118,13 +118,6 @@ export default function RegistrationForm() {
     dispatch(signUp({ name, email, password }))
     reset()
   }
-  
-  useEffect(() => {
-    if (userName.length && email) {
-      dispatch(login({ email, password }))
-      reset()
-    }
-  }, [dispatch, email, password, userName])
 
   return (
     <div
