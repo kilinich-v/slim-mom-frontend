@@ -5,9 +5,10 @@ import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import { orange } from '@material-ui/core/colors'
 import { withStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 import { login } from '../../redux/registration/Operations'
 import routes from '../../routes'
+import MainButton from '../common/MainButton'
+import stylesCss from './styles.module.scss'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -51,50 +52,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
 }))
-const ColorButtonEnter = withStyles(theme => ({
-  root: {
-    borderRadius: '30px',
-    width: '176px',
-    height: '44px',
-    color: 'white',
-    marginBottom: '20px',
-
-    backgroundColor: orange[500],
-    '&:hover': {
-      backgroundColor: orange[700],
-    },
-    [theme.breakpoints.down('768')]: {
-      bottom: '0',
-    },
-    [theme.breakpoints.down('1200')]: {
-      left: '0',
-    },
-  },
-}))(Button)
-
-const ColorButtonRegister = withStyles(theme => ({
-  root: {
-    borderRadius: '30px',
-    width: '176px',
-    height: '44px',
-    color: '#FC842D',
-    marginBottom: '20px',
-
-    border: '2px solid #FC842D',
-    boxSizing: 'border-box',
-    backgroundColor: '#FFFFFF',
-    '&:hover': {
-      backgroundColor: orange[700],
-      color: 'white',
-    },
-    [theme.breakpoints.down('768')]: {
-      bottom: '0',
-    },
-    [theme.breakpoints.down('1200')]: {
-      left: '0',
-    },
-  },
-}))(Button)
 
 const CssTextField = withStyles(theme => ({
   root: {
@@ -166,7 +123,7 @@ export default function AuthForm() {
           <CssTextField
             required
             id="standard-email-input"
-            label="Логин "
+            label="Email "
             type="email"
             value={email}
             autoComplete="current-login"
@@ -183,11 +140,11 @@ export default function AuthForm() {
             onChange={handleChangePassword}
           />
           <div className={classes.button}>
-            <ColorButtonEnter type="submit">Вход</ColorButtonEnter>
-            <NavLink to={routes.reg}>
-              <ColorButtonRegister type="submit">
-                Регистрация
-              </ColorButtonRegister>
+            <MainButton type="submit">Вход</MainButton>
+            <NavLink to={routes.reg} style={{ textDecoration: 'none' }}>
+              <MainButton id={stylesCss.linkBtn} type="button">
+                Регистрация{' '}
+              </MainButton>
             </NavLink>
           </div>
         </form>
